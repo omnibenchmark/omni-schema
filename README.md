@@ -1,6 +1,6 @@
 # omni-schema
 
-Data model foromnibenchmark.
+Data model for omnibenchmark.
 
 ## Website
 
