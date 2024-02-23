@@ -11,9 +11,7 @@ see_also:
 prefixes:
   omni_schema: https://w3id.org/omnibenchmark/omni-schema/
   linkml: https://w3id.org/linkml/
-  biolink: https://w3id.org/biolink/
   schema: http://schema.org/
-  PATO: http://purl.obolibrary.org/obo/PATO_
   example: https://example.org/
 default_prefix: omni_schema
 default_range: string
@@ -35,23 +33,76 @@ classes:
   Benchmark:
     is_a: NamedThing
     description: >-
-      Represents a Benchmark
+      A multi-step workflow to evaluate processing steps for a specific task.
     slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
+      - platform
+      - orchestrator
+      - version
+      - has_steps
+  
+  Step:
+    is_a: NamedThing
+    description: >-
+      A benchmark subtask with equivalent and independent modules.
+    slots:
+      - has_modules
+      - initial
+      - after
+      - excludes
+      - has_inputs
+      - has_outputs
 
-  BenchmarkCollection:
+  Module:
+    is_a: NamedThing
+    description: >-
+      A single benchmark component assigned to a specific step.
+    slots:
+      - repository
+      - has_parameter
+
+  Input:
+    is_a: NamedThing
+    description: >-
+      A set of input files.
+
+  Output:
+    is_a: NamedThing
+    description: >-
+      A set of output files.
+
+  Parameter:
+    is_a: NamedThing
+    description: >-
+      A parameter and its scope
+    
+
+  InputCollection:
     tree_root: true
     description: >-
-      A holder for Benchmark objects
+      A holder for valid input combinations
     attributes:
       entries:
-        range: Benchmark
+        range: Input
+        multivalued: true
+        inlined: true
+
+  OutputCollection:
+    tree_root: true
+    description: >-
+      A holder for valid input combinations
+    attributes:
+      entries:
+        range: Output
+        multivalued: true
+        inlined: true
+
+  ParameterCollection:
+    tree_root: true
+    description: >-
+      A holder for valid input combinations
+    attributes:
+      entries:
+        range: Parameter
         multivalued: true
         inlined: true
 
@@ -67,30 +118,51 @@ slots:
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
+  has_part:
+    slot_uri: schema:hasPart
+    description: Indicates an item that is part of this item.
+    multivalued: true
+  platform:
+    range: str
+    description: The place hosting all benchmark components
+    required: true
+  orchestrator:
+    range: str
+    description: Url to the full benchmark description in workflow format
+    required: true
+  version:
+    slot_uri: schema:version
+    description: Benchmark version
+    required: true
+  has_steps:
+    is_a: has_part
+    range: Step
+    description: All related benchmark subtask.
+  has_modules:
+    is_a: has_part
+    range: Module
+    description: All related benchmark modules
+    required: true
+  inital:
+    range: bool
+    description: Is the inital benchmark step?
+  after:
+    range: Step
+    description: Step(s) that have to be finished before this step.
+  excludes:
+    range: Module
+    description: Ignore these module's outputs as input. 
+  has_inputs:
+    is_a: has_part
+    range: InputCollection
+    description: All valid input combinations 
+  has_outputs:
+    is_a: has_part
+    range: OutputCollection 
+    description: All valid output combinations
+    required: true
+  has_parameter:
+    is_a: has_part
+    range: ParameterCollection 
+    description: All valid output combinations
 
-enums:
-  PersonStatus:
-    permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
