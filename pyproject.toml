@@ -2,7 +2,7 @@
 name = "omni_schema"
 version = "0.1.0"
 description = "Data model foromnibenchmark."
-authors = ["Almut Luetge <mark.robinson@mls.uzh.ch>"]
+authors = ["Almut Luetge <almut.lue@gmail.com>"]
 license = "Apache Software License 2.0"
 readme = "README.md"
 include = ["README.md", "src/omni_schema/schema", "project"]
