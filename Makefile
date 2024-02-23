@@ -14,7 +14,7 @@ else
 include .env.public
 endif
 
-RUN = /home/almut/softs/poetry/bin/poetry run
+RUN = poetry run
 SCHEMA_NAME = $(LINKML_SCHEMA_NAME)
 SOURCE_SCHEMA_PATH = $(LINKML_SCHEMA_SOURCE_PATH)
 SOURCE_SCHEMA_DIR = $(dir $(SOURCE_SCHEMA_PATH))
@@ -81,7 +81,7 @@ setup: check-config git-init install gen-project gen-examples gendoc git-add git
 
 # install any dependencies required for building
 install:
-	/home/almut/softs/poetry/bin/poetry install
+	poetry install
 .PHONY: install
 
 # ---
@@ -101,7 +101,7 @@ update-template:
 
 # todo: consider pinning to template
 update-linkml:
-	/home/almut/softs/poetry/bin/poetrypoetry add -D linkml@latest
+	poetry add -D linkml@latest
 
 # EXPERIMENTAL
 create-data-harmonizer:
