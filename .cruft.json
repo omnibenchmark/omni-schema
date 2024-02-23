@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/linkml/linkml-project-cookiecutter",
+  "commit": "07462f015a240ff3a68f52e25df027b33b364b1b",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "omni-schema",
+      "__project_slug": "omni_schema",
+      "github_org": "omnibenchmark",
+      "__source_path": "src/omni_schema/schema/omni_schema.yaml",
+      "project_description": "Data model foromnibenchmark.",
+      "full_name": "Almut Luetge",
+      "email": "mark.robinson@mls.uzh.ch",
+      "__author": "Almut Luetge <mark.robinson@mls.uzh.ch>",
+      "license": "Apache Software License 2.0",
+      "main_schema_class": "Benchmark",
+      "create_python_classes": "Yes",
+      "use_schemasheets": "No",
+      "google_sheet_id": "1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ",
+      "google_sheet_tabs": "personinfo enums",
+      "__google_sheet_module": "personinfo_enums",
+      "github_token_for_pypi_deployment": "PYPI_PASSWORD",
+      "_template": "https://github.com/linkml/linkml-project-cookiecutter"
+    }
+  },
+  "directory": null
+}
