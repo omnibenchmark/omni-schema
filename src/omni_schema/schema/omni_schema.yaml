@@ -3,7 +3,7 @@ id: https://w3id.org/omnibenchmark/omni-schema
 name: omni-schema
 title: omni-schema
 description: |-
-  Data model foromnibenchmark.
+  Data model for omnibenchmark.
 license: Apache Software License 2.0
 see_also:
   - https://omnibenchmark.github.io/omni-schema
@@ -11,9 +11,7 @@ see_also:
 prefixes:
   omni_schema: https://w3id.org/omnibenchmark/omni-schema/
   linkml: https://w3id.org/linkml/
-  biolink: https://w3id.org/biolink/
   schema: http://schema.org/
-  PATO: http://purl.obolibrary.org/obo/PATO_
   example: https://example.org/
 default_prefix: omni_schema
 default_range: string
@@ -22,8 +20,8 @@ imports:
   - linkml:types
 
 classes:
-
-  NamedThing:
+  IdentifiableEntity:
+    abstract: true
     description: >-
       A generic grouping for any identifiable entity
     slots:
@@ -33,64 +31,137 @@ classes:
     class_uri: schema:Thing
 
   Benchmark:
-    is_a: NamedThing
-    description: >-
-      Represents a Benchmark
-    slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
-
-  BenchmarkCollection:
+    is_a: IdentifiableEntity
     tree_root: true
     description: >-
-      A holder for Benchmark objects
+      A multi-step workflow to evaluate processing steps for a specific task.
+    slots:
+      - platform
+      - orchestrator
+    attributes:
+      - steps:
+          range: Step
+          multivalued: true
+          inlined: true
+          required: true
+
+  Orchestrator:
+    description: >-
+      The orchestrator of the benchmark.
+    slots:
+      - name
+    attributes:
+      - url:
+          range: string
+          description: Url to the full benchmark description in workflow format
+          required: true
+
+  Step:
+    is_a: IdentifiableEntity
+    description: >-
+      A benchmark subtask with equivalent and independent modules.
+    slots:
+      - initial
+      - terminal
+      - after
+    attributes:
+      - members:
+          range: Module
+          multivalued: true
+          inlined: true
+          required: true
+      - inputs:
+          range: InputCollection
+          multivalued: true
+          inlined: true
+      - outputs:
+          range: IOFile
+          multivalued: true
+          inlined: true
+
+  Module:
+    is_a: IdentifiableEntity
+    description: >-
+      A single benchmark component assigned to a specific step.
+    slots:
+      - repo
+      - exclude
+    attributes:
+      - parameters:
+          multivalued: true
+          inlined: true
+          inlined_as_list: false
+
+  IOFile:
+    description: >-
+      Represents an input / output file.
+    slots:
+      - name
+    attributes:
+      path:
+        range: string
+        description: The code repository hosting the module.
+
+  InputCollection:
+    description: >-
+      A holder for valid input combinations
     attributes:
       entries:
-        range: Benchmark
+        range: IOFile
         multivalued: true
         inlined: true
+        inlined_as_list: false
+
+  Parameter:
+    description: >-
+      A parameter and its scope.
+    slots:
+      - name
 
 slots:
   id:
-    identifier: true
+    identifier: false
     slot_uri: schema:identifier
     range: uriorcurie
     description: A unique identifier for a thing
+
   name:
     slot_uri: schema:name
     description: A human-readable name for a thing
+
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
 
-enums:
-  PersonStatus:
-    permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
+  platform:
+    range: string
+    description: The place hosting all benchmark components
+    required: true
+
+  orchestrator:
+    range: Orchestrator
+    description: The orchestrator of the benchmark.
+    required: true
+
+  initial:
+    range: boolean
+    description: Is the initial benchmark step?
+
+  terminal:
+    range: boolean
+    description: Is the terminal benchmark step?
+
+  after:
+    range: Step
+    multivalued: true
+    description: Step(s) that have to be finished before this step.
+
+  exclude:
+    range: Module
+    multivalued: true
+    description: Ignore these module's outputs as input.
+
+  repo:
+    range: string
+    description: The code repository hosting the module.
+    required: true
