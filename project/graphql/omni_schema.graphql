@@ -3,21 +3,60 @@ type Benchmark
     id: Uriorcurie!
     name: String
     description: String
-    primaryEmail: String
-    birthDate: Date
-    ageInYears: Integer
-    vitalStatus: PersonStatus
+    platform: String!
+    orchestrator: Orchestrator!
+    steps: [Step]!
   }
 
-type BenchmarkCollection
-  {
-    entries: [Benchmark]
-  }
-
-type NamedThing
+interface IdentifiableEntity
   {
     id: Uriorcurie!
     name: String
     description: String
+  }
+
+type InputCollection
+  {
+    entries: [IOFile]
+  }
+
+type IOFile
+  {
+    name: String
+    path: String
+  }
+
+type Module
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    repo: String!
+    exclude: [Module]
+    parameters: [Parameter]
+  }
+
+type Orchestrator
+  {
+    name: String
+    url: String!
+  }
+
+type Parameter
+  {
+    name: String
+  }
+
+type Step
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    initial: Boolean
+    terminal: Boolean
+    after: [Step]
+    members: [Module]!
+    inputs: [InputCollection]
+    outputs: [IOFile]
   }
 

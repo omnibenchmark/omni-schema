@@ -38,23 +38,14 @@ classes:
     slots:
       - platform
       - orchestrator
-    attributes:
-      - steps:
-          range: Step
-          multivalued: true
-          inlined: true
-          required: true
+      - steps
 
   Orchestrator:
     description: >-
       The orchestrator of the benchmark.
     slots:
       - name
-    attributes:
-      - url:
-          range: string
-          description: Url to the full benchmark description in workflow format
-          required: true
+      - url
 
   Step:
     is_a: IdentifiableEntity
@@ -64,20 +55,9 @@ classes:
       - initial
       - terminal
       - after
-    attributes:
-      - members:
-          range: Module
-          multivalued: true
-          inlined: true
-          required: true
-      - inputs:
-          range: InputCollection
-          multivalued: true
-          inlined: true
-      - outputs:
-          range: IOFile
-          multivalued: true
-          inlined: true
+      - members
+      - inputs
+      - outputs
 
   Module:
     is_a: IdentifiableEntity
@@ -86,31 +66,20 @@ classes:
     slots:
       - repo
       - exclude
-    attributes:
-      - parameters:
-          multivalued: true
-          inlined: true
-          inlined_as_list: false
+      - parameters
 
   IOFile:
     description: >-
       Represents an input / output file.
     slots:
       - name
-    attributes:
-      path:
-        range: string
-        description: The code repository hosting the module.
+      - path
 
   InputCollection:
     description: >-
       A holder for valid input combinations
-    attributes:
-      entries:
-        range: IOFile
-        multivalued: true
-        inlined: true
-        inlined_as_list: false
+    slots:
+      - entries
 
   Parameter:
     description: >-
@@ -120,7 +89,7 @@ classes:
 
 slots:
   id:
-    identifier: false
+    identifier: true
     slot_uri: schema:identifier
     range: uriorcurie
     description: A unique identifier for a thing
@@ -143,6 +112,17 @@ slots:
     description: The orchestrator of the benchmark.
     required: true
 
+  steps:
+    range: Step
+    multivalued: true
+    inlined: true
+    required: true
+  
+  url:
+    range: string
+    description: Url to the full benchmark description in workflow format
+    required: true
+
   initial:
     range: boolean
     description: Is the initial benchmark step?
@@ -155,6 +135,22 @@ slots:
     range: Step
     multivalued: true
     description: Step(s) that have to be finished before this step.
+  
+  members:
+    range: Module
+    multivalued: true
+    inlined: true
+    required: true
+
+  inputs:
+    range: InputCollection
+    multivalued: true
+    inlined: true
+
+  outputs:
+    range: IOFile
+    multivalued: true
+    inlined: true
 
   exclude:
     range: Module
@@ -165,3 +161,19 @@ slots:
     range: string
     description: The code repository hosting the module.
     required: true
+
+  parameters:
+    range: Parameter
+    multivalued: true
+    inlined: true
+    inlined_as_list: false
+
+  path:
+    range: string
+    description: The code repository hosting the module.
+
+  entries:
+    range: IOFile
+    multivalued: true
+    inlined: true
+    inlined_as_list: false

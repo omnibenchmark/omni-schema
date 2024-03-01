@@ -2,9 +2,8 @@
 import os
 import glob
 import unittest
-
 from linkml_runtime.loaders import yaml_loader
-from omni_schema.datamodel.omni_schema import BenchmarkCollection
+from omni_schema.datamodel.omni_schema import Benchmark
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 DATA_DIR = os.path.join(ROOT, "src", "data", "examples")
@@ -18,5 +17,5 @@ class TestData(unittest.TestCase):
     def test_data(self):
         """Data test."""
         for path in EXAMPLE_FILES:
-            obj = yaml_loader.load(path, target_class=BenchmarkCollection)
+            obj = yaml_loader.load(path, target_class=Benchmark)
             assert obj
