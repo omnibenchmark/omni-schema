@@ -63,8 +63,7 @@ steps:
       - id: M1
         name: M1
         repo: benchmark/test/M1
-        exclude:
-          - D2
+        exclude: [ D2 ]
       - id: M2
         name: M2
         repo: omnibenchmark/test/M2
