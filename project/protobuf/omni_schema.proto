@@ -8,7 +8,7 @@ message Benchmark
   orchestrator orchestrator = 0
  repeated  step steps = 0
  }
-// A holder for valid input combinations
+// A holder for valid input combinations.
 message InputCollection
  {
  repeated  iOFile entries = 0
@@ -16,7 +16,9 @@ message InputCollection
 // Represents an input / output file.
 message IOFile
  {
+  uriorcurie id = 0
   string name = 0
+  string description = 0
   string path = 0
  }
 // A single benchmark component assigned to a specific step.
@@ -38,7 +40,7 @@ message Orchestrator
 // A parameter and its scope.
 message Parameter
  {
-  string name = 0
+ repeated  string values = 0
  }
 // A benchmark subtask with equivalent and independent modules.
 message Step

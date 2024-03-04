@@ -368,14 +368,13 @@
         "http://schema.org/name"
       ],
       "slot_uri": "http://schema.org/name",
-      "owner": "Parameter",
+      "owner": "Orchestrator",
       "domain_of": [
         "IdentifiableEntity",
-        "Orchestrator",
-        "IOFile",
-        "Parameter"
+        "Orchestrator"
       ],
       "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
@@ -436,6 +435,7 @@
       "range": "Step",
       "required": true,
       "inlined": true,
+      "inlined_as_list": true,
       "@type": "SlotDefinition"
     },
     {
@@ -505,6 +505,7 @@
       "range": "Module",
       "required": true,
       "inlined": true,
+      "inlined_as_list": true,
       "@type": "SlotDefinition"
     },
     {
@@ -519,6 +520,7 @@
       ],
       "range": "InputCollection",
       "inlined": true,
+      "inlined_as_list": true,
       "@type": "SlotDefinition"
     },
     {
@@ -533,6 +535,7 @@
       ],
       "range": "IOFile",
       "inlined": true,
+      "inlined_as_list": true,
       "@type": "SlotDefinition"
     },
     {
@@ -591,6 +594,19 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "values",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/values",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/values",
+      "multivalued": true,
+      "owner": "Parameter",
+      "domain_of": [
+        "Parameter"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "entries",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/entries",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
@@ -601,7 +617,6 @@
         "InputCollection"
       ],
       "range": "IOFile",
-      "inlined": true,
       "@type": "SlotDefinition"
     }
   ],
@@ -700,8 +715,11 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/IOFile",
       "description": "Represents an input / output file.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "is_a": "IdentifiableEntity",
       "slots": [
+        "id",
         "name",
+        "description",
         "path"
       ],
       "slot_usage": {},
@@ -711,7 +729,7 @@
     {
       "name": "InputCollection",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/InputCollection",
-      "description": "A holder for valid input combinations",
+      "description": "A holder for valid input combinations.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slots": [
         "entries"
@@ -726,7 +744,7 @@
       "description": "A parameter and its scope.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slots": [
-        "name"
+        "values"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Parameter",
@@ -735,9 +753,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-03-01T14:57:35",
-  "source_file_size": 3512,
-  "generation_date": "2024-03-01T15:26:00",
+  "source_file_date": "2024-03-04T14:29:41",
+  "source_file_size": 3634,
+  "generation_date": "2024-03-04T14:30:57",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

@@ -2,7 +2,7 @@
 
 CREATE TABLE "Benchmark" (
 	id TEXT NOT NULL, 
-	name TEXT, 
+	name TEXT NOT NULL, 
 	description TEXT, 
 	platform TEXT NOT NULL, 
 	orchestrator TEXT NOT NULL, 
@@ -11,14 +11,16 @@ CREATE TABLE "Benchmark" (
 );
 
 CREATE TABLE "IOFile" (
-	name TEXT, 
+	id TEXT NOT NULL, 
+	name TEXT NOT NULL, 
+	description TEXT, 
 	path TEXT, 
-	PRIMARY KEY (name, path)
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE "Module" (
 	id TEXT NOT NULL, 
-	name TEXT, 
+	name TEXT NOT NULL, 
 	description TEXT, 
 	repo TEXT NOT NULL, 
 	exclude TEXT, 
@@ -26,14 +28,14 @@ CREATE TABLE "Module" (
 );
 
 CREATE TABLE "Orchestrator" (
-	name TEXT, 
+	name TEXT NOT NULL, 
 	url TEXT NOT NULL, 
 	PRIMARY KEY (name, url)
 );
 
 CREATE TABLE "Step" (
 	id TEXT NOT NULL, 
-	name TEXT, 
+	name TEXT NOT NULL, 
 	description TEXT, 
 	initial BOOLEAN, 
 	terminal BOOLEAN, 
@@ -51,8 +53,8 @@ CREATE TABLE "InputCollection" (
 );
 
 CREATE TABLE "Parameter" (
-	name TEXT, 
+	"values" TEXT, 
 	"Module_id" TEXT, 
-	PRIMARY KEY (name, "Module_id"), 
+	PRIMARY KEY ("values", "Module_id"), 
 	FOREIGN KEY("Module_id") REFERENCES "Module" (id)
 );

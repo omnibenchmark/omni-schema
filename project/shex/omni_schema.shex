@@ -55,11 +55,11 @@ linkml:Sparqlpath xsd:string
 }
 
 <IdentifiableEntity>  (
-    @<Benchmark> OR @<Module> OR @<Step>
+    @<Benchmark> OR @<IOFile> OR @<Module> OR @<Step>
 )
 
 <IdentifiableEntity_struct> {
-    (  $<IdentifiableEntity_tes> (  schema1:name @linkml:String ? ;
+    (  $<IdentifiableEntity_tes> (  schema1:name @linkml:String ;
           schema1:description @linkml:String ?
        ) ;
        rdf:type [ schema1:Thing ]
@@ -73,10 +73,11 @@ linkml:Sparqlpath xsd:string
 }
 
 <IOFile> CLOSED {
-    (  $<IOFile_tes> (  schema1:name @linkml:String ? ;
+    (  $<IOFile_tes> (  &<IdentifiableEntity_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
           <path> @linkml:String ?
        ) ;
-       rdf:type [ <IOFile> ] ?
+       rdf:type [ <IOFile> ]
     )
 }
 
@@ -92,7 +93,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <Orchestrator> CLOSED {
-    (  $<Orchestrator_tes> (  schema1:name @linkml:String ? ;
+    (  $<Orchestrator_tes> (  schema1:name @linkml:String ;
           <url> @linkml:String
        ) ;
        rdf:type [ <Orchestrator> ] ?
@@ -100,7 +101,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <Parameter> CLOSED {
-    (  $<Parameter_tes> schema1:name @linkml:String ? ;
+    (  $<Parameter_tes> <values> @linkml:String * ;
        rdf:type [ <Parameter> ] ?
     )
 }

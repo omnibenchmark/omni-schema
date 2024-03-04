@@ -1,7 +1,7 @@
 type Benchmark
   {
     id: Uriorcurie!
-    name: String
+    name: String!
     description: String
     platform: String!
     orchestrator: Orchestrator!
@@ -11,7 +11,7 @@ type Benchmark
 interface IdentifiableEntity
   {
     id: Uriorcurie!
-    name: String
+    name: String!
     description: String
   }
 
@@ -22,14 +22,16 @@ type InputCollection
 
 type IOFile
   {
-    name: String
+    id: Uriorcurie!
+    name: String!
+    description: String
     path: String
   }
 
 type Module
   {
     id: Uriorcurie!
-    name: String
+    name: String!
     description: String
     repo: String!
     exclude: [Module]
@@ -38,19 +40,19 @@ type Module
 
 type Orchestrator
   {
-    name: String
+    name: String!
     url: String!
   }
 
 type Parameter
   {
-    name: String
+    values: [String]
   }
 
 type Step
   {
     id: Uriorcurie!
-    name: String
+    name: String!
     description: String
     initial: Boolean
     terminal: Boolean

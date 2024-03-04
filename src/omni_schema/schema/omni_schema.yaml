@@ -69,15 +69,15 @@ classes:
       - parameters
 
   IOFile:
+    is_a: IdentifiableEntity
     description: >-
       Represents an input / output file.
     slots:
-      - name
       - path
 
   InputCollection:
     description: >-
-      A holder for valid input combinations
+      A holder for valid input combinations.
     slots:
       - entries
 
@@ -85,7 +85,7 @@ classes:
     description: >-
       A parameter and its scope.
     slots:
-      - name
+      - values
 
 slots:
   id:
@@ -93,10 +93,12 @@ slots:
     slot_uri: schema:identifier
     range: uriorcurie
     description: A unique identifier for a thing
+    required: true
 
   name:
     slot_uri: schema:name
     description: A human-readable name for a thing
+    required: true
 
   description:
     slot_uri: schema:description
@@ -116,6 +118,7 @@ slots:
     range: Step
     multivalued: true
     inlined: true
+    inlined_as_list: true
     required: true
   
   url:
@@ -140,17 +143,20 @@ slots:
     range: Module
     multivalued: true
     inlined: true
+    inlined_as_list: true
     required: true
 
   inputs:
     range: InputCollection
     multivalued: true
     inlined: true
+    inlined_as_list: true
 
   outputs:
     range: IOFile
     multivalued: true
     inlined: true
+    inlined_as_list: true
 
   exclude:
     range: Module
@@ -165,15 +171,15 @@ slots:
   parameters:
     range: Parameter
     multivalued: true
-    inlined: true
-    inlined_as_list: false
 
   path:
     range: string
     description: The code repository hosting the module.
 
+  values:
+    range: string
+    multivalued: true
+
   entries:
     range: IOFile
     multivalued: true
-    inlined: true
-    inlined_as_list: false

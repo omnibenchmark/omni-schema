@@ -25,35 +25,18 @@
                     "type": "string"
                 },
                 "steps": {
-                    "additionalProperties": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Step__identifier_optional"
-                            },
-                            {
-                                "additionalProperties": {
-                                    "anyOf": [
-                                        {
-                                            "$ref": "#/$defs/Module__identifier_optional"
-                                        },
-                                        {
-                                            "description": "The code repository hosting the module.",
-                                            "type": "string"
-                                        }
-                                    ]
-                                },
-                                "type": "object"
-                            }
-                        ]
+                    "items": {
+                        "$ref": "#/$defs/Step"
                     },
-                    "type": "object"
+                    "type": "array"
                 }
             },
             "required": [
                 "platform",
                 "orchestrator",
                 "steps",
-                "id"
+                "id",
+                "name"
             ],
             "title": "Benchmark",
             "type": "object"
@@ -62,6 +45,14 @@
             "additionalProperties": false,
             "description": "Represents an input / output file.",
             "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
@@ -71,16 +62,20 @@
                     "type": "string"
                 }
             },
+            "required": [
+                "id",
+                "name"
+            ],
             "title": "IOFile",
             "type": "object"
         },
         "InputCollection": {
             "additionalProperties": false,
-            "description": "A holder for valid input combinations",
+            "description": "A holder for valid input combinations.",
             "properties": {
                 "entries": {
                     "items": {
-                        "$ref": "#/$defs/IOFile"
+                        "type": "string"
                     },
                     "type": "array"
                 }
@@ -124,47 +119,8 @@
             },
             "required": [
                 "repo",
-                "id"
-            ],
-            "title": "Module",
-            "type": "object"
-        },
-        "Module__identifier_optional": {
-            "additionalProperties": false,
-            "description": "A single benchmark component assigned to a specific step.",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description for a thing",
-                    "type": "string"
-                },
-                "exclude": {
-                    "description": "Ignore these module's outputs as input.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "id": {
-                    "description": "A unique identifier for a thing",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A human-readable name for a thing",
-                    "type": "string"
-                },
-                "parameters": {
-                    "items": {
-                        "$ref": "#/$defs/Parameter"
-                    },
-                    "type": "array"
-                },
-                "repo": {
-                    "description": "The code repository hosting the module.",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "repo"
+                "id",
+                "name"
             ],
             "title": "Module",
             "type": "object"
@@ -183,6 +139,7 @@
                 }
             },
             "required": [
+                "name",
                 "url"
             ],
             "title": "Orchestrator",
@@ -192,9 +149,11 @@
             "additionalProperties": false,
             "description": "A parameter and its scope.",
             "properties": {
-                "name": {
-                    "description": "A human-readable name for a thing",
-                    "type": "string"
+                "values": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 }
             },
             "title": "Parameter",
@@ -230,18 +189,10 @@
                     "type": "array"
                 },
                 "members": {
-                    "additionalProperties": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Module__identifier_optional"
-                            },
-                            {
-                                "description": "The code repository hosting the module.",
-                                "type": "string"
-                            }
-                        ]
+                    "items": {
+                        "$ref": "#/$defs/Module"
                     },
-                    "type": "object"
+                    "type": "array"
                 },
                 "name": {
                     "description": "A human-readable name for a thing",
@@ -260,71 +211,8 @@
             },
             "required": [
                 "members",
-                "id"
-            ],
-            "title": "Step",
-            "type": "object"
-        },
-        "Step__identifier_optional": {
-            "additionalProperties": false,
-            "description": "A benchmark subtask with equivalent and independent modules.",
-            "properties": {
-                "after": {
-                    "description": "Step(s) that have to be finished before this step.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "description": {
-                    "description": "A human-readable description for a thing",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "A unique identifier for a thing",
-                    "type": "string"
-                },
-                "initial": {
-                    "description": "Is the initial benchmark step?",
-                    "type": "boolean"
-                },
-                "inputs": {
-                    "items": {
-                        "$ref": "#/$defs/InputCollection"
-                    },
-                    "type": "array"
-                },
-                "members": {
-                    "additionalProperties": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Module__identifier_optional"
-                            },
-                            {
-                                "description": "The code repository hosting the module.",
-                                "type": "string"
-                            }
-                        ]
-                    },
-                    "type": "object"
-                },
-                "name": {
-                    "description": "A human-readable name for a thing",
-                    "type": "string"
-                },
-                "outputs": {
-                    "items": {
-                        "$ref": "#/$defs/IOFile"
-                    },
-                    "type": "array"
-                },
-                "terminal": {
-                    "description": "Is the terminal benchmark step?",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "members"
+                "id",
+                "name"
             ],
             "title": "Step",
             "type": "object"
@@ -357,35 +245,18 @@
             "type": "string"
         },
         "steps": {
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "#/$defs/Step__identifier_optional"
-                    },
-                    {
-                        "additionalProperties": {
-                            "anyOf": [
-                                {
-                                    "$ref": "#/$defs/Module__identifier_optional"
-                                },
-                                {
-                                    "description": "The code repository hosting the module.",
-                                    "type": "string"
-                                }
-                            ]
-                        },
-                        "type": "object"
-                    }
-                ]
+            "items": {
+                "$ref": "#/$defs/Step"
             },
-            "type": "object"
+            "type": "array"
         }
     },
     "required": [
         "platform",
         "orchestrator",
         "steps",
-        "id"
+        "id",
+        "name"
     ],
     "title": "omni-schema",
     "type": "object",

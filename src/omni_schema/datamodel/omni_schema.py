@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-03-01T15:26:03
+# Generation date: 2024-03-04T14:31:03
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -57,6 +57,10 @@ class ModuleId(IdentifiableEntityId):
     pass
 
 
+class IOFileId(IdentifiableEntityId):
+    pass
+
+
 @dataclass
 class IdentifiableEntity(YAMLRoot):
     """
@@ -70,7 +74,7 @@ class IdentifiableEntity(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.IdentifiableEntity
 
     id: Union[str, IdentifiableEntityId] = None
-    name: Optional[str] = None
+    name: str = None
     description: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -79,7 +83,9 @@ class IdentifiableEntity(YAMLRoot):
         if not isinstance(self.id, IdentifiableEntityId):
             self.id = IdentifiableEntityId(self.id)
 
-        if self.name is not None and not isinstance(self.name, str):
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
             self.name = str(self.name)
 
         if self.description is not None and not isinstance(self.description, str):
@@ -101,6 +107,7 @@ class Benchmark(IdentifiableEntity):
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.Benchmark
 
     id: Union[str, BenchmarkId] = None
+    name: str = None
     platform: str = None
     orchestrator: Union[dict, "Orchestrator"] = None
     steps: Union[Dict[Union[str, StepId], Union[dict, "Step"]], List[Union[dict, "Step"]]] = empty_dict()
@@ -123,7 +130,7 @@ class Benchmark(IdentifiableEntity):
 
         if self._is_empty(self.steps):
             self.MissingRequiredField("steps")
-        self._normalize_inlined_as_dict(slot_name="steps", slot_type=Step, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="steps", slot_type=Step, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -140,17 +147,19 @@ class Orchestrator(YAMLRoot):
     class_name: ClassVar[str] = "Orchestrator"
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.Orchestrator
 
+    name: str = None
     url: str = None
-    name: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
+            self.name = str(self.name)
+
         if self._is_empty(self.url):
             self.MissingRequiredField("url")
         if not isinstance(self.url, str):
             self.url = str(self.url)
-
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
 
         super().__post_init__(**kwargs)
 
@@ -168,12 +177,13 @@ class Step(IdentifiableEntity):
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.Step
 
     id: Union[str, StepId] = None
+    name: str = None
     members: Union[Dict[Union[str, ModuleId], Union[dict, "Module"]], List[Union[dict, "Module"]]] = empty_dict()
     initial: Optional[Union[bool, Bool]] = None
     terminal: Optional[Union[bool, Bool]] = None
     after: Optional[Union[Union[str, StepId], List[Union[str, StepId]]]] = empty_list()
     inputs: Optional[Union[Union[dict, "InputCollection"], List[Union[dict, "InputCollection"]]]] = empty_list()
-    outputs: Optional[Union[Union[dict, "IOFile"], List[Union[dict, "IOFile"]]]] = empty_list()
+    outputs: Optional[Union[Dict[Union[str, IOFileId], Union[dict, "IOFile"]], List[Union[dict, "IOFile"]]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -183,7 +193,7 @@ class Step(IdentifiableEntity):
 
         if self._is_empty(self.members):
             self.MissingRequiredField("members")
-        self._normalize_inlined_as_dict(slot_name="members", slot_type=Module, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="members", slot_type=Module, key_name="id", keyed=True)
 
         if self.initial is not None and not isinstance(self.initial, Bool):
             self.initial = Bool(self.initial)
@@ -199,9 +209,7 @@ class Step(IdentifiableEntity):
             self.inputs = [self.inputs] if self.inputs is not None else []
         self.inputs = [v if isinstance(v, InputCollection) else InputCollection(**as_dict(v)) for v in self.inputs]
 
-        if not isinstance(self.outputs, list):
-            self.outputs = [self.outputs] if self.outputs is not None else []
-        self.outputs = [v if isinstance(v, IOFile) else IOFile(**as_dict(v)) for v in self.outputs]
+        self._normalize_inlined_as_list(slot_name="outputs", slot_type=IOFile, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -219,6 +227,7 @@ class Module(IdentifiableEntity):
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.Module
 
     id: Union[str, ModuleId] = None
+    name: str = None
     repo: str = None
     exclude: Optional[Union[Union[str, ModuleId], List[Union[str, ModuleId]]]] = empty_list()
     parameters: Optional[Union[Union[dict, "Parameter"], List[Union[dict, "Parameter"]]]] = empty_list()
@@ -246,7 +255,7 @@ class Module(IdentifiableEntity):
 
 
 @dataclass
-class IOFile(YAMLRoot):
+class IOFile(IdentifiableEntity):
     """
     Represents an input / output file.
     """
@@ -257,12 +266,15 @@ class IOFile(YAMLRoot):
     class_name: ClassVar[str] = "IOFile"
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.IOFile
 
-    name: Optional[str] = None
+    id: Union[str, IOFileId] = None
+    name: str = None
     path: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, IOFileId):
+            self.id = IOFileId(self.id)
 
         if self.path is not None and not isinstance(self.path, str):
             self.path = str(self.path)
@@ -273,7 +285,7 @@ class IOFile(YAMLRoot):
 @dataclass
 class InputCollection(YAMLRoot):
     """
-    A holder for valid input combinations
+    A holder for valid input combinations.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -282,12 +294,12 @@ class InputCollection(YAMLRoot):
     class_name: ClassVar[str] = "InputCollection"
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.InputCollection
 
-    entries: Optional[Union[Union[dict, IOFile], List[Union[dict, IOFile]]]] = empty_list()
+    entries: Optional[Union[Union[str, IOFileId], List[Union[str, IOFileId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if not isinstance(self.entries, list):
             self.entries = [self.entries] if self.entries is not None else []
-        self.entries = [v if isinstance(v, IOFile) else IOFile(**as_dict(v)) for v in self.entries]
+        self.entries = [v if isinstance(v, IOFileId) else IOFileId(v) for v in self.entries]
 
         super().__post_init__(**kwargs)
 
@@ -304,11 +316,12 @@ class Parameter(YAMLRoot):
     class_name: ClassVar[str] = "Parameter"
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.Parameter
 
-    name: Optional[str] = None
+    values: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
+        if not isinstance(self.values, list):
+            self.values = [self.values] if self.values is not None else []
+        self.values = [v if isinstance(v, str) else str(v) for v in self.values]
 
         super().__post_init__(**kwargs)
 
@@ -324,7 +337,7 @@ slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier
                    model_uri=OMNI_SCHEMA.id, domain=None, range=URIRef)
 
 slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
-                   model_uri=OMNI_SCHEMA.name, domain=None, range=Optional[str])
+                   model_uri=OMNI_SCHEMA.name, domain=None, range=str)
 
 slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
                    model_uri=OMNI_SCHEMA.description, domain=None, range=Optional[str])
@@ -357,7 +370,7 @@ slots.inputs = Slot(uri=OMNI_SCHEMA.inputs, name="inputs", curie=OMNI_SCHEMA.cur
                    model_uri=OMNI_SCHEMA.inputs, domain=None, range=Optional[Union[Union[dict, InputCollection], List[Union[dict, InputCollection]]]])
 
 slots.outputs = Slot(uri=OMNI_SCHEMA.outputs, name="outputs", curie=OMNI_SCHEMA.curie('outputs'),
-                   model_uri=OMNI_SCHEMA.outputs, domain=None, range=Optional[Union[Union[dict, IOFile], List[Union[dict, IOFile]]]])
+                   model_uri=OMNI_SCHEMA.outputs, domain=None, range=Optional[Union[Dict[Union[str, IOFileId], Union[dict, IOFile]], List[Union[dict, IOFile]]]])
 
 slots.exclude = Slot(uri=OMNI_SCHEMA.exclude, name="exclude", curie=OMNI_SCHEMA.curie('exclude'),
                    model_uri=OMNI_SCHEMA.exclude, domain=None, range=Optional[Union[Union[str, ModuleId], List[Union[str, ModuleId]]]])
@@ -371,5 +384,8 @@ slots.parameters = Slot(uri=OMNI_SCHEMA.parameters, name="parameters", curie=OMN
 slots.path = Slot(uri=OMNI_SCHEMA.path, name="path", curie=OMNI_SCHEMA.curie('path'),
                    model_uri=OMNI_SCHEMA.path, domain=None, range=Optional[str])
 
+slots.values = Slot(uri=OMNI_SCHEMA.values, name="values", curie=OMNI_SCHEMA.curie('values'),
+                   model_uri=OMNI_SCHEMA.values, domain=None, range=Optional[Union[str, List[str]]])
+
 slots.entries = Slot(uri=OMNI_SCHEMA.entries, name="entries", curie=OMNI_SCHEMA.curie('entries'),
-                   model_uri=OMNI_SCHEMA.entries, domain=None, range=Optional[Union[Union[dict, IOFile], List[Union[dict, IOFile]]]])
+                   model_uri=OMNI_SCHEMA.entries, domain=None, range=Optional[Union[Union[str, IOFileId], List[Union[str, IOFileId]]]])

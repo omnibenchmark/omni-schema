@@ -18,11 +18,14 @@ steps:
         name: D2
         repo: omnibenchmark/test/D2
     outputs:
-      - name: counts
+      - id: Step1.counts
+        name: counts
         path: "{stage}/{module}/{params}/{name}.txt.gz"
-      - name: meta
+      - id: Step1.meta
+        name: meta
         path: "{stage}/{module}/{params}/{name}.meta.json"
-      - name: data_specific_params
+      - id: Step1.data_specific_params
+        name: data_specific_params
         path: "{stage}/{module}/{params}/{name}_params.txt"
 
   - id: Step2
@@ -34,19 +37,22 @@ steps:
         name: P1
         repo: omnibenchmark/test/P1
         parameters:
-          - -a 0, -b 0.1
-          - -a 1 -b 0.1
+          - values: ["-a 0", "-b 0.1"]
+          - values: ["-a 1", "-b 0.1"]
       - id: P2
         name: P2
         repo: omnibenchmark/test/P2
         parameters:
-          - -a 0 -c 0
-          - -a 1 -c 0.1
+          - values: ["-a 0", "-c 0"]
+          - values: ["-a 1", "-c 0.1"]
     inputs:
-      - counts
-        meta
+      - entries: [
+          Step1.counts,
+          Step1.meta
+        ]
     outputs:
-      - name: filtered
+      - id: Step2.filtered
+        name: filtered
         path: "{input_dirname}/{stage}/{module}/{params}/{name}.txt.gz"
 
   - id: Step3
@@ -63,20 +69,25 @@ steps:
         name: M2
         repo: omnibenchmark/test/M2
         parameters:
-          - -d1 -e1
-          - -d1 -e 2
+          - values: ["-d1", "-e 1"]
+          - values: ["-d1", "-e 2"]
         exclude:
           - D1
           - D2
     inputs:
-      - counts
-        meta
-        data_specific_params
-      - filtered
-        meta
-        data_specific_params
+      - entries: [
+          Step1.counts,
+          Step1.meta,
+          Step1.data_specific_params
+        ]
+      - entries: [
+          Step2.filtered,
+          Step1.meta,
+          Step1.data_specific_params
+        ]
     outputs:
-      - name: mapping
+      - id: Step3.mapping
+        name: mapping
         path: "{input_dirname}/{stage}/{module}/{params}/{name}.model.out.gz"
 
   - id: Step4
@@ -95,6 +106,8 @@ steps:
         name: m3
         repo: omnibenchmark/test/m3
     inputs:
-      - mapping
-        meta
-        data_specific_params
+      - entries: [
+          Step3.mapping,
+          Step1.meta,
+          Step1.data_specific_params
+        ]
