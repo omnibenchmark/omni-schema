@@ -1,5 +1,5 @@
 ---
-id: Benchmark-001
+id: Benchmark_001
 name: starts_to_be_explicit
 description: simple benchmark, somewhat explicit, simple params
 platform: https://gitlab.renkulab.io/
