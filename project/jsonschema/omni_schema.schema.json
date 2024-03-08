@@ -2,17 +2,8 @@
     "$defs": {
         "Benchmark": {
             "additionalProperties": false,
-            "description": "Represents a Benchmark",
+            "description": "A multi-step workflow to evaluate processing steps for a specific task.",
             "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
-                    "type": "integer"
-                },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
-                    "type": "string"
-                },
                 "description": {
                     "description": "A human-readable description for a thing",
                     "type": "string"
@@ -25,59 +16,102 @@
                     "description": "A human-readable name for a thing",
                     "type": "string"
                 },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                "orchestrator": {
+                    "$ref": "#/$defs/Orchestrator",
+                    "description": "The orchestrator of the benchmark."
+                },
+                "platform": {
+                    "description": "The place hosting all benchmark components",
                     "type": "string"
                 },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
+                "steps": {
+                    "items": {
+                        "$ref": "#/$defs/Step"
+                    },
+                    "type": "array"
+                },
+                "storage": {
+                    "description": "The place hosting all benchmark data.",
+                    "type": "string"
+                },
+                "validator": {
+                    "$ref": "#/$defs/Validator",
+                    "description": "The validator of the benchmark."
+                },
+                "version": {
+                    "description": "The version of the benchmark.",
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "version",
+                "platform",
+                "storage",
+                "orchestrator",
+                "validator",
+                "steps",
+                "id",
+                "name"
             ],
             "title": "Benchmark",
             "type": "object"
         },
-        "BenchmarkCollection": {
+        "IOFile": {
             "additionalProperties": false,
-            "description": "A holder for Benchmark objects",
+            "description": "Represents an input / output file.",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "path": {
+                    "description": "The code repository hosting the module.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "IOFile",
+            "type": "object"
+        },
+        "InputCollection": {
+            "additionalProperties": false,
+            "description": "A holder for valid input combinations.",
             "properties": {
                 "entries": {
-                    "additionalProperties": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Benchmark__identifier_optional"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
+                    "items": {
+                        "type": "string"
                     },
-                    "type": "object"
+                    "type": "array"
                 }
             },
-            "title": "BenchmarkCollection",
+            "title": "InputCollection",
             "type": "object"
         },
-        "Benchmark__identifier_optional": {
+        "Module": {
             "additionalProperties": false,
-            "description": "Represents a Benchmark",
+            "description": "A single benchmark component assigned to a specific step.",
             "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
-                    "type": "integer"
-                },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
-                    "type": "string"
-                },
                 "description": {
                     "description": "A human-readable description for a thing",
                     "type": "string"
+                },
+                "exclude": {
+                    "description": "Ignore these module's outputs as input.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 },
                 "id": {
                     "description": "A unique identifier for a thing",
@@ -87,74 +121,198 @@
                     "description": "A human-readable name for a thing",
                     "type": "string"
                 },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": "string"
+                "parameters": {
+                    "items": {
+                        "$ref": "#/$defs/Parameter"
+                    },
+                    "type": "array"
                 },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
-                }
-            },
-            "required": [],
-            "title": "Benchmark",
-            "type": "object"
-        },
-        "NamedThing": {
-            "additionalProperties": false,
-            "description": "A generic grouping for any identifiable entity",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description for a thing",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "A unique identifier for a thing",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A human-readable name for a thing",
+                "repo": {
+                    "description": "The code repository hosting the module.",
                     "type": "string"
                 }
             },
             "required": [
-                "id"
+                "repo",
+                "id",
+                "name"
             ],
-            "title": "NamedThing",
+            "title": "Module",
             "type": "object"
         },
-        "PersonStatus": {
-            "description": "",
-            "enum": [
-                "ALIVE",
-                "DEAD",
-                "UNKNOWN"
+        "Orchestrator": {
+            "additionalProperties": false,
+            "description": "The orchestrator of the benchmark.",
+            "properties": {
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Url to the full benchmark description in workflow format",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "url"
             ],
-            "title": "PersonStatus",
-            "type": "string"
+            "title": "Orchestrator",
+            "type": "object"
+        },
+        "Parameter": {
+            "additionalProperties": false,
+            "description": "A parameter and its scope.",
+            "properties": {
+                "values": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "title": "Parameter",
+            "type": "object"
+        },
+        "Step": {
+            "additionalProperties": false,
+            "description": "A benchmark subtask with equivalent and independent modules.",
+            "properties": {
+                "after": {
+                    "description": "Step(s) that have to be finished before this step.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "initial": {
+                    "description": "Is the initial benchmark step?",
+                    "type": "boolean"
+                },
+                "inputs": {
+                    "items": {
+                        "$ref": "#/$defs/InputCollection"
+                    },
+                    "type": "array"
+                },
+                "members": {
+                    "items": {
+                        "$ref": "#/$defs/Module"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "outputs": {
+                    "items": {
+                        "$ref": "#/$defs/IOFile"
+                    },
+                    "type": "array"
+                },
+                "terminal": {
+                    "description": "Is the terminal benchmark step?",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "members",
+                "id",
+                "name"
+            ],
+            "title": "Step",
+            "type": "object"
+        },
+        "Validator": {
+            "additionalProperties": false,
+            "description": "The validator of the benchmark.",
+            "properties": {
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "schema_url": {
+                    "description": "Url to the benchmark validator schema.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Url to the full benchmark description in workflow format",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "url",
+                "schema_url"
+            ],
+            "title": "Validator",
+            "type": "object"
         }
     },
     "$id": "https://w3id.org/omnibenchmark/omni-schema",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
-    "description": "A holder for Benchmark objects",
+    "description": "A multi-step workflow to evaluate processing steps for a specific task.",
     "metamodel_version": "1.7.0",
     "properties": {
-        "entries": {
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "#/$defs/Benchmark__identifier_optional"
-                    },
-                    {
-                        "type": "null"
-                    }
-                ]
+        "description": {
+            "description": "A human-readable description for a thing",
+            "type": "string"
+        },
+        "id": {
+            "description": "A unique identifier for a thing",
+            "type": "string"
+        },
+        "name": {
+            "description": "A human-readable name for a thing",
+            "type": "string"
+        },
+        "orchestrator": {
+            "$ref": "#/$defs/Orchestrator",
+            "description": "The orchestrator of the benchmark."
+        },
+        "platform": {
+            "description": "The place hosting all benchmark components",
+            "type": "string"
+        },
+        "steps": {
+            "items": {
+                "$ref": "#/$defs/Step"
             },
-            "type": "object"
+            "type": "array"
+        },
+        "storage": {
+            "description": "The place hosting all benchmark data.",
+            "type": "string"
+        },
+        "validator": {
+            "$ref": "#/$defs/Validator",
+            "description": "The validator of the benchmark."
+        },
+        "version": {
+            "description": "The version of the benchmark.",
+            "type": "string"
         }
     },
+    "required": [
+        "version",
+        "platform",
+        "storage",
+        "orchestrator",
+        "validator",
+        "steps",
+        "id",
+        "name"
+    ],
     "title": "omni-schema",
     "type": "object",
     "version": null

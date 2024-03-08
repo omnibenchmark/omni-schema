@@ -1,6 +1,6 @@
 {
   "name": "omni-schema",
-  "description": "Data model foromnibenchmark.",
+  "description": "Data model for omnibenchmark.",
   "title": "omni-schema",
   "see_also": [
     "https://omnibenchmark.github.io/omni-schema"
@@ -20,16 +20,8 @@
       "prefix_reference": "https://w3id.org/linkml/"
     },
     {
-      "prefix_prefix": "biolink",
-      "prefix_reference": "https://w3id.org/biolink/"
-    },
-    {
       "prefix_prefix": "schema",
       "prefix_reference": "http://schema.org/"
-    },
-    {
-      "prefix_prefix": "PATO",
-      "prefix_reference": "http://purl.obolibrary.org/obo/PATO_"
     },
     {
       "prefix_prefix": "example",
@@ -348,32 +340,6 @@
       "@type": "TypeDefinition"
     }
   ],
-  "enums": [
-    {
-      "name": "PersonStatus",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/PersonStatus",
-      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "permissible_values": [
-        {
-          "text": "ALIVE",
-          "description": "the person is living",
-          "meaning": "PATO:0001421"
-        },
-        {
-          "text": "DEAD",
-          "description": "the person is deceased",
-          "meaning": "PATO:0001422"
-        },
-        {
-          "text": "UNKNOWN",
-          "description": "the vital status is not known",
-          "todos": [
-            "map this to an ontology"
-          ]
-        }
-      ]
-    }
-  ],
   "slots": [
     {
       "name": "id",
@@ -385,9 +351,9 @@
       ],
       "slot_uri": "http://schema.org/identifier",
       "identifier": true,
-      "owner": "NamedThing",
+      "owner": "IdentifiableEntity",
       "domain_of": [
-        "NamedThing"
+        "IdentifiableEntity"
       ],
       "range": "uriorcurie",
       "required": true,
@@ -402,11 +368,14 @@
         "http://schema.org/name"
       ],
       "slot_uri": "http://schema.org/name",
-      "owner": "NamedThing",
+      "owner": "Validator",
       "domain_of": [
-        "NamedThing"
+        "IdentifiableEntity",
+        "Orchestrator",
+        "Validator"
       ],
       "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
@@ -418,117 +387,308 @@
         "http://schema.org/description"
       ],
       "slot_uri": "http://schema.org/description",
-      "owner": "NamedThing",
+      "owner": "IdentifiableEntity",
       "domain_of": [
-        "NamedThing"
+        "IdentifiableEntity"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "primary_email",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/primary_email",
-      "description": "The main email address of a person",
+      "name": "version",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/version",
+      "description": "The version of the benchmark.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "slot_uri": "http://schema.org/email",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/version",
       "owner": "Benchmark",
       "domain_of": [
         "Benchmark"
       ],
       "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "birth_date",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/birth_date",
-      "description": "Date on which a person is born",
+      "name": "platform",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/platform",
+      "description": "The place hosting all benchmark components",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "mappings": [
-        "http://schema.org/birthDate"
-      ],
-      "slot_uri": "http://schema.org/birthDate",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/platform",
       "owner": "Benchmark",
       "domain_of": [
         "Benchmark"
       ],
-      "range": "date",
+      "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "age_in_years",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/age_in_years",
-      "description": "Number of years since birth",
+      "name": "storage",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/storage",
+      "description": "The place hosting all benchmark data.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/age_in_years",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/storage",
       "owner": "Benchmark",
       "domain_of": [
         "Benchmark"
       ],
-      "range": "integer",
+      "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "vital_status",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/vital_status",
-      "description": "living or dead status",
+      "name": "orchestrator",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/orchestrator",
+      "description": "The orchestrator of the benchmark.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/vital_status",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/orchestrator",
       "owner": "Benchmark",
       "domain_of": [
         "Benchmark"
       ],
-      "range": "PersonStatus",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "benchmarkCollection__entries",
-      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/entries",
-      "multivalued": true,
-      "alias": "entries",
-      "owner": "BenchmarkCollection",
-      "domain_of": [
-        "BenchmarkCollection"
-      ],
-      "range": "Benchmark",
+      "range": "Orchestrator",
+      "required": true,
       "inlined": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "Benchmark_primary_email",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/primary_email",
-      "description": "The main email address of a person",
+      "name": "validator",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/validator",
+      "description": "The validator of the benchmark.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "is_a": "primary_email",
-      "domain": "Benchmark",
-      "slot_uri": "http://schema.org/email",
-      "alias": "primary_email",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/validator",
       "owner": "Benchmark",
       "domain_of": [
         "Benchmark"
       ],
-      "is_usage_slot": true,
-      "usage_slot_name": "primary_email",
+      "range": "Validator",
+      "required": true,
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "steps",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/steps",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/steps",
+      "multivalued": true,
+      "owner": "Benchmark",
+      "domain_of": [
+        "Benchmark"
+      ],
+      "range": "Step",
+      "required": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "url",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/url",
+      "description": "Url to the full benchmark description in workflow format",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/url",
+      "owner": "Validator",
+      "domain_of": [
+        "Orchestrator",
+        "Validator"
+      ],
       "range": "string",
-      "pattern": "^\\S+@[\\S+\\.]+\\S+",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "schema_url",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/schema_url",
+      "description": "Url to the benchmark validator schema.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/schema_url",
+      "owner": "Validator",
+      "domain_of": [
+        "Validator"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "initial",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/initial",
+      "description": "Is the initial benchmark step?",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/initial",
+      "owner": "Step",
+      "domain_of": [
+        "Step"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "terminal",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/terminal",
+      "description": "Is the terminal benchmark step?",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/terminal",
+      "owner": "Step",
+      "domain_of": [
+        "Step"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "after",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/after",
+      "description": "Step(s) that have to be finished before this step.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/after",
+      "multivalued": true,
+      "owner": "Step",
+      "domain_of": [
+        "Step"
+      ],
+      "range": "Step",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "members",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/members",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/members",
+      "multivalued": true,
+      "owner": "Step",
+      "domain_of": [
+        "Step"
+      ],
+      "range": "Module",
+      "required": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "inputs",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/inputs",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/inputs",
+      "multivalued": true,
+      "owner": "Step",
+      "domain_of": [
+        "Step"
+      ],
+      "range": "InputCollection",
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "outputs",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/outputs",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/outputs",
+      "multivalued": true,
+      "owner": "Step",
+      "domain_of": [
+        "Step"
+      ],
+      "range": "IOFile",
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "exclude",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/exclude",
+      "description": "Ignore these module's outputs as input.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/exclude",
+      "multivalued": true,
+      "owner": "Module",
+      "domain_of": [
+        "Module"
+      ],
+      "range": "Module",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "repo",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/repo",
+      "description": "The code repository hosting the module.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/repo",
+      "owner": "Module",
+      "domain_of": [
+        "Module"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "parameters",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/parameters",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/parameters",
+      "multivalued": true,
+      "owner": "Module",
+      "domain_of": [
+        "Module"
+      ],
+      "range": "Parameter",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "path",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/path",
+      "description": "The code repository hosting the module.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/path",
+      "owner": "IOFile",
+      "domain_of": [
+        "IOFile"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "values",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/values",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/values",
+      "multivalued": true,
+      "owner": "Parameter",
+      "domain_of": [
+        "Parameter"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "entries",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/entries",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/entries",
+      "multivalued": true,
+      "owner": "InputCollection",
+      "domain_of": [
+        "InputCollection"
+      ],
+      "range": "IOFile",
       "@type": "SlotDefinition"
     }
   ],
   "classes": [
     {
-      "name": "NamedThing",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/NamedThing",
+      "name": "IdentifiableEntity",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/IdentifiableEntity",
       "description": "A generic grouping for any identifiable entity",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "mappings": [
         "schema:Thing"
       ],
+      "abstract": true,
       "slots": [
         "id",
         "name",
@@ -541,50 +701,137 @@
     {
       "name": "Benchmark",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/Benchmark",
-      "description": "Represents a Benchmark",
+      "description": "A multi-step workflow to evaluate processing steps for a specific task.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "is_a": "NamedThing",
+      "is_a": "IdentifiableEntity",
       "slots": [
         "id",
         "name",
         "description",
-        "Benchmark_primary_email",
-        "birth_date",
-        "age_in_years",
-        "vital_status"
+        "version",
+        "platform",
+        "storage",
+        "orchestrator",
+        "validator",
+        "steps"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Benchmark",
+      "tree_root": true,
       "@type": "ClassDefinition"
     },
     {
-      "name": "BenchmarkCollection",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/BenchmarkCollection",
-      "description": "A holder for Benchmark objects",
+      "name": "Orchestrator",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/Orchestrator",
+      "description": "The orchestrator of the benchmark.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slots": [
-        "benchmarkCollection__entries"
+        "name",
+        "url"
       ],
       "slot_usage": {},
-      "attributes": [
-        {
-          "name": "entries",
-          "multivalued": true,
-          "range": "Benchmark",
-          "inlined": true,
-          "@type": "SlotDefinition"
-        }
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Orchestrator",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Validator",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/Validator",
+      "description": "The validator of the benchmark.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slots": [
+        "name",
+        "url",
+        "schema_url"
       ],
-      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/BenchmarkCollection",
-      "tree_root": true,
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Validator",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Step",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/Step",
+      "description": "A benchmark subtask with equivalent and independent modules.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "is_a": "IdentifiableEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "initial",
+        "terminal",
+        "after",
+        "members",
+        "inputs",
+        "outputs"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Step",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Module",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/Module",
+      "description": "A single benchmark component assigned to a specific step.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "is_a": "IdentifiableEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "repo",
+        "exclude",
+        "parameters"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Module",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "IOFile",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/IOFile",
+      "description": "Represents an input / output file.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "is_a": "IdentifiableEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "path"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/IOFile",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "InputCollection",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/InputCollection",
+      "description": "A holder for valid input combinations.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slots": [
+        "entries"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/InputCollection",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Parameter",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/Parameter",
+      "description": "A parameter and its scope.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slots": [
+        "values"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Parameter",
       "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-02-23T10:42:44",
-  "source_file_size": 2225,
-  "generation_date": "2024-02-23T12:48:14",
+  "source_file_date": "2024-03-08T14:09:08",
+  "source_file_size": 4222,
+  "generation_date": "2024-03-08T14:09:12",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",
