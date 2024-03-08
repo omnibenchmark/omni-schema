@@ -36,8 +36,11 @@ classes:
     description: >-
       A multi-step workflow to evaluate processing steps for a specific task.
     slots:
+      - version
       - platform
+      - storage
       - orchestrator
+      - validator
       - steps
 
   Orchestrator:
@@ -46,6 +49,14 @@ classes:
     slots:
       - name
       - url
+
+  Validator:
+    description: >-
+      The validator of the benchmark.
+    slots:
+      - name
+      - url
+      - schema_url
 
   Step:
     is_a: IdentifiableEntity
@@ -104,14 +115,29 @@ slots:
     slot_uri: schema:description
     description: A human-readable description for a thing
 
+  version:
+    range: string
+    description: The version of the benchmark.
+    required: true
+
   platform:
     range: string
     description: The place hosting all benchmark components
     required: true
 
+  storage:
+    range: string
+    description: The place hosting all benchmark data.
+    required: true
+
   orchestrator:
     range: Orchestrator
     description: The orchestrator of the benchmark.
+    required: true
+
+  validator:
+    range: Validator
+    description: The validator of the benchmark.
     required: true
 
   steps:
@@ -124,6 +150,11 @@ slots:
   url:
     range: string
     description: Url to the full benchmark description in workflow format
+    required: true
+
+  schema_url:
+    range: string
+    description: Url to the benchmark validator schema.
     required: true
 
   initial:

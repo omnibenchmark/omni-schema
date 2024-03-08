@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-03-06T16:02:36
+# Generation date: 2024-03-08T14:09:16
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -108,8 +108,11 @@ class Benchmark(IdentifiableEntity):
 
     id: Union[str, BenchmarkId] = None
     name: str = None
+    version: str = None
     platform: str = None
+    storage: str = None
     orchestrator: Union[dict, "Orchestrator"] = None
+    validator: Union[dict, "Validator"] = None
     steps: Union[Dict[Union[str, StepId], Union[dict, "Step"]], List[Union[dict, "Step"]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -118,15 +121,30 @@ class Benchmark(IdentifiableEntity):
         if not isinstance(self.id, BenchmarkId):
             self.id = BenchmarkId(self.id)
 
+        if self._is_empty(self.version):
+            self.MissingRequiredField("version")
+        if not isinstance(self.version, str):
+            self.version = str(self.version)
+
         if self._is_empty(self.platform):
             self.MissingRequiredField("platform")
         if not isinstance(self.platform, str):
             self.platform = str(self.platform)
 
+        if self._is_empty(self.storage):
+            self.MissingRequiredField("storage")
+        if not isinstance(self.storage, str):
+            self.storage = str(self.storage)
+
         if self._is_empty(self.orchestrator):
             self.MissingRequiredField("orchestrator")
         if not isinstance(self.orchestrator, Orchestrator):
             self.orchestrator = Orchestrator(**as_dict(self.orchestrator))
+
+        if self._is_empty(self.validator):
+            self.MissingRequiredField("validator")
+        if not isinstance(self.validator, Validator):
+            self.validator = Validator(**as_dict(self.validator))
 
         if self._is_empty(self.steps):
             self.MissingRequiredField("steps")
@@ -160,6 +178,41 @@ class Orchestrator(YAMLRoot):
             self.MissingRequiredField("url")
         if not isinstance(self.url, str):
             self.url = str(self.url)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class Validator(YAMLRoot):
+    """
+    The validator of the benchmark.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["Validator"]
+    class_class_curie: ClassVar[str] = "omni_schema:Validator"
+    class_name: ClassVar[str] = "Validator"
+    class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.Validator
+
+    name: str = None
+    url: str = None
+    schema_url: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self._is_empty(self.url):
+            self.MissingRequiredField("url")
+        if not isinstance(self.url, str):
+            self.url = str(self.url)
+
+        if self._is_empty(self.schema_url):
+            self.MissingRequiredField("schema_url")
+        if not isinstance(self.schema_url, str):
+            self.schema_url = str(self.schema_url)
 
         super().__post_init__(**kwargs)
 
@@ -342,17 +395,29 @@ slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
 slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
                    model_uri=OMNI_SCHEMA.description, domain=None, range=Optional[str])
 
+slots.version = Slot(uri=OMNI_SCHEMA.version, name="version", curie=OMNI_SCHEMA.curie('version'),
+                   model_uri=OMNI_SCHEMA.version, domain=None, range=str)
+
 slots.platform = Slot(uri=OMNI_SCHEMA.platform, name="platform", curie=OMNI_SCHEMA.curie('platform'),
                    model_uri=OMNI_SCHEMA.platform, domain=None, range=str)
 
+slots.storage = Slot(uri=OMNI_SCHEMA.storage, name="storage", curie=OMNI_SCHEMA.curie('storage'),
+                   model_uri=OMNI_SCHEMA.storage, domain=None, range=str)
+
 slots.orchestrator = Slot(uri=OMNI_SCHEMA.orchestrator, name="orchestrator", curie=OMNI_SCHEMA.curie('orchestrator'),
                    model_uri=OMNI_SCHEMA.orchestrator, domain=None, range=Union[dict, Orchestrator])
+
+slots.validator = Slot(uri=OMNI_SCHEMA.validator, name="validator", curie=OMNI_SCHEMA.curie('validator'),
+                   model_uri=OMNI_SCHEMA.validator, domain=None, range=Union[dict, Validator])
 
 slots.steps = Slot(uri=OMNI_SCHEMA.steps, name="steps", curie=OMNI_SCHEMA.curie('steps'),
                    model_uri=OMNI_SCHEMA.steps, domain=None, range=Union[Dict[Union[str, StepId], Union[dict, Step]], List[Union[dict, Step]]])
 
 slots.url = Slot(uri=OMNI_SCHEMA.url, name="url", curie=OMNI_SCHEMA.curie('url'),
                    model_uri=OMNI_SCHEMA.url, domain=None, range=str)
+
+slots.schema_url = Slot(uri=OMNI_SCHEMA.schema_url, name="schema_url", curie=OMNI_SCHEMA.curie('schema_url'),
+                   model_uri=OMNI_SCHEMA.schema_url, domain=None, range=str)
 
 slots.initial = Slot(uri=OMNI_SCHEMA.initial, name="initial", curie=OMNI_SCHEMA.curie('initial'),
                    model_uri=OMNI_SCHEMA.initial, domain=None, range=Optional[Union[bool, Bool]])

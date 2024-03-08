@@ -368,10 +368,11 @@
         "http://schema.org/name"
       ],
       "slot_uri": "http://schema.org/name",
-      "owner": "Orchestrator",
+      "owner": "Validator",
       "domain_of": [
         "IdentifiableEntity",
-        "Orchestrator"
+        "Orchestrator",
+        "Validator"
       ],
       "range": "string",
       "required": true,
@@ -394,11 +395,39 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "version",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/version",
+      "description": "The version of the benchmark.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/version",
+      "owner": "Benchmark",
+      "domain_of": [
+        "Benchmark"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "platform",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/platform",
       "description": "The place hosting all benchmark components",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/platform",
+      "owner": "Benchmark",
+      "domain_of": [
+        "Benchmark"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "storage",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/storage",
+      "description": "The place hosting all benchmark data.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/storage",
       "owner": "Benchmark",
       "domain_of": [
         "Benchmark"
@@ -418,6 +447,21 @@
         "Benchmark"
       ],
       "range": "Orchestrator",
+      "required": true,
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "validator",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/validator",
+      "description": "The validator of the benchmark.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/validator",
+      "owner": "Benchmark",
+      "domain_of": [
+        "Benchmark"
+      ],
+      "range": "Validator",
       "required": true,
       "inlined": true,
       "@type": "SlotDefinition"
@@ -444,9 +488,24 @@
       "description": "Url to the full benchmark description in workflow format",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/url",
-      "owner": "Orchestrator",
+      "owner": "Validator",
       "domain_of": [
-        "Orchestrator"
+        "Orchestrator",
+        "Validator"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "schema_url",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/schema_url",
+      "description": "Url to the benchmark validator schema.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/schema_url",
+      "owner": "Validator",
+      "domain_of": [
+        "Validator"
       ],
       "range": "string",
       "required": true,
@@ -649,8 +708,11 @@
         "id",
         "name",
         "description",
+        "version",
         "platform",
+        "storage",
         "orchestrator",
+        "validator",
         "steps"
       ],
       "slot_usage": {},
@@ -669,6 +731,20 @@
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Orchestrator",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Validator",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/Validator",
+      "description": "The validator of the benchmark.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slots": [
+        "name",
+        "url",
+        "schema_url"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Validator",
       "@type": "ClassDefinition"
     },
     {
@@ -753,9 +829,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-03-06T15:18:41",
-  "source_file_size": 3634,
-  "generation_date": "2024-03-06T16:02:32",
+  "source_file_date": "2024-03-08T14:09:08",
+  "source_file_size": 4222,
+  "generation_date": "2024-03-08T14:09:12",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

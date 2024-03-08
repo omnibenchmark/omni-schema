@@ -46,8 +46,11 @@ linkml:Sparqlpath xsd:string
 <Benchmark> CLOSED {
     (  $<Benchmark_tes> (  &<IdentifiableEntity_tes> ;
           rdf:type [ schema1:Thing ] ? ;
+          <version> @linkml:String ;
           <platform> @linkml:String ;
+          <storage> @linkml:String ;
           <orchestrator> @<Orchestrator> ;
+          <validator> @<Validator> ;
           <steps> @<Step> +
        ) ;
        rdf:type [ <Benchmark> ]
@@ -117,6 +120,15 @@ linkml:Sparqlpath xsd:string
           <outputs> @<IOFile> *
        ) ;
        rdf:type [ <Step> ]
+    )
+}
+
+<Validator> CLOSED {
+    (  $<Validator_tes> (  schema1:name @linkml:String ;
+          <url> @linkml:String ;
+          <schema_url> @linkml:String
+       ) ;
+       rdf:type [ <Validator> ] ?
     )
 }
 

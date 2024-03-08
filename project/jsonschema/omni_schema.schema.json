@@ -29,11 +29,26 @@
                         "$ref": "#/$defs/Step"
                     },
                     "type": "array"
+                },
+                "storage": {
+                    "description": "The place hosting all benchmark data.",
+                    "type": "string"
+                },
+                "validator": {
+                    "$ref": "#/$defs/Validator",
+                    "description": "The validator of the benchmark."
+                },
+                "version": {
+                    "description": "The version of the benchmark.",
+                    "type": "string"
                 }
             },
             "required": [
+                "version",
                 "platform",
+                "storage",
                 "orchestrator",
+                "validator",
                 "steps",
                 "id",
                 "name"
@@ -216,6 +231,31 @@
             ],
             "title": "Step",
             "type": "object"
+        },
+        "Validator": {
+            "additionalProperties": false,
+            "description": "The validator of the benchmark.",
+            "properties": {
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "schema_url": {
+                    "description": "Url to the benchmark validator schema.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Url to the full benchmark description in workflow format",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "url",
+                "schema_url"
+            ],
+            "title": "Validator",
+            "type": "object"
         }
     },
     "$id": "https://w3id.org/omnibenchmark/omni-schema",
@@ -249,11 +289,26 @@
                 "$ref": "#/$defs/Step"
             },
             "type": "array"
+        },
+        "storage": {
+            "description": "The place hosting all benchmark data.",
+            "type": "string"
+        },
+        "validator": {
+            "$ref": "#/$defs/Validator",
+            "description": "The validator of the benchmark."
+        },
+        "version": {
+            "description": "The version of the benchmark.",
+            "type": "string"
         }
     },
     "required": [
+        "version",
         "platform",
+        "storage",
         "orchestrator",
+        "validator",
         "steps",
         "id",
         "name"

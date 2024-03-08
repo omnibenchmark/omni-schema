@@ -4,10 +4,17 @@ Benchmark_001 = Benchmark(
     id=BenchmarkId('Benchmark_001'),
     name='starts_to_be_explicit',
     description='simple benchmark, somewhat explicit, simple params',
-    platform='https://gitlab.renkulab.io/',
+    version='1.0',
+    platform='https://github.com/',
+    storage='https://storage.github.com/',
     orchestrator=Orchestrator(
         name='orchestrator',
-        url='https://gitlab.renkulab.io/omnibenchmark/test/orchestrator',
+        url='https://github.com/omnibenchmark/test/orchestrator',
+    ),
+    validator=Validator(
+        name='validator',
+        url='https://github.com/omnibenchmark/test/validator',
+        schema_url='https://github.com/omnibenchmark/omni_essentials'
     ),
     steps=[
         Step(

@@ -3,8 +3,11 @@ type Benchmark
     id: Uriorcurie!
     name: String!
     description: String
+    version: String!
     platform: String!
+    storage: String!
     orchestrator: Orchestrator!
+    validator: Validator!
     steps: [Step]!
   }
 
@@ -60,5 +63,12 @@ type Step
     members: [Module]!
     inputs: [InputCollection]
     outputs: [IOFile]
+  }
+
+type Validator
+  {
+    name: String!
+    url: String!
+    schemaUrl: String!
   }
 

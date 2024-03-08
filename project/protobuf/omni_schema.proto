@@ -4,8 +4,11 @@ message Benchmark
   uriorcurie id = 0
   string name = 0
   string description = 0
+  string version = 0
   string platform = 0
+  string storage = 0
   orchestrator orchestrator = 0
+  validator validator = 0
  repeated  step steps = 0
  }
 // A holder for valid input combinations.
@@ -54,4 +57,11 @@ message Step
  repeated  module members = 0
  repeated  inputCollection inputs = 0
  repeated  iOFile outputs = 0
+ }
+// The validator of the benchmark.
+message Validator
+ {
+  string name = 0
+  string url = 0
+  string schemaUrl = 0
  }
