@@ -331,8 +331,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../BenchmarkCollection/">BenchmarkCollection</a></td>
-<td>A holder for Benchmark objects</td>
+<td><a href="../InputCollection/">InputCollection</a></td>
+<td>A holder for valid input combinations</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -340,7 +340,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../Benchmark/">Benchmark</a></p>
+<p>Range: <a href="../IOFile/">IOFile</a></p>
 </li>
 <li>
 <p>Multivalued: True</p>
@@ -359,11 +359,9 @@ from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
 multivalued: true
 alias: entries
-owner: BenchmarkCollection
 domain_of:
-- BenchmarkCollection
-range: Benchmark
-inlined: true
+- InputCollection
+range: IOFile
 
 </code></pre>
 

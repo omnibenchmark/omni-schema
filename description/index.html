@@ -332,13 +332,28 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 <td>A generic grouping for any identifiable entity</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../Benchmark/">Benchmark</a></td>
-<td>Represents a Benchmark</td>
+<td>A multi-step workflow to evaluate processing steps for a specific task</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Step/">Step</a></td>
+<td>A benchmark subtask with equivalent and independent modules</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Module/">Module</a></td>
+<td>A single benchmark component assigned to a specific step</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../IOFile/">IOFile</a></td>
+<td>Represents an input / output file</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -362,7 +377,7 @@ rank: 1000
 slot_uri: schema:description
 alias: description
 domain_of:
-- NamedThing
+- IdentifiableEntity
 range: string
 
 </code></pre>

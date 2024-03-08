@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/PersonStatus/">
+        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/initial/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
     
     
       
-        <title>Enum: PersonStatus - omni-schema</title>
+        <title>Slot: initial - omni-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-personstatus" class="md-skip">
+        <a href="#slot-initial" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: PersonStatus
+              Slot: initial
             
           </span>
         </div>
@@ -256,15 +256,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    Permissible Values
+  <a href="#applicable-classes" class="md-nav__link">
+    Applicable Classes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    Slots
+  <a href="#properties" class="md-nav__link">
+    Properties
   </a>
   
 </li>
@@ -310,56 +310,38 @@
                 
                   
 
-  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/PersonStatus.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/initial.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="enum-personstatus">Enum: PersonStatus</h1>
-<p>URI: <a href="./">PersonStatus</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ALIVE</td>
-<td>PATO:0001421</td>
-<td>the person is living</td>
-</tr>
-<tr>
-<td>DEAD</td>
-<td>PATO:0001422</td>
-<td>the person is deceased</td>
-</tr>
-<tr>
-<td>UNKNOWN</td>
-<td>None</td>
-<td>the vital status is not known</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
+<h1 id="slot-initial">Slot: initial</h1>
+<p><em>Is the initial benchmark step?</em></p>
+<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/initial">omni_schema:initial</a></p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../vital_status/">vital_status</a></td>
-<td>living or dead status</td>
+<td><a href="../Step/">Step</a></td>
+<td>A benchmark subtask with equivalent and independent modules</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>Range: <a href="../Boolean/">Boolean</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -368,23 +350,14 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: PersonStatus
+<pre><code class="language-yaml">name: initial
+description: Is the initial benchmark step?
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
-permissible_values:
-  ALIVE:
-    text: ALIVE
-    description: the person is living
-    meaning: PATO:0001421
-  DEAD:
-    text: DEAD
-    description: the person is deceased
-    meaning: PATO:0001422
-  UNKNOWN:
-    text: UNKNOWN
-    description: the vital status is not known
-    todos:
-    - map this to an ontology
+alias: initial
+domain_of:
+- Step
+range: boolean
 
 </code></pre>
 

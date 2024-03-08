@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/primary_email/">
+        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/steps/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: primary_email - omni-schema</title>
+        <title>Slot: steps - omni-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-primary_email" class="md-skip">
+        <a href="#slot-steps" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: primary_email
+              Slot: steps
             
           </span>
         </div>
@@ -310,15 +310,14 @@
                 
                   
 
-  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/primary_email.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/steps.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-primary_email">Slot: primary_email</h1>
-<p><em>The main email address of a person</em></p>
-<p>URI: <a href="http://schema.org/email">schema:email</a></p>
+<h1 id="slot-steps">Slot: steps</h1>
+<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/steps">omni_schema:steps</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -333,14 +332,22 @@
 <tbody>
 <tr>
 <td><a href="../Benchmark/">Benchmark</a></td>
-<td>Represents a Benchmark</td>
-<td>yes</td>
+<td>A multi-step workflow to evaluate processing steps for a specific task</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../Step/">Step</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -350,15 +357,17 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: primary_email
-description: The main email address of a person
+<pre><code class="language-yaml">name: steps
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
-slot_uri: schema:email
-alias: primary_email
+multivalued: true
+alias: steps
 domain_of:
 - Benchmark
-range: string
+range: Step
+required: true
+inlined: true
+inlined_as_list: true
 
 </code></pre>
 

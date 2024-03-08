@@ -332,20 +332,50 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 <td>A generic grouping for any identifiable entity</td>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../Orchestrator/">Orchestrator</a></td>
+<td>The orchestrator of the benchmark</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Validator/">Validator</a></td>
+<td>The validator of the benchmark</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Benchmark/">Benchmark</a></td>
-<td>Represents a Benchmark</td>
+<td>A multi-step workflow to evaluate processing steps for a specific task</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Step/">Step</a></td>
+<td>A benchmark subtask with equivalent and independent modules</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Module/">Module</a></td>
+<td>A single benchmark component assigned to a specific step</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../IOFile/">IOFile</a></td>
+<td>Represents an input / output file</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -362,8 +392,11 @@ rank: 1000
 slot_uri: schema:name
 alias: name
 domain_of:
-- NamedThing
+- IdentifiableEntity
+- Orchestrator
+- Validator
 range: string
+required: true
 
 </code></pre>
 
