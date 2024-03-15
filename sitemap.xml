@@ -2,272 +2,272 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Benchmark/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Boolean/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Curie/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Date/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/DateOrDatetime/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Datetime/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Decimal/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Double/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Float/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/IOFile/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/IdentifiableEntity/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/InputCollection/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Integer/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Jsonpath/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Jsonpointer/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Module/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Ncname/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Nodeidentifier/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Objectidentifier/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Orchestrator/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Parameter/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Sparqlpath/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Step/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/String/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Time/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Uri/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Uriorcurie/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/Validator/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/about/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/after/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/description/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/entries/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/exclude/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/id/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/initial/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/inputs/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/members/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/name/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/omni-schema/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/orchestrator/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/outputs/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/parameters/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/path/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/platform/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/repo/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/schema_url/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/steps/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/storage/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/terminal/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/url/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/validator/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/values/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://omnibenchmark.github.io/omni-schema/version/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
