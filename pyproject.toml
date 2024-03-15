@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "omni_schema"
-version = "0.1.0"
+version = "0.0.1"
 description = "Data model foromnibenchmark."
 authors = ["Almut Luetge <almut.lue@gmail.com>"]
 license = "Apache Software License 2.0"
