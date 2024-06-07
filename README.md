@@ -2,6 +2,12 @@
 
 Data model for omnibenchmark.
 
+# How to operate
+
+1. Modify `src/omni_schema/schema/omni_schema.yaml` manually
+2. `make all`
+3. Consider `make deploy`
+
 ## Website
 
 [https://omnibenchmark.github.io/omni-schema](https://omnibenchmark.github.io/omni-schema)

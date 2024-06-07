@@ -677,6 +677,19 @@
       ],
       "range": "IOFile",
       "@type": "SlotDefinition"
+    },
+    {
+      "name": "envmodules",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/envmodules",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/envmodules",
+      "multivalued": true,
+      "owner": "Module",
+      "domain_of": [
+        "Module"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
     }
   ],
   "classes": [
@@ -780,7 +793,8 @@
         "description",
         "repo",
         "exclude",
-        "parameters"
+        "parameters",
+        "envmodules"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/omnibenchmark/omni-schema/Module",
@@ -829,9 +843,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-03-08T14:09:08",
-  "source_file_size": 4222,
-  "generation_date": "2024-03-08T14:09:12",
+  "source_file_date": "2024-06-07T14:53:10",
+  "source_file_size": 4296,
+  "generation_date": "2024-06-07T14:53:14",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

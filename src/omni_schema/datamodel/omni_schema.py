@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-03-08T14:09:16
+# Generation date: 2024-06-07T14:53:16
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -284,6 +284,7 @@ class Module(IdentifiableEntity):
     repo: str = None
     exclude: Optional[Union[Union[str, ModuleId], List[Union[str, ModuleId]]]] = empty_list()
     parameters: Optional[Union[Union[dict, "Parameter"], List[Union[dict, "Parameter"]]]] = empty_list()
+    envmodules: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -303,6 +304,10 @@ class Module(IdentifiableEntity):
         if not isinstance(self.parameters, list):
             self.parameters = [self.parameters] if self.parameters is not None else []
         self.parameters = [v if isinstance(v, Parameter) else Parameter(**as_dict(v)) for v in self.parameters]
+
+        if not isinstance(self.envmodules, list):
+            self.envmodules = [self.envmodules] if self.envmodules is not None else []
+        self.envmodules = [v if isinstance(v, str) else str(v) for v in self.envmodules]
 
         super().__post_init__(**kwargs)
 
@@ -454,3 +459,6 @@ slots.values = Slot(uri=OMNI_SCHEMA.values, name="values", curie=OMNI_SCHEMA.cur
 
 slots.entries = Slot(uri=OMNI_SCHEMA.entries, name="entries", curie=OMNI_SCHEMA.curie('entries'),
                    model_uri=OMNI_SCHEMA.entries, domain=None, range=Optional[Union[Union[str, IOFileId], List[Union[str, IOFileId]]]])
+
+slots.envmodules = Slot(uri=OMNI_SCHEMA.envmodules, name="envmodules", curie=OMNI_SCHEMA.curie('envmodules'),
+                   model_uri=OMNI_SCHEMA.envmodules, domain=None, range=Optional[Union[str, List[str]]])

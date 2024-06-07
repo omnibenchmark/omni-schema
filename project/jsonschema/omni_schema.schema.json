@@ -106,6 +106,12 @@
                     "description": "A human-readable description for a thing",
                     "type": "string"
                 },
+                "envmodules": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
                 "exclude": {
                     "description": "Ignore these module's outputs as input.",
                     "items": {

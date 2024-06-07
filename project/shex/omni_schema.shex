@@ -89,7 +89,8 @@ linkml:Sparqlpath xsd:string
           rdf:type [ schema1:Thing ] ? ;
           <repo> @linkml:String ;
           <exclude> @<Module> * ;
-          <parameters> @<Parameter> *
+          <parameters> @<Parameter> * ;
+          <envmodules> @linkml:String *
        ) ;
        rdf:type [ <Module> ]
     )

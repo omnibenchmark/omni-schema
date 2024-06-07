@@ -68,3 +68,10 @@ CREATE TABLE "Parameter" (
 	PRIMARY KEY ("values", "Module_id"), 
 	FOREIGN KEY("Module_id") REFERENCES "Module" (id)
 );
+
+CREATE TABLE "Module_envmodules" (
+	backref_id TEXT, 
+	envmodules TEXT, 
+	PRIMARY KEY (backref_id, envmodules), 
+	FOREIGN KEY(backref_id) REFERENCES "Module" (id)
+);

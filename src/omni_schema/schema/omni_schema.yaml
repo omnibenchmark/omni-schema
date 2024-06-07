@@ -78,6 +78,7 @@ classes:
       - repo
       - exclude
       - parameters
+      - envmodules
 
   IOFile:
     is_a: IdentifiableEntity
@@ -213,4 +214,8 @@ slots:
 
   entries:
     range: IOFile
+    multivalued: true
+
+  envmodules:
+    range: string
     multivalued: true

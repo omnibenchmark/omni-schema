@@ -33,6 +33,7 @@ message Module
   string repo = 0
  repeated  module exclude = 0
  repeated  parameter parameters = 0
+ repeated  string envmodules = 0
  }
 // The orchestrator of the benchmark.
 message Orchestrator

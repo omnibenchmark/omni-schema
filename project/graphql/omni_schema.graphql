@@ -39,6 +39,7 @@ type Module
     repo: String!
     exclude: [Module]
     parameters: [Parameter]
+    envmodules: [String]
   }
 
 type Orchestrator

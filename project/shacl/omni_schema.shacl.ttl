@@ -14,16 +14,16 @@ schema1:Thing a sh:NodeShape ;
             sh:minCount 1 ;
             sh:order 1 ;
             sh:path schema1:name ],
-        [ sh:description "A unique identifier for a thing" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path schema1:description ] ;
+            sh:path schema1:description ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ] ;
     sh:targetClass schema1:Thing .
 
 omni_schema:Benchmark a sh:NodeShape ;
@@ -31,6 +31,36 @@ omni_schema:Benchmark a sh:NodeShape ;
     sh:description "A multi-step workflow to evaluate processing steps for a specific task." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
+            sh:description "The place hosting all benchmark components" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path omni_schema:platform ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 6 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "The place hosting all benchmark data." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path omni_schema:storage ],
+        [ sh:datatype xsd:string ;
+            sh:description "The version of the benchmark." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path omni_schema:version ],
+        [ sh:class omni_schema:Validator ;
+            sh:description "The validator of the benchmark." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 4 ;
+            sh:path omni_schema:validator ],
+        [ sh:datatype xsd:string ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 8 ;
@@ -41,48 +71,18 @@ omni_schema:Benchmark a sh:NodeShape ;
             sh:minCount 1 ;
             sh:order 7 ;
             sh:path schema1:name ],
-        [ sh:description "A unique identifier for a thing" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 6 ;
-            sh:path schema1:identifier ],
         [ sh:class omni_schema:Step ;
             sh:minCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 5 ;
             sh:path omni_schema:steps ],
-        [ sh:datatype xsd:string ;
-            sh:description "The place hosting all benchmark data." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 2 ;
-            sh:path omni_schema:storage ],
         [ sh:class omni_schema:Orchestrator ;
             sh:description "The orchestrator of the benchmark." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNode ;
             sh:order 3 ;
-            sh:path omni_schema:orchestrator ],
-        [ sh:datatype xsd:string ;
-            sh:description "The version of the benchmark." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 0 ;
-            sh:path omni_schema:version ],
-        [ sh:datatype xsd:string ;
-            sh:description "The place hosting all benchmark components" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 1 ;
-            sh:path omni_schema:platform ],
-        [ sh:class omni_schema:Validator ;
-            sh:description "The validator of the benchmark." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNode ;
-            sh:order 4 ;
-            sh:path omni_schema:validator ] ;
+            sh:path omni_schema:orchestrator ] ;
     sh:targetClass omni_schema:Benchmark .
 
 omni_schema:InputCollection a sh:NodeShape ;
@@ -100,17 +100,17 @@ omni_schema:Orchestrator a sh:NodeShape ;
     sh:description "The orchestrator of the benchmark." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "Url to the full benchmark description in workflow format" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 1 ;
-            sh:path omni_schema:url ],
-        [ sh:datatype xsd:string ;
             sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 0 ;
-            sh:path schema1:name ] ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Url to the full benchmark description in workflow format" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path omni_schema:url ] ;
     sh:targetClass omni_schema:Orchestrator .
 
 omni_schema:Parameter a sh:NodeShape ;
@@ -156,12 +156,6 @@ omni_schema:IOFile a sh:NodeShape ;
             sh:order 1 ;
             sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 2 ;
-            sh:path schema1:name ],
-        [ sh:datatype xsd:string ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 3 ;
@@ -170,17 +164,43 @@ omni_schema:IOFile a sh:NodeShape ;
             sh:description "The code repository hosting the module." ;
             sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path omni_schema:path ] ;
+            sh:path omni_schema:path ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path schema1:name ] ;
     sh:targetClass omni_schema:IOFile .
 
 omni_schema:Module a sh:NodeShape ;
     sh:closed true ;
     sh:description "A single benchmark component assigned to a specific step." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A unique identifier for a thing" ;
+    sh:property [ sh:class omni_schema:Module ;
+            sh:description "Ignore these module's outputs as input." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path omni_schema:exclude ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path schema1:description ],
+        [ sh:class omni_schema:Parameter ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path omni_schema:parameters ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:order 3 ;
+            sh:order 5 ;
+            sh:path schema1:name ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 4 ;
             sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
             sh:description "The code repository hosting the module." ;
@@ -188,41 +208,34 @@ omni_schema:Module a sh:NodeShape ;
             sh:minCount 1 ;
             sh:order 0 ;
             sh:path omni_schema:repo ],
-        [ sh:class omni_schema:Module ;
-            sh:description "Ignore these module's outputs as input." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 1 ;
-            sh:path omni_schema:exclude ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:name ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path schema1:description ],
-        [ sh:class omni_schema:Parameter ;
-            sh:nodeKind sh:BlankNode ;
-            sh:order 2 ;
-            sh:path omni_schema:parameters ] ;
+            sh:order 3 ;
+            sh:path omni_schema:envmodules ] ;
     sh:targetClass omni_schema:Module .
 
 omni_schema:Step a sh:NodeShape ;
     sh:closed true ;
     sh:description "A benchmark subtask with equivalent and independent modules." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class omni_schema:Module ;
+    sh:property [ sh:class omni_schema:IOFile ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path omni_schema:outputs ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Is the initial benchmark step?" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path omni_schema:initial ],
+        [ sh:class omni_schema:Module ;
             sh:minCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 3 ;
             sh:path omni_schema:members ],
-        [ sh:class omni_schema:InputCollection ;
-            sh:nodeKind sh:BlankNode ;
-            sh:order 4 ;
-            sh:path omni_schema:inputs ],
+        [ sh:class omni_schema:Step ;
+            sh:description "Step(s) that have to be finished before this step." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path omni_schema:after ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
@@ -230,33 +243,23 @@ omni_schema:Step a sh:NodeShape ;
             sh:order 7 ;
             sh:path schema1:name ],
         [ sh:datatype xsd:boolean ;
-            sh:description "Is the initial benchmark step?" ;
+            sh:description "Is the terminal benchmark step?" ;
             sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path omni_schema:initial ],
+            sh:order 1 ;
+            sh:path omni_schema:terminal ],
+        [ sh:class omni_schema:InputCollection ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 4 ;
+            sh:path omni_schema:inputs ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 8 ;
             sh:path schema1:description ],
-        [ sh:class omni_schema:Step ;
-            sh:description "Step(s) that have to be finished before this step." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path omni_schema:after ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Is the terminal benchmark step?" ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path omni_schema:terminal ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 6 ;
-            sh:path schema1:identifier ],
-        [ sh:class omni_schema:IOFile ;
-            sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path omni_schema:outputs ] ;
+            sh:path schema1:identifier ] ;
     sh:targetClass omni_schema:Step .
 
