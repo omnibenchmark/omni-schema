@@ -1,155 +1,187 @@
-from omni_schema.datamodel.omni_schema import *
+from src.omni_schema.datamodel.omni_schema import *
 
 Benchmark_001 = Benchmark(
     id=BenchmarkId('Benchmark_001'),
-    name='starts_to_be_explicit',
     description='simple benchmark, somewhat explicit, simple params',
     version='1.0',
-    platform='https://github.com/',
+    benchmarker='John Doe at Robinsons lab, john.doe@uzh.ch',
     storage='https://storage.github.com/',
-    orchestrator=Orchestrator(
-        name='orchestrator',
-        url='https://github.com/omnibenchmark/test/orchestrator',
-    ),
-    validator=Validator(
-        name='validator',
-        url='https://github.com/omnibenchmark/test/validator',
-        schema_url='https://github.com/omnibenchmark/omni_essentials'
-    ),
-    steps=[
-        Step(
-            id=StepId('Step1'),
-            name='data',
-            initial=True,
-            members=[
+    storage_api=StorageAPIEnum.S3,
+    software_environments=[
+        SoftwareEnvironment(
+            id=SoftwareEnvironmentId('R'),
+            description="R 4.3.3 with gfbf-2023 toolchain",
+            easyconfig='R_4.3.3-gfbf-2023b.eb',
+            envmodule='R/4.3.3-gfbf-2023b',
+            conda='R_4.3.3_try.yaml',
+            apptainer='http://registry.ch/R_4.3.3-gfbf-2023b.sif'
+        ),
+        SoftwareEnvironment(
+            id=SoftwareEnvironmentId('python'),
+            description="Ppython3.12.0 with gfbf-2023 toolchain",
+            easyconfig='python_vX-gfbf-2023b.eb',
+            envmodule='python/vX-gfbf-2023b',
+            conda='python_vX_test.yaml',
+            apptainer='http://registry.ch/python_vX-gfbf-2023b.sif'
+        )
+    ],
+    benchmark_yaml_spec='0.01',
+    stages=[
+        Stage(
+            id=StageId('data'),
+            modules=[
                 Module(
                     id=ModuleId('D1'),
-                    name='D1',
-                    repo='omnibenchmark/test/D1'
+                    name='Dataset 1',
+                    software_environment=SoftwareEnvironmentId('python'),
+                    repository=Repository(
+                        url='https://github.com/omnibenchmark-example/data.git',
+                        commit='061a981'
+                    )
                 ),
                 Module(
                     id=ModuleId('D2'),
-                    name='D2',
-                    repo='omnibenchmark/test/D2'
+                    name='Dataset 2',
+                    software_environment=SoftwareEnvironmentId('python'),
+                    repository=Repository(
+                        url='https://github.com/omnibenchmark-example/data.git',
+                        commit='061a981'
+                    )
                 )
             ],
             outputs=[
                 IOFile(
-                    id=IOFileId('Step1.counts'),
-                    name='counts',
-                    path='{stage}/{module}/{params}/{name}.txt.gz'
+                    id=IOFileId('data.counts'),
+                    path='{in}/{stage}/{module}/{params}/{dataset}.txt.gz'
                 ),
                 IOFile(
-                    id=IOFileId('Step1.meta'),
-                    name='meta',
-                    path='{stage}/{module}/{params}/{name}.meta.json'
+                    id=IOFileId('data.meta'),
+                    path='{in}/{stage}/{module}/{params}/{dataset}.meta.json'
                 ),
                 IOFile(
-                    id=IOFileId('Step1.data_specific_params'),
-                    name='data_specific_params',
-                    path='{stage}/{module}/{params}/{name}_params.txt'
+                    id=IOFileId('data.data_specific_params'),
+                    path='{in}/{stage}/{module}/{params}/{dataset}_params.txt'
                 )
             ]
         ),
-        Step(
-            id='Step2',
-            name='process',
-            members=[
+        Stage(
+            id='process',
+            modules=[
                 Module(
                     id='P1',
-                    name='P1',
-                    repo='omnibenchmark/test/P1',
+                    software_environment=SoftwareEnvironmentId('R'),
                     parameters=[
                         Parameter(values=['-a 0', '-b 0.1']),
                         Parameter(values=['-a 1', '-b 0.1'])
-                    ]),
+                    ],
+                    repository=Repository(
+                        url='https://github.com/omnibenchmark-example/process.git',
+                        commit='24579a8'
+                    )
+                ),
                 Module(
                     id='P2',
-                    name='P2',
-                    repo='omnibenchmark/test/P2',
+                    software_environment='R',
                     parameters=[
                         Parameter(values=['-a 0', '-c 0']),
                         Parameter(values=['-a 1', '-c 0.1'])
-                    ]
+                    ],
+                    repository=Repository(
+                        url='https://github.com/omnibenchmark-example/process.git',
+                        commit='24579a8'
+                    )
                 )
             ],
-            after=['data'],
             inputs=[
                 InputCollection(
-                    entries=['Step1.counts', 'Step1.meta']
+                    entries=['data.counts', 'data.meta']
                 )
             ],
             outputs=[
                 IOFile(
-                    id='Step2.filtered',
-                    name='filtered',
-                    path='{input_dirname}/{stage}/{module}/{params}/{name}.txt.gz'
+                    id='process.filtered',
+                    path='{in}/{stage}/{module}/{params}/{dataset}.txt.gz'
                 )
             ]
         ),
-        Step(
-            id='Step3',
-            name='methods',
-            members=[
+        Stage(
+            id='methods',
+            modules=[
                 Module(
                     id='M1',
-                    name='M1',
-                    repo='benchmark/test/M1',
+                    software_environment=SoftwareEnvironmentId('python'),
+                    repository=Repository(
+                      url='https://github.com/omnibenchmark-example/method.git',
+                      commit='709e114'
+                    ),
                     exclude=['D2']
                 ),
                 Module(
                     id='M2',
-                    name='M2',
-                    repo='omnibenchmark/test/M2',
-                    exclude=['D1', 'D2'],
+                    software_environment=SoftwareEnvironmentId('python'),
+                    repository=Repository(
+                        url='https://github.com/omnibenchmark-example/method.git',
+                        commit='709e114'
+                    ),
+                    exclude=['D1'],
                     parameters=[
                         Parameter(values=['-d1', '-e 1']),
                         Parameter(values=['-d1', '-e 2'])
                     ]
                 )
             ],
-            after=['process'],
             inputs=[
                 InputCollection(
-                    entries=['Step1.counts', 'Step1.meta', 'Step1.data_specific_params']
+                    entries=['data.counts', 'data.meta', 'data.data_specific_params']
                 ),
                 InputCollection(
-                    entries=['Step2.filtered', 'Step1.meta', 'Step1.data_specific_params']
+                    entries=['process.filtered', 'data.meta', 'data.data_specific_params']
                 )
             ],
             outputs=[
                 IOFile(
-                    id='Step3.mapping',
-                    name='mapping',
-                    path='{input_dirname}/{stage}/{module}/{params}/{name}.model.out.gz'
+                    id='methods.mapping',
+                    path='{in}/{stage}/{module}/{params}/{dataset}.model.out.gz'
                 )
             ]
         ),
-        Step(
-            id='Step4',
-            name='metrics',
-            members=[
+        Stage(
+            id='metrics',
+            modules=[
                 Module(
                     id='m1',
-                    name='m1',
-                    repo='omnibenchmark/test/m1'
+                    software_environment=SoftwareEnvironmentId('python'),
+                    repository=Repository(
+                        url='git@github.com:omnibenchmark-example/metric.git',
+                        commit='ba781d7'
+                    )
                 ),
                 Module(
                     id='m2',
-                    name='m2',
-                    repo='omnibenchmark/test/m2'
+                    software_environment=SoftwareEnvironmentId('python'),
+                    repository=Repository(
+                        url='git@github.com:omnibenchmark-example/metric.git',
+                        commit='ba781d7'
+                    )
                 ),
                 Module(
                     id='m3',
-                    name='m3',
-                    repo='omnibenchmark/test/m3'
+                    software_environment=SoftwareEnvironmentId('python'),
+                    repository=Repository(
+                        url='git@github.com:omnibenchmark-example/metric.git',
+                        commit='ba781d7'
+                    )
                 )
             ],
-            terminal=True,
-            after=['methods'],
             inputs=[
                 InputCollection(
-                    entries=['Step3.mapping', 'Step1.meta', 'Step1.data_specific_params']
+                    entries=['methods.mapping', 'data.meta', 'data.data_specific_params']
+                )
+            ],
+            outputs=[
+                IOFile(
+                    id='metrics.mapping',
+                    path='{in}/{stage}/{module}/{params}/{dataset}.results.txt'
                 )
             ]
         )

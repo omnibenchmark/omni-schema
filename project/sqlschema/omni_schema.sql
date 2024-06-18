@@ -2,64 +2,69 @@
 
 CREATE TABLE "Benchmark" (
 	id TEXT NOT NULL, 
-	name TEXT NOT NULL, 
+	name TEXT, 
 	description TEXT, 
 	version TEXT NOT NULL, 
-	platform TEXT NOT NULL, 
+	benchmarker TEXT NOT NULL, 
 	storage TEXT NOT NULL, 
-	orchestrator TEXT NOT NULL, 
-	validator TEXT NOT NULL, 
-	steps TEXT NOT NULL, 
+	storage_api VARCHAR(2) NOT NULL, 
+	software_environments TEXT NOT NULL, 
+	benchmark_yaml_spec TEXT, 
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE "IOFile" (
 	id TEXT NOT NULL, 
-	name TEXT NOT NULL, 
+	name TEXT, 
 	description TEXT, 
 	path TEXT, 
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE "Repository" (
+	url TEXT NOT NULL, 
+	"commit" TEXT NOT NULL, 
+	PRIMARY KEY (url, "commit")
+);
+
+CREATE TABLE "SoftwareEnvironment" (
+	id TEXT NOT NULL, 
+	name TEXT, 
+	description TEXT, 
+	easyconfig TEXT, 
+	envmodule TEXT, 
+	conda TEXT, 
+	apptainer TEXT, 
+	PRIMARY KEY (id)
+);
+
 CREATE TABLE "Module" (
 	id TEXT NOT NULL, 
-	name TEXT NOT NULL, 
+	name TEXT, 
 	description TEXT, 
-	repo TEXT NOT NULL, 
+	software_environment TEXT NOT NULL, 
+	repository TEXT NOT NULL, 
 	exclude TEXT, 
-	PRIMARY KEY (id)
+	PRIMARY KEY (id), 
+	FOREIGN KEY(software_environment) REFERENCES "SoftwareEnvironment" (id)
 );
 
-CREATE TABLE "Orchestrator" (
-	name TEXT NOT NULL, 
-	url TEXT NOT NULL, 
-	PRIMARY KEY (name, url)
-);
-
-CREATE TABLE "Step" (
+CREATE TABLE "Stage" (
 	id TEXT NOT NULL, 
-	name TEXT NOT NULL, 
+	name TEXT, 
 	description TEXT, 
-	initial BOOLEAN, 
-	terminal BOOLEAN, 
-	"after" TEXT, 
-	members TEXT NOT NULL, 
+	modules TEXT NOT NULL, 
 	outputs TEXT, 
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE "Validator" (
-	name TEXT NOT NULL, 
-	url TEXT NOT NULL, 
-	schema_url TEXT NOT NULL, 
-	PRIMARY KEY (name, url, schema_url)
+	"Benchmark_id" TEXT, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY("Benchmark_id") REFERENCES "Benchmark" (id)
 );
 
 CREATE TABLE "InputCollection" (
 	entries TEXT, 
-	"Step_id" TEXT, 
-	PRIMARY KEY (entries, "Step_id"), 
-	FOREIGN KEY("Step_id") REFERENCES "Step" (id)
+	"Stage_id" TEXT, 
+	PRIMARY KEY (entries, "Stage_id"), 
+	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id)
 );
 
 CREATE TABLE "Parameter" (
