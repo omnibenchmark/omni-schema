@@ -14,9 +14,9 @@ steps:
       - name: D2
         repo: omnibenchmark/test/D2
     outputs:
-      - counts: "{stage}/{module}/{params}/{name}.txt.gz"
-      - meta: "{stage}/{module}/{params}/{name}.meta.json"
-      - data_specific_params: "{stage}/{module}/{params}/{name}_params.txt"
+      - counts: "{stage}/{module}/{params}/{dataset}.txt.gz"
+      - meta: "{stage}/{module}/{params}/{dataset}.meta.json"
+      - data_specific_params: "{stage}/{module}/{params}/{dataset}_params.txt"
   process:
     after:
       - data
@@ -35,7 +35,7 @@ steps:
       - counts: data
         meta: data
     outputs:
-      - filtered: "{input_dirname}/{stage}/{module}/{params}/{name}.txt.gz"
+      - filtered: "{in}/{stage}/{module}/{params}/{dataset}.txt.gz"
   methods:
     after:
       - process
@@ -59,7 +59,7 @@ steps:
         meta: data
         data_specific_params: data
     outputs:
-      - mapping: "{input_dirname}/{stage}/{module}/{params}/{name}.model.out.gz"
+      - mapping: "{in}/{stage}/{module}/{params}/{dataset}.model.out.gz"
   metrics:
     after:
       - methods

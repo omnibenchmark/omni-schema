@@ -19,6 +19,12 @@ default_range: string
 imports:
   - linkml:types
 
+enums:
+  StorageAPIEnum:
+    permissible_values:
+      S3:
+        text: S3
+
 classes:
   IdentifiableEntity:
     abstract: true
@@ -34,48 +40,32 @@ classes:
     is_a: IdentifiableEntity
     tree_root: true
     description: >-
-      A multi-step workflow to evaluate processing steps for a specific task.
+      A multi-stage workflow to evaluate processing stage for a specific task.
     slots:
       - version
-      - platform
+      - benchmarker
       - storage
-      - orchestrator
-      - validator
-      - steps
+      - storage_api
+      - software_environments
+      - benchmark_yaml_spec
+      - stages
 
-  Orchestrator:
-    description: >-
-      The orchestrator of the benchmark.
-    slots:
-      - name
-      - url
-
-  Validator:
-    description: >-
-      The validator of the benchmark.
-    slots:
-      - name
-      - url
-      - schema_url
-
-  Step:
+  Stage:
     is_a: IdentifiableEntity
     description: >-
       A benchmark subtask with equivalent and independent modules.
     slots:
-      - initial
-      - terminal
-      - after
-      - members
+      - modules
       - inputs
       - outputs
 
   Module:
     is_a: IdentifiableEntity
     description: >-
-      A single benchmark component assigned to a specific step.
+      A single benchmark component assigned to a specific stage.
     slots:
-      - repo
+      - software_environment
+      - repository
       - exclude
       - parameters
 
@@ -92,11 +82,28 @@ classes:
     slots:
       - entries
 
+  Repository:
+    description: >-
+      A reference to code repository containing the module's executable code.
+    slots:
+      - url
+      - commit
+
   Parameter:
     description: >-
       A parameter and its scope.
     slots:
       - values
+
+  SoftwareEnvironment:
+    is_a: IdentifiableEntity
+    description: >-
+      Contains snapshots of the software environment required for the modules to run.
+    slots:
+      - easyconfig
+      - envmodule
+      - conda
+      - apptainer
 
 slots:
   id:
@@ -109,7 +116,6 @@ slots:
   name:
     slot_uri: schema:name
     description: A human-readable name for a thing
-    required: true
 
   description:
     slot_uri: schema:description
@@ -120,9 +126,9 @@ slots:
     description: The version of the benchmark.
     required: true
 
-  platform:
+  benchmarker:
     range: string
-    description: The place hosting all benchmark components
+    description: The name and contact details of the person responsible for this benchmark.
     required: true
 
   storage:
@@ -130,47 +136,19 @@ slots:
     description: The place hosting all benchmark data.
     required: true
 
-  orchestrator:
-    range: Orchestrator
-    description: The orchestrator of the benchmark.
+  storage_api:
+    range: StorageAPIEnum
+    description: The type of the storage API (i.e. S3)
     required: true
 
-  validator:
-    range: Validator
-    description: The validator of the benchmark.
-    required: true
-
-  steps:
-    range: Step
+  stages:
+    range: Stage
     multivalued: true
     inlined: true
     inlined_as_list: true
     required: true
   
-  url:
-    range: string
-    description: Url to the full benchmark description in workflow format
-    required: true
-
-  schema_url:
-    range: string
-    description: Url to the benchmark validator schema.
-    required: true
-
-  initial:
-    range: boolean
-    description: Is the initial benchmark step?
-
-  terminal:
-    range: boolean
-    description: Is the terminal benchmark step?
-
-  after:
-    range: Step
-    multivalued: true
-    description: Step(s) that have to be finished before this step.
-  
-  members:
+  modules:
     range: Module
     multivalued: true
     inlined: true
@@ -194,8 +172,8 @@ slots:
     multivalued: true
     description: Ignore these module's outputs as input.
 
-  repo:
-    range: string
+  repository:
+    range: Repository
     description: The code repository hosting the module.
     required: true
 
@@ -203,9 +181,32 @@ slots:
     range: Parameter
     multivalued: true
 
+  software_environments:
+    range: SoftwareEnvironment
+    description: "Dictionary of software environments keyed by their identifiers"
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: true
+
+  software_environment:
+    range: SoftwareEnvironment
+    description: Reference to a software environment by key.
+    required: true
+
   path:
     range: string
-    description: The code repository hosting the module.
+    description: The output path pattern for the IO file.
+
+  url:
+    range: string
+    description: The git compatible url.
+    required: true
+
+  commit:
+    range: string
+    description: The commit hash.
+    required: true
 
   values:
     range: string
@@ -214,3 +215,23 @@ slots:
   entries:
     range: IOFile
     multivalued: true
+
+  easyconfig:
+    range: string
+    description: Easybuild configuration file.
+
+  envmodule:
+    range: string
+    description: Environment module name.
+
+  conda:
+    range: string
+    description: Conda environment file.
+
+  apptainer:
+    range: string
+    description: Apptainer image URL.
+
+  benchmark_yaml_spec:
+    range: string
+    description: Benchmark Specification version.

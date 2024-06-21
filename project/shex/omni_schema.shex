@@ -47,22 +47,23 @@ linkml:Sparqlpath xsd:string
     (  $<Benchmark_tes> (  &<IdentifiableEntity_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           <version> @linkml:String ;
-          <platform> @linkml:String ;
+          <benchmarker> @linkml:String ;
           <storage> @linkml:String ;
-          <orchestrator> @<Orchestrator> ;
-          <validator> @<Validator> ;
-          <steps> @<Step> +
+          <storage_api> [ <https://w3id.org/omnibenchmark/omni-schema/StorageAPIEnum#S3> ] ;
+          <software_environments> @<SoftwareEnvironment> + ;
+          <benchmark_yaml_spec> @linkml:String ? ;
+          <stages> @<Stage> +
        ) ;
        rdf:type [ <Benchmark> ]
     )
 }
 
 <IdentifiableEntity>  (
-    @<Benchmark> OR @<IOFile> OR @<Module> OR @<Step>
+    @<Benchmark> OR @<IOFile> OR @<Module> OR @<SoftwareEnvironment> OR @<Stage>
 )
 
 <IdentifiableEntity_struct> {
-    (  $<IdentifiableEntity_tes> (  schema1:name @linkml:String ;
+    (  $<IdentifiableEntity_tes> (  schema1:name @linkml:String ? ;
           schema1:description @linkml:String ?
        ) ;
        rdf:type [ schema1:Thing ]
@@ -87,19 +88,12 @@ linkml:Sparqlpath xsd:string
 <Module> CLOSED {
     (  $<Module_tes> (  &<IdentifiableEntity_tes> ;
           rdf:type [ schema1:Thing ] ? ;
-          <repo> @linkml:String ;
+          <software_environment> @<SoftwareEnvironment> ;
+          <repository> @<Repository> ;
           <exclude> @<Module> * ;
           <parameters> @<Parameter> *
        ) ;
        rdf:type [ <Module> ]
-    )
-}
-
-<Orchestrator> CLOSED {
-    (  $<Orchestrator_tes> (  schema1:name @linkml:String ;
-          <url> @linkml:String
-       ) ;
-       rdf:type [ <Orchestrator> ] ?
     )
 }
 
@@ -109,26 +103,34 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<Step> CLOSED {
-    (  $<Step_tes> (  &<IdentifiableEntity_tes> ;
-          rdf:type [ schema1:Thing ] ? ;
-          <initial> @linkml:Boolean ? ;
-          <terminal> @linkml:Boolean ? ;
-          <after> @<Step> * ;
-          <members> @<Module> + ;
-          <inputs> @<InputCollection> * ;
-          <outputs> @<IOFile> *
+<Repository> CLOSED {
+    (  $<Repository_tes> (  <url> @linkml:String ;
+          <commit> @linkml:String
        ) ;
-       rdf:type [ <Step> ]
+       rdf:type [ <Repository> ] ?
     )
 }
 
-<Validator> CLOSED {
-    (  $<Validator_tes> (  schema1:name @linkml:String ;
-          <url> @linkml:String ;
-          <schema_url> @linkml:String
+<SoftwareEnvironment> CLOSED {
+    (  $<SoftwareEnvironment_tes> (  &<IdentifiableEntity_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
+          <easyconfig> @linkml:String ? ;
+          <envmodule> @linkml:String ? ;
+          <conda> @linkml:String ? ;
+          <apptainer> @linkml:String ?
        ) ;
-       rdf:type [ <Validator> ] ?
+       rdf:type [ <SoftwareEnvironment> ]
+    )
+}
+
+<Stage> CLOSED {
+    (  $<Stage_tes> (  &<IdentifiableEntity_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
+          <modules> @<Module> + ;
+          <inputs> @<InputCollection> * ;
+          <outputs> @<IOFile> *
+       ) ;
+       rdf:type [ <Stage> ]
     )
 }
 

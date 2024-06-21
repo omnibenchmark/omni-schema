@@ -2,9 +2,9 @@
 import os
 import glob
 import unittest
-import data.examples.data as data
+import src.data.examples.data as data
 from linkml_runtime.loaders import yaml_loader
-from omni_schema.datamodel.omni_schema import Benchmark
+from src.omni_schema.datamodel.omni_schema import Benchmark
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 DATA_DIR = os.path.join(ROOT, "src", "data", "examples")

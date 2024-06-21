@@ -2,8 +2,16 @@
     "$defs": {
         "Benchmark": {
             "additionalProperties": false,
-            "description": "A multi-step workflow to evaluate processing steps for a specific task.",
+            "description": "A multi-stage workflow to evaluate processing stage for a specific task.",
             "properties": {
+                "benchmark_yaml_spec": {
+                    "description": "Benchmark Specification version.",
+                    "type": "string"
+                },
+                "benchmarker": {
+                    "description": "The name and contact details of the person responsible for this benchmark.",
+                    "type": "string"
+                },
                 "description": {
                     "description": "A human-readable description for a thing",
                     "type": "string"
@@ -16,17 +24,16 @@
                     "description": "A human-readable name for a thing",
                     "type": "string"
                 },
-                "orchestrator": {
-                    "$ref": "#/$defs/Orchestrator",
-                    "description": "The orchestrator of the benchmark."
-                },
-                "platform": {
-                    "description": "The place hosting all benchmark components",
-                    "type": "string"
-                },
-                "steps": {
+                "software_environments": {
+                    "description": "Dictionary of software environments keyed by their identifiers",
                     "items": {
-                        "$ref": "#/$defs/Step"
+                        "$ref": "#/$defs/SoftwareEnvironment"
+                    },
+                    "type": "array"
+                },
+                "stages": {
+                    "items": {
+                        "$ref": "#/$defs/Stage"
                     },
                     "type": "array"
                 },
@@ -34,9 +41,9 @@
                     "description": "The place hosting all benchmark data.",
                     "type": "string"
                 },
-                "validator": {
-                    "$ref": "#/$defs/Validator",
-                    "description": "The validator of the benchmark."
+                "storage_api": {
+                    "$ref": "#/$defs/StorageAPIEnum",
+                    "description": "The type of the storage API (i.e. S3)"
                 },
                 "version": {
                     "description": "The version of the benchmark.",
@@ -45,13 +52,12 @@
             },
             "required": [
                 "version",
-                "platform",
+                "benchmarker",
                 "storage",
-                "orchestrator",
-                "validator",
-                "steps",
-                "id",
-                "name"
+                "storage_api",
+                "software_environments",
+                "stages",
+                "id"
             ],
             "title": "Benchmark",
             "type": "object"
@@ -73,13 +79,12 @@
                     "type": "string"
                 },
                 "path": {
-                    "description": "The code repository hosting the module.",
+                    "description": "The output path pattern for the IO file.",
                     "type": "string"
                 }
             },
             "required": [
-                "id",
-                "name"
+                "id"
             ],
             "title": "IOFile",
             "type": "object"
@@ -100,7 +105,7 @@
         },
         "Module": {
             "additionalProperties": false,
-            "description": "A single benchmark component assigned to a specific step.",
+            "description": "A single benchmark component assigned to a specific stage.",
             "properties": {
                 "description": {
                     "description": "A human-readable description for a thing",
@@ -127,37 +132,21 @@
                     },
                     "type": "array"
                 },
-                "repo": {
-                    "description": "The code repository hosting the module.",
+                "repository": {
+                    "$ref": "#/$defs/Repository",
+                    "description": "The code repository hosting the module."
+                },
+                "software_environment": {
+                    "description": "Reference to a software environment by key.",
                     "type": "string"
                 }
             },
             "required": [
-                "repo",
-                "id",
-                "name"
+                "software_environment",
+                "repository",
+                "id"
             ],
             "title": "Module",
-            "type": "object"
-        },
-        "Orchestrator": {
-            "additionalProperties": false,
-            "description": "The orchestrator of the benchmark.",
-            "properties": {
-                "name": {
-                    "description": "A human-readable name for a thing",
-                    "type": "string"
-                },
-                "url": {
-                    "description": "Url to the full benchmark description in workflow format",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name",
-                "url"
-            ],
-            "title": "Orchestrator",
             "type": "object"
         },
         "Parameter": {
@@ -174,17 +163,69 @@
             "title": "Parameter",
             "type": "object"
         },
-        "Step": {
+        "Repository": {
+            "additionalProperties": false,
+            "description": "A reference to code repository containing the module's executable code.",
+            "properties": {
+                "commit": {
+                    "description": "The commit hash.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The git compatible url.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url",
+                "commit"
+            ],
+            "title": "Repository",
+            "type": "object"
+        },
+        "SoftwareEnvironment": {
+            "additionalProperties": false,
+            "description": "Contains snapshots of the software environment required for the modules to run.",
+            "properties": {
+                "apptainer": {
+                    "description": "Apptainer image URL.",
+                    "type": "string"
+                },
+                "conda": {
+                    "description": "Conda environment file.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "easyconfig": {
+                    "description": "Easybuild configuration file.",
+                    "type": "string"
+                },
+                "envmodule": {
+                    "description": "Environment module name.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "SoftwareEnvironment",
+            "type": "object"
+        },
+        "Stage": {
             "additionalProperties": false,
             "description": "A benchmark subtask with equivalent and independent modules.",
             "properties": {
-                "after": {
-                    "description": "Step(s) that have to be finished before this step.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
                 "description": {
                     "description": "A human-readable description for a thing",
                     "type": "string"
@@ -193,17 +234,13 @@
                     "description": "A unique identifier for a thing",
                     "type": "string"
                 },
-                "initial": {
-                    "description": "Is the initial benchmark step?",
-                    "type": "boolean"
-                },
                 "inputs": {
                     "items": {
                         "$ref": "#/$defs/InputCollection"
                     },
                     "type": "array"
                 },
-                "members": {
+                "modules": {
                     "items": {
                         "$ref": "#/$defs/Module"
                     },
@@ -218,52 +255,38 @@
                         "$ref": "#/$defs/IOFile"
                     },
                     "type": "array"
-                },
-                "terminal": {
-                    "description": "Is the terminal benchmark step?",
-                    "type": "boolean"
                 }
             },
             "required": [
-                "members",
-                "id",
-                "name"
+                "modules",
+                "id"
             ],
-            "title": "Step",
+            "title": "Stage",
             "type": "object"
         },
-        "Validator": {
-            "additionalProperties": false,
-            "description": "The validator of the benchmark.",
-            "properties": {
-                "name": {
-                    "description": "A human-readable name for a thing",
-                    "type": "string"
-                },
-                "schema_url": {
-                    "description": "Url to the benchmark validator schema.",
-                    "type": "string"
-                },
-                "url": {
-                    "description": "Url to the full benchmark description in workflow format",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name",
-                "url",
-                "schema_url"
+        "StorageAPIEnum": {
+            "description": "",
+            "enum": [
+                "S3"
             ],
-            "title": "Validator",
-            "type": "object"
+            "title": "StorageAPIEnum",
+            "type": "string"
         }
     },
     "$id": "https://w3id.org/omnibenchmark/omni-schema",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
-    "description": "A multi-step workflow to evaluate processing steps for a specific task.",
+    "description": "A multi-stage workflow to evaluate processing stage for a specific task.",
     "metamodel_version": "1.7.0",
     "properties": {
+        "benchmark_yaml_spec": {
+            "description": "Benchmark Specification version.",
+            "type": "string"
+        },
+        "benchmarker": {
+            "description": "The name and contact details of the person responsible for this benchmark.",
+            "type": "string"
+        },
         "description": {
             "description": "A human-readable description for a thing",
             "type": "string"
@@ -276,17 +299,16 @@
             "description": "A human-readable name for a thing",
             "type": "string"
         },
-        "orchestrator": {
-            "$ref": "#/$defs/Orchestrator",
-            "description": "The orchestrator of the benchmark."
-        },
-        "platform": {
-            "description": "The place hosting all benchmark components",
-            "type": "string"
-        },
-        "steps": {
+        "software_environments": {
+            "description": "Dictionary of software environments keyed by their identifiers",
             "items": {
-                "$ref": "#/$defs/Step"
+                "$ref": "#/$defs/SoftwareEnvironment"
+            },
+            "type": "array"
+        },
+        "stages": {
+            "items": {
+                "$ref": "#/$defs/Stage"
             },
             "type": "array"
         },
@@ -294,9 +316,9 @@
             "description": "The place hosting all benchmark data.",
             "type": "string"
         },
-        "validator": {
-            "$ref": "#/$defs/Validator",
-            "description": "The validator of the benchmark."
+        "storage_api": {
+            "$ref": "#/$defs/StorageAPIEnum",
+            "description": "The type of the storage API (i.e. S3)"
         },
         "version": {
             "description": "The version of the benchmark.",
@@ -305,13 +327,12 @@
     },
     "required": [
         "version",
-        "platform",
+        "benchmarker",
         "storage",
-        "orchestrator",
-        "validator",
-        "steps",
-        "id",
-        "name"
+        "storage_api",
+        "software_environments",
+        "stages",
+        "id"
     ],
     "title": "omni-schema",
     "type": "object",

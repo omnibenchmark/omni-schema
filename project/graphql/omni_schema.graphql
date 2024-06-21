@@ -1,20 +1,21 @@
 type Benchmark
   {
     id: Uriorcurie!
-    name: String!
+    name: String
     description: String
     version: String!
-    platform: String!
+    benchmarker: String!
     storage: String!
-    orchestrator: Orchestrator!
-    validator: Validator!
-    steps: [Step]!
+    storageApi: StorageAPIEnum!
+    softwareEnvironments: [SoftwareEnvironment]!
+    benchmarkYamlSpec: String
+    stages: [Stage]!
   }
 
 interface IdentifiableEntity
   {
     id: Uriorcurie!
-    name: String!
+    name: String
     description: String
   }
 
@@ -26,7 +27,7 @@ type InputCollection
 type IOFile
   {
     id: Uriorcurie!
-    name: String!
+    name: String
     description: String
     path: String
   }
@@ -34,17 +35,12 @@ type IOFile
 type Module
   {
     id: Uriorcurie!
-    name: String!
+    name: String
     description: String
-    repo: String!
+    softwareEnvironment: SoftwareEnvironment!
+    repository: Repository!
     exclude: [Module]
     parameters: [Parameter]
-  }
-
-type Orchestrator
-  {
-    name: String!
-    url: String!
   }
 
 type Parameter
@@ -52,23 +48,30 @@ type Parameter
     values: [String]
   }
 
-type Step
+type Repository
   {
-    id: Uriorcurie!
-    name: String!
-    description: String
-    initial: Boolean
-    terminal: Boolean
-    after: [Step]
-    members: [Module]!
-    inputs: [InputCollection]
-    outputs: [IOFile]
+    url: String!
+    commit: String!
   }
 
-type Validator
+type SoftwareEnvironment
   {
-    name: String!
-    url: String!
-    schemaUrl: String!
+    id: Uriorcurie!
+    name: String
+    description: String
+    easyconfig: String
+    envmodule: String
+    conda: String
+    apptainer: String
+  }
+
+type Stage
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    modules: [Module]!
+    inputs: [InputCollection]
+    outputs: [IOFile]
   }
 
