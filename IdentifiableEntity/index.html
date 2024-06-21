@@ -208,9 +208,10 @@
 <div class="mermaid"> classDiagram
     class IdentifiableEntity
       IdentifiableEntity &lt;|-- Benchmark
-      IdentifiableEntity &lt;|-- Step
+      IdentifiableEntity &lt;|-- Stage
       IdentifiableEntity &lt;|-- Module
       IdentifiableEntity &lt;|-- IOFile
+      IdentifiableEntity &lt;|-- SoftwareEnvironment
 
       IdentifiableEntity : description
 
@@ -224,9 +225,10 @@
 <ul>
 <li><strong>IdentifiableEntity</strong><ul>
 <li><a href="../Benchmark/">Benchmark</a></li>
-<li><a href="../Step/">Step</a></li>
+<li><a href="../Stage/">Stage</a></li>
 <li><a href="../Module/">Module</a></li>
 <li><a href="../IOFile/">IOFile</a></li>
+<li><a href="../SoftwareEnvironment/">SoftwareEnvironment</a></li>
 </ul>
 </li>
 </ul>
@@ -249,7 +251,7 @@
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>1..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for a thing</td>
 <td>direct</td>
 </tr>
@@ -331,10 +333,7 @@ attributes:
     owner: IdentifiableEntity
     domain_of:
     - IdentifiableEntity
-    - Orchestrator
-    - Validator
     range: string
-    required: true
   description:
     name: description
     description: A human-readable description for a thing

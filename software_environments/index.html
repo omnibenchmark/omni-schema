@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/repo/">
+        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/software_environments/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: repo - omni-schema</title>
+        <title>Slot: software_environments - omni-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-repo" class="md-skip">
+        <a href="#slot-software_environments" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: repo
+              Slot: software_environments
             
           </span>
         </div>
@@ -310,15 +310,15 @@
                 
                   
 
-  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/repo.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/software_environments.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-repo">Slot: repo</h1>
-<p><em>The code repository hosting the module.</em></p>
-<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/repo">omni_schema:repo</a></p>
+<h1 id="slot-software_environments">Slot: software_environments</h1>
+<p><em>Dictionary of software environments keyed by their identifiers</em></p>
+<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/software_environments">omni_schema:software_environments</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -332,8 +332,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Module/">Module</a></td>
-<td>A single benchmark component assigned to a specific step</td>
+<td><a href="../Benchmark/">Benchmark</a></td>
+<td>A multi-stage workflow to evaluate processing stage for a specific task</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -341,7 +341,10 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../String/">String</a></p>
+<p>Range: <a href="../SoftwareEnvironment/">SoftwareEnvironment</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
 </li>
 <li>
 <p>Required: True</p>
@@ -355,15 +358,18 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: repo
-description: The code repository hosting the module.
+<pre><code class="language-yaml">name: software_environments
+description: Dictionary of software environments keyed by their identifiers
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
-alias: repo
+multivalued: true
+alias: software_environments
 domain_of:
-- Module
-range: string
+- Benchmark
+range: SoftwareEnvironment
 required: true
+inlined: true
+inlined_as_list: true
 
 </code></pre>
 

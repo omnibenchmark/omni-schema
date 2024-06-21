@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/path/">
+        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/benchmarker/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: path - omni-schema</title>
+        <title>Slot: benchmarker - omni-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-path" class="md-skip">
+        <a href="#slot-benchmarker" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: path
+              Slot: benchmarker
             
           </span>
         </div>
@@ -310,15 +310,15 @@
                 
                   
 
-  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/path.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/benchmarker.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-path">Slot: path</h1>
-<p><em>The output path pattern for the IO file.</em></p>
-<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/path">omni_schema:path</a></p>
+<h1 id="slot-benchmarker">Slot: benchmarker</h1>
+<p><em>The name and contact details of the person responsible for this benchmark.</em></p>
+<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/benchmarker">omni_schema:benchmarker</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -332,15 +332,20 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../IOFile/">IOFile</a></td>
-<td>Represents an input / output file</td>
+<td><a href="../Benchmark/">Benchmark</a></td>
+<td>A multi-stage workflow to evaluate processing stage for a specific task</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -350,14 +355,15 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: path
-description: The output path pattern for the IO file.
+<pre><code class="language-yaml">name: benchmarker
+description: The name and contact details of the person responsible for this benchmark.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
-alias: path
+alias: benchmarker
 domain_of:
-- IOFile
+- Benchmark
 range: string
+required: true
 
 </code></pre>
 

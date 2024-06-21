@@ -200,11 +200,15 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="class-benchmark">Class: Benchmark</h1>
-<p><em>A multi-step workflow to evaluate processing steps for a specific task.</em></p>
+<p><em>A multi-stage workflow to evaluate processing stage for a specific task.</em></p>
 <p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/Benchmark">omni_schema:Benchmark</a></p>
 <div class="mermaid"> classDiagram
     class Benchmark
       IdentifiableEntity &lt;|-- Benchmark
+
+      Benchmark : benchmark_yaml_spec
+
+      Benchmark : benchmarker
 
       Benchmark : description
 
@@ -212,21 +216,19 @@
 
       Benchmark : name
 
-      Benchmark : orchestrator
+      Benchmark : software_environments
 
-          Benchmark --&gt; Orchestrator : orchestrator
+          Benchmark --&gt; SoftwareEnvironment : software_environments
 
-      Benchmark : platform
+      Benchmark : stages
 
-      Benchmark : steps
-
-          Benchmark --&gt; Step : steps
+          Benchmark --&gt; Stage : stages
 
       Benchmark : storage
 
-      Benchmark : validator
+      Benchmark : storage_api
 
-          Benchmark --&gt; Validator : validator
+          Benchmark --&gt; StorageAPIEnum : storage_api
 
       Benchmark : version
 
@@ -257,9 +259,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../platform/">platform</a></td>
+<td><a href="../benchmarker/">benchmarker</a></td>
 <td>1..1 <br/> <a href="../String/">String</a></td>
-<td>The place hosting all benchmark components</td>
+<td>The name and contact details of the person responsible for this benchmark</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -269,20 +271,26 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../orchestrator/">orchestrator</a></td>
-<td>1..1 <br/> <a href="../Orchestrator/">Orchestrator</a></td>
-<td>The orchestrator of the benchmark</td>
+<td><a href="../storage_api/">storage_api</a></td>
+<td>1..1 <br/> <a href="../StorageAPIEnum/">StorageAPIEnum</a></td>
+<td>The type of the storage API (i</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../validator/">validator</a></td>
-<td>1..1 <br/> <a href="../Validator/">Validator</a></td>
-<td>The validator of the benchmark</td>
+<td><a href="../software_environments/">software_environments</a></td>
+<td>1..* <br/> <a href="../SoftwareEnvironment/">SoftwareEnvironment</a></td>
+<td>Dictionary of software environments keyed by their identifiers</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../steps/">steps</a></td>
-<td>1..* <br/> <a href="../Step/">Step</a></td>
+<td><a href="../benchmark_yaml_spec/">benchmark_yaml_spec</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Benchmark Specification version</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../stages/">stages</a></td>
+<td>1..* <br/> <a href="../Stage/">Stage</a></td>
 <td></td>
 <td>direct</td>
 </tr>
@@ -294,7 +302,7 @@
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>1..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for a thing</td>
 <td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
@@ -335,16 +343,17 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Benchmark
-description: A multi-step workflow to evaluate processing steps for a specific task.
+description: A multi-stage workflow to evaluate processing stage for a specific task.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 is_a: IdentifiableEntity
 slots:
 - version
-- platform
+- benchmarker
 - storage
-- orchestrator
-- validator
-- steps
+- storage_api
+- software_environments
+- benchmark_yaml_spec
+- stages
 tree_root: true
 
 </code></pre>
@@ -352,7 +361,7 @@ tree_root: true
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Benchmark
-description: A multi-step workflow to evaluate processing steps for a specific task.
+description: A multi-stage workflow to evaluate processing stage for a specific task.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 is_a: IdentifiableEntity
 attributes:
@@ -367,12 +376,12 @@ attributes:
     - Benchmark
     range: string
     required: true
-  platform:
-    name: platform
-    description: The place hosting all benchmark components
+  benchmarker:
+    name: benchmarker
+    description: The name and contact details of the person responsible for this benchmark.
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    alias: platform
+    alias: benchmarker
     owner: Benchmark
     domain_of:
     - Benchmark
@@ -389,38 +398,51 @@ attributes:
     - Benchmark
     range: string
     required: true
-  orchestrator:
-    name: orchestrator
-    description: The orchestrator of the benchmark.
+  storage_api:
+    name: storage_api
+    description: The type of the storage API (i.e. S3)
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    alias: orchestrator
+    alias: storage_api
     owner: Benchmark
     domain_of:
     - Benchmark
-    range: Orchestrator
+    range: StorageAPIEnum
     required: true
-  validator:
-    name: validator
-    description: The validator of the benchmark.
-    from_schema: https://w3id.org/omnibenchmark/omni-schema
-    rank: 1000
-    alias: validator
-    owner: Benchmark
-    domain_of:
-    - Benchmark
-    range: Validator
-    required: true
-  steps:
-    name: steps
+  software_environments:
+    name: software_environments
+    description: Dictionary of software environments keyed by their identifiers
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
     multivalued: true
-    alias: steps
+    alias: software_environments
     owner: Benchmark
     domain_of:
     - Benchmark
-    range: Step
+    range: SoftwareEnvironment
+    required: true
+    inlined: true
+    inlined_as_list: true
+  benchmark_yaml_spec:
+    name: benchmark_yaml_spec
+    description: Benchmark Specification version.
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    alias: benchmark_yaml_spec
+    owner: Benchmark
+    domain_of:
+    - Benchmark
+    range: string
+  stages:
+    name: stages
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    multivalued: true
+    alias: stages
+    owner: Benchmark
+    domain_of:
+    - Benchmark
+    range: Stage
     required: true
     inlined: true
     inlined_as_list: true
@@ -447,10 +469,7 @@ attributes:
     owner: Benchmark
     domain_of:
     - IdentifiableEntity
-    - Orchestrator
-    - Validator
     range: string
-    required: true
   description:
     name: description
     description: A human-readable description for a thing

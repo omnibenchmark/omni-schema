@@ -398,7 +398,7 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Benchmark/">Benchmark</a></td>
-<td>A multi-step workflow to evaluate processing steps for a specific task.</td>
+<td>A multi-stage workflow to evaluate processing stage for a specific task.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="IOFile/">IOFile</a></td>
@@ -406,10 +406,14 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Module/">Module</a></td>
-<td>A single benchmark component assigned to a specific step.</td>
+<td>A single benchmark component assigned to a specific stage.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Step/">Step</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SoftwareEnvironment/">SoftwareEnvironment</a></td>
+<td>Contains snapshots of the software environment required for the modules to run.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Stage/">Stage</a></td>
 <td>A benchmark subtask with equivalent and independent modules.</td>
 </tr>
 <tr>
@@ -417,16 +421,12 @@
 <td>A holder for valid input combinations.</td>
 </tr>
 <tr>
-<td><a href="Orchestrator/">Orchestrator</a></td>
-<td>The orchestrator of the benchmark.</td>
-</tr>
-<tr>
 <td><a href="Parameter/">Parameter</a></td>
 <td>A parameter and its scope.</td>
 </tr>
 <tr>
-<td><a href="Validator/">Validator</a></td>
-<td>The validator of the benchmark.</td>
+<td><a href="Repository/">Repository</a></td>
+<td>A reference to code repository containing the module's executable code.</td>
 </tr>
 </tbody>
 </table>
@@ -440,16 +440,40 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="after/">after</a></td>
-<td>Step(s) that have to be finished before this step</td>
+<td><a href="apptainer/">apptainer</a></td>
+<td>Apptainer image URL</td>
+</tr>
+<tr>
+<td><a href="benchmark_yaml_spec/">benchmark_yaml_spec</a></td>
+<td>Benchmark Specification version</td>
+</tr>
+<tr>
+<td><a href="benchmarker/">benchmarker</a></td>
+<td>The name and contact details of the person responsible for this benchmark</td>
+</tr>
+<tr>
+<td><a href="commit/">commit</a></td>
+<td>The commit hash</td>
+</tr>
+<tr>
+<td><a href="conda/">conda</a></td>
+<td>Conda environment file</td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
 <td>A human-readable description for a thing</td>
 </tr>
 <tr>
+<td><a href="easyconfig/">easyconfig</a></td>
+<td>Easybuild configuration file</td>
+</tr>
+<tr>
 <td><a href="entries/">entries</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="envmodule/">envmodule</a></td>
+<td>Environment module name</td>
 </tr>
 <tr>
 <td><a href="exclude/">exclude</a></td>
@@ -460,24 +484,16 @@
 <td>A unique identifier for a thing</td>
 </tr>
 <tr>
-<td><a href="initial/">initial</a></td>
-<td>Is the initial benchmark step?</td>
-</tr>
-<tr>
 <td><a href="inputs/">inputs</a></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="members/">members</a></td>
+<td><a href="modules/">modules</a></td>
 <td></td>
 </tr>
 <tr>
 <td><a href="name/">name</a></td>
 <td>A human-readable name for a thing</td>
-</tr>
-<tr>
-<td><a href="orchestrator/">orchestrator</a></td>
-<td>The orchestrator of the benchmark</td>
 </tr>
 <tr>
 <td><a href="outputs/">outputs</a></td>
@@ -489,22 +505,22 @@
 </tr>
 <tr>
 <td><a href="path/">path</a></td>
+<td>The output path pattern for the IO file</td>
+</tr>
+<tr>
+<td><a href="repository/">repository</a></td>
 <td>The code repository hosting the module</td>
 </tr>
 <tr>
-<td><a href="platform/">platform</a></td>
-<td>The place hosting all benchmark components</td>
+<td><a href="software_environment/">software_environment</a></td>
+<td>Reference to a software environment by key</td>
 </tr>
 <tr>
-<td><a href="repo/">repo</a></td>
-<td>The code repository hosting the module</td>
+<td><a href="software_environments/">software_environments</a></td>
+<td>Dictionary of software environments keyed by their identifiers</td>
 </tr>
 <tr>
-<td><a href="schema_url/">schema_url</a></td>
-<td>Url to the benchmark validator schema</td>
-</tr>
-<tr>
-<td><a href="steps/">steps</a></td>
+<td><a href="stages/">stages</a></td>
 <td></td>
 </tr>
 <tr>
@@ -512,16 +528,12 @@
 <td>The place hosting all benchmark data</td>
 </tr>
 <tr>
-<td><a href="terminal/">terminal</a></td>
-<td>Is the terminal benchmark step?</td>
+<td><a href="storage_api/">storage_api</a></td>
+<td>The type of the storage API (i</td>
 </tr>
 <tr>
 <td><a href="url/">url</a></td>
-<td>Url to the full benchmark description in workflow format</td>
-</tr>
-<tr>
-<td><a href="validator/">validator</a></td>
-<td>The validator of the benchmark</td>
+<td>The git compatible url</td>
 </tr>
 <tr>
 <td><a href="values/">values</a></td>
@@ -543,7 +555,7 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td><a href="StorageAPIEnum/">StorageAPIEnum</a></td>
 <td></td>
 </tr>
 </tbody>

@@ -317,7 +317,7 @@
 
 
 <h1 id="slot-url">Slot: url</h1>
-<p><em>Url to the full benchmark description in workflow format</em></p>
+<p><em>The git compatible url.</em></p>
 <p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/url">omni_schema:url</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -332,13 +332,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Orchestrator/">Orchestrator</a></td>
-<td>The orchestrator of the benchmark</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Validator/">Validator</a></td>
-<td>The validator of the benchmark</td>
+<td><a href="../Repository/">Repository</a></td>
+<td>A reference to code repository containing the module's executable code</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -361,13 +356,12 @@
 <details>
 
 <pre><code class="language-yaml">name: url
-description: Url to the full benchmark description in workflow format
+description: The git compatible url.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
 alias: url
 domain_of:
-- Orchestrator
-- Validator
+- Repository
 range: string
 required: true
 

@@ -205,7 +205,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="class-module">Class: Module</h1>
-<p><em>A single benchmark component assigned to a specific step.</em></p>
+<p><em>A single benchmark component assigned to a specific stage.</em></p>
 <p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/Module">omni_schema:Module</a></p>
 <div class="mermaid"> classDiagram
     class Module
@@ -225,7 +225,13 @@
 
           Module --&gt; Parameter : parameters
 
-      Module : repo
+      Module : repository
+
+          Module --&gt; Repository : repository
+
+      Module : software_environment
+
+          Module --&gt; SoftwareEnvironment : software_environment
 
 
 </div>
@@ -248,8 +254,14 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../repo/">repo</a></td>
-<td>1..1 <br/> <a href="../String/">String</a></td>
+<td><a href="../software_environment/">software_environment</a></td>
+<td>1..1 <br/> <a href="../SoftwareEnvironment/">SoftwareEnvironment</a></td>
+<td>Reference to a software environment by key</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../repository/">repository</a></td>
+<td>1..1 <br/> <a href="../Repository/">Repository</a></td>
 <td>The code repository hosting the module</td>
 <td>direct</td>
 </tr>
@@ -273,7 +285,7 @@
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>1..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for a thing</td>
 <td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
@@ -297,8 +309,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Step/">Step</a></td>
-<td><a href="../members/">members</a></td>
+<td><a href="../Stage/">Stage</a></td>
+<td><a href="../modules/">modules</a></td>
 <td>range</td>
 <td><a href="./">Module</a></td>
 </tr>
@@ -339,11 +351,12 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Module
-description: A single benchmark component assigned to a specific step.
+description: A single benchmark component assigned to a specific stage.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 is_a: IdentifiableEntity
 slots:
-- repo
+- software_environment
+- repository
 - exclude
 - parameters
 
@@ -352,20 +365,31 @@ slots:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Module
-description: A single benchmark component assigned to a specific step.
+description: A single benchmark component assigned to a specific stage.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 is_a: IdentifiableEntity
 attributes:
-  repo:
-    name: repo
-    description: The code repository hosting the module.
+  software_environment:
+    name: software_environment
+    description: Reference to a software environment by key.
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    alias: repo
+    alias: software_environment
     owner: Module
     domain_of:
     - Module
-    range: string
+    range: SoftwareEnvironment
+    required: true
+  repository:
+    name: repository
+    description: The code repository hosting the module.
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    alias: repository
+    owner: Module
+    domain_of:
+    - Module
+    range: Repository
     required: true
   exclude:
     name: exclude
@@ -411,10 +435,7 @@ attributes:
     owner: Module
     domain_of:
     - IdentifiableEntity
-    - Orchestrator
-    - Validator
     range: string
-    required: true
   description:
     name: description
     description: A human-readable description for a thing

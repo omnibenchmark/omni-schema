@@ -242,7 +242,7 @@
 <tr>
 <td><a href="../path/">path</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The code repository hosting the module</td>
+<td>The output path pattern for the IO file</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -253,7 +253,7 @@
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>1..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for a thing</td>
 <td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
@@ -277,7 +277,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Step/">Step</a></td>
+<td><a href="../Stage/">Stage</a></td>
 <td><a href="../outputs/">outputs</a></td>
 <td>range</td>
 <td><a href="./">IOFile</a></td>
@@ -336,7 +336,7 @@ is_a: IdentifiableEntity
 attributes:
   path:
     name: path
-    description: The code repository hosting the module.
+    description: The output path pattern for the IO file.
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
     alias: path
@@ -367,10 +367,7 @@ attributes:
     owner: IOFile
     domain_of:
     - IdentifiableEntity
-    - Orchestrator
-    - Validator
     range: string
-    required: true
   description:
     name: description
     description: A human-readable description for a thing

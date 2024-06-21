@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/terminal/">
+        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/commit/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: terminal - omni-schema</title>
+        <title>Slot: commit - omni-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-terminal" class="md-skip">
+        <a href="#slot-commit" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: terminal
+              Slot: commit
             
           </span>
         </div>
@@ -310,15 +310,15 @@
                 
                   
 
-  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/terminal.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/commit.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-terminal">Slot: terminal</h1>
-<p><em>Is the terminal benchmark step?</em></p>
-<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/terminal">omni_schema:terminal</a></p>
+<h1 id="slot-commit">Slot: commit</h1>
+<p><em>The commit hash.</em></p>
+<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/commit">omni_schema:commit</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -332,15 +332,20 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Step/">Step</a></td>
-<td>A benchmark subtask with equivalent and independent modules</td>
+<td><a href="../Repository/">Repository</a></td>
+<td>A reference to code repository containing the module's executable code</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Boolean/">Boolean</a></li>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -350,14 +355,15 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: terminal
-description: Is the terminal benchmark step?
+<pre><code class="language-yaml">name: commit
+description: The commit hash.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
-alias: terminal
+alias: commit
 domain_of:
-- Step
-range: boolean
+- Repository
+range: string
+required: true
 
 </code></pre>
 
