@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-06-18T18:10:57
+# Generation date: 2024-08-06T14:53:19
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -111,6 +111,7 @@ class Benchmark(IdentifiableEntity):
     id: Union[str, BenchmarkId] = None
     version: str = None
     benchmarker: str = None
+    software_backend: str = None
     storage: str = None
     storage_api: Union[str, "StorageAPIEnum"] = None
     software_environments: Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]], List[Union[dict, "SoftwareEnvironment"]]] = empty_dict()
@@ -132,6 +133,11 @@ class Benchmark(IdentifiableEntity):
             self.MissingRequiredField("benchmarker")
         if not isinstance(self.benchmarker, str):
             self.benchmarker = str(self.benchmarker)
+
+        if self._is_empty(self.software_backend):
+            self.MissingRequiredField("software_backend")
+        if not isinstance(self.software_backend, str):
+            self.software_backend = str(self.software_backend)
 
         if self._is_empty(self.storage):
             self.MissingRequiredField("storage")
@@ -404,6 +410,9 @@ slots.version = Slot(uri=OMNI_SCHEMA.version, name="version", curie=OMNI_SCHEMA.
 
 slots.benchmarker = Slot(uri=OMNI_SCHEMA.benchmarker, name="benchmarker", curie=OMNI_SCHEMA.curie('benchmarker'),
                    model_uri=OMNI_SCHEMA.benchmarker, domain=None, range=str)
+
+slots.software_backend = Slot(uri=OMNI_SCHEMA.software_backend, name="software_backend", curie=OMNI_SCHEMA.curie('software_backend'),
+                   model_uri=OMNI_SCHEMA.software_backend, domain=None, range=str)
 
 slots.storage = Slot(uri=OMNI_SCHEMA.storage, name="storage", curie=OMNI_SCHEMA.curie('storage'),
                    model_uri=OMNI_SCHEMA.storage, domain=None, range=str)

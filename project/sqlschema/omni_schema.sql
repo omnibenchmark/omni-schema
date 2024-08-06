@@ -6,6 +6,7 @@ CREATE TABLE "Benchmark" (
 	description TEXT, 
 	version TEXT NOT NULL, 
 	benchmarker TEXT NOT NULL, 
+	software_backend TEXT NOT NULL, 
 	storage TEXT NOT NULL, 
 	storage_api VARCHAR(2) NOT NULL, 
 	software_environments TEXT NOT NULL, 

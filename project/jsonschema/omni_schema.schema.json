@@ -24,6 +24,10 @@
                     "description": "A human-readable name for a thing",
                     "type": "string"
                 },
+                "software_backend": {
+                    "description": "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.",
+                    "type": "string"
+                },
                 "software_environments": {
                     "description": "Dictionary of software environments keyed by their identifiers",
                     "items": {
@@ -43,7 +47,7 @@
                 },
                 "storage_api": {
                     "$ref": "#/$defs/StorageAPIEnum",
-                    "description": "The type of the storage API (i.e. S3)"
+                    "description": "The type of the storage API, i.e. S3."
                 },
                 "version": {
                     "description": "The version of the benchmark.",
@@ -53,6 +57,7 @@
             "required": [
                 "version",
                 "benchmarker",
+                "software_backend",
                 "storage",
                 "storage_api",
                 "software_environments",
@@ -188,7 +193,7 @@
             "description": "Contains snapshots of the software environment required for the modules to run.",
             "properties": {
                 "apptainer": {
-                    "description": "Apptainer image URL.",
+                    "description": "Apptainer image static ORAS url, including name:tag.",
                     "type": "string"
                 },
                 "conda": {
@@ -299,6 +304,10 @@
             "description": "A human-readable name for a thing",
             "type": "string"
         },
+        "software_backend": {
+            "description": "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.",
+            "type": "string"
+        },
         "software_environments": {
             "description": "Dictionary of software environments keyed by their identifiers",
             "items": {
@@ -318,7 +327,7 @@
         },
         "storage_api": {
             "$ref": "#/$defs/StorageAPIEnum",
-            "description": "The type of the storage API (i.e. S3)"
+            "description": "The type of the storage API, i.e. S3."
         },
         "version": {
             "description": "The version of the benchmark.",
@@ -328,6 +337,7 @@
     "required": [
         "version",
         "benchmarker",
+        "software_backend",
         "storage",
         "storage_api",
         "software_environments",

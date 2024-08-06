@@ -5,6 +5,7 @@ type Benchmark
     description: String
     version: String!
     benchmarker: String!
+    softwareBackend: String!
     storage: String!
     storageApi: StorageAPIEnum!
     softwareEnvironments: [SoftwareEnvironment]!

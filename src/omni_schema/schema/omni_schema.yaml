@@ -44,6 +44,7 @@ classes:
     slots:
       - version
       - benchmarker
+      - software_backend
       - storage
       - storage_api
       - software_environments
@@ -131,6 +132,11 @@ slots:
     description: The name and contact details of the person responsible for this benchmark.
     required: true
 
+  software_backend:
+    range: string
+    description: The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.
+    required: true
+    
   storage:
     range: string
     description: The place hosting all benchmark data.
@@ -138,9 +144,9 @@ slots:
 
   storage_api:
     range: StorageAPIEnum
-    description: The type of the storage API (i.e. S3)
+    description: The type of the storage API, i.e. S3.
     required: true
-
+    
   stages:
     range: Stage
     multivalued: true
@@ -230,7 +236,7 @@ slots:
 
   apptainer:
     range: string
-    description: Apptainer image URL.
+    description: Apptainer image static ORAS url, including name:tag.
 
   benchmark_yaml_spec:
     range: string

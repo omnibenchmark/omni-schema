@@ -432,6 +432,20 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "software_backend",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/software_backend",
+      "description": "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/software_backend",
+      "owner": "Benchmark",
+      "domain_of": [
+        "Benchmark"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "storage",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/storage",
       "description": "The place hosting all benchmark data.",
@@ -448,7 +462,7 @@
     {
       "name": "storage_api",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/storage_api",
-      "description": "The type of the storage API (i.e. S3)",
+      "description": "The type of the storage API, i.e. S3.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/storage_api",
       "owner": "Benchmark",
@@ -704,7 +718,7 @@
     {
       "name": "apptainer",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/apptainer",
-      "description": "Apptainer image URL.",
+      "description": "Apptainer image static ORAS url, including name:tag.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/apptainer",
       "owner": "SoftwareEnvironment",
@@ -759,6 +773,7 @@
         "description",
         "version",
         "benchmarker",
+        "software_backend",
         "storage",
         "storage_api",
         "software_environments",
@@ -882,9 +897,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-06-18T18:10:43",
-  "source_file_size": 4820,
-  "generation_date": "2024-06-18T18:10:54",
+  "source_file_date": "2024-08-06T14:49:47",
+  "source_file_size": 5054,
+  "generation_date": "2024-08-06T14:53:16",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

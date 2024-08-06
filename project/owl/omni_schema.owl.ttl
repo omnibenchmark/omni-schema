@@ -11,59 +11,68 @@ omni_schema:Benchmark a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Benchmark" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom omni_schema:SoftwareEnvironment ;
-            owl:onProperty omni_schema:software_environments ],
+            owl:minCardinality 1 ;
+            owl:onProperty omni_schema:stages ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty omni_schema:benchmark_yaml_spec ],
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:software_backend ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:storage_api ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty omni_schema:version ],
+            owl:onProperty omni_schema:storage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:benchmark_yaml_spec ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:benchmark_yaml_spec ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:version ],
+            owl:onProperty omni_schema:benchmarker ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty omni_schema:stages ],
+            owl:onProperty omni_schema:software_environments ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:storage ],
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty omni_schema:version ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:storage_api ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty omni_schema:benchmark_yaml_spec ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom omni_schema:SoftwareEnvironment ;
+            owl:onProperty omni_schema:software_environments ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty omni_schema:software_backend ],
         [ a owl:Restriction ;
             owl:allValuesFrom omni_schema:StorageAPIEnum ;
             owl:onProperty omni_schema:storage_api ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:benchmarker ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty omni_schema:software_environments ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:version ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty omni_schema:benchmarker ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty omni_schema:benchmarker ],
+            owl:onProperty omni_schema:software_backend ],
         [ a owl:Restriction ;
             owl:allValuesFrom omni_schema:Stage ;
             owl:onProperty omni_schema:stages ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:maxCardinality 1 ;
             owl:onProperty omni_schema:storage ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty omni_schema:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty omni_schema:storage_api ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty omni_schema:benchmarker ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty omni_schema:benchmarker ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:storage ],
@@ -92,10 +101,10 @@ omni_schema:Parameter a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Parameter" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
+            owl:minCardinality 0 ;
             owl:onProperty omni_schema:values ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:values ] ;
     skos:definition "A parameter and its scope." ;
     skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
@@ -104,6 +113,15 @@ omni_schema:Repository a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Repository" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:url ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty omni_schema:url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:commit ],
+        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:commit ],
         [ a owl:Restriction ;
@@ -111,15 +129,6 @@ omni_schema:Repository a owl:Class,
             owl:onProperty omni_schema:commit ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty omni_schema:url ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:commit ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:url ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:url ] ;
     skos:definition "A reference to code repository containing the module's executable code." ;
     skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
@@ -128,22 +137,22 @@ omni_schema:Stage a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Stage" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom omni_schema:IOFile ;
+            owl:onProperty omni_schema:outputs ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty omni_schema:modules ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty omni_schema:outputs ],
         [ a owl:Restriction ;
             owl:allValuesFrom omni_schema:Module ;
             owl:onProperty omni_schema:modules ],
         [ a owl:Restriction ;
-            owl:allValuesFrom omni_schema:IOFile ;
-            owl:onProperty omni_schema:outputs ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom omni_schema:InputCollection ;
+            owl:minCardinality 0 ;
             owl:onProperty omni_schema:inputs ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty omni_schema:outputs ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom omni_schema:InputCollection ;
             owl:onProperty omni_schema:inputs ],
         omni_schema:IdentifiableEntity ;
     skos:definition "A benchmark subtask with equivalent and independent modules." ;
@@ -209,7 +218,7 @@ omni_schema:apptainer a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "apptainer" ;
     rdfs:range linkml:String ;
-    skos:definition "Apptainer image URL." ;
+    skos:definition "Apptainer image static ORAS url, including name:tag." ;
     skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
 
 omni_schema:benchmark_yaml_spec a owl:ObjectProperty,
@@ -287,6 +296,13 @@ omni_schema:repository a owl:ObjectProperty,
     skos:definition "The code repository hosting the module." ;
     skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
 
+omni_schema:software_backend a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "software_backend" ;
+    rdfs:range linkml:String ;
+    skos:definition "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda." ;
+    skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
+
 omni_schema:software_environment a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "software_environment" ;
@@ -305,7 +321,7 @@ omni_schema:storage_api a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "storage_api" ;
     rdfs:range omni_schema:StorageAPIEnum ;
-    skos:definition "The type of the storage API (i.e. S3)" ;
+    skos:definition "The type of the storage API, i.e. S3." ;
     skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
 
 omni_schema:url a owl:ObjectProperty,
@@ -326,13 +342,13 @@ omni_schema:IOFile a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "IOFile" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:path ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty omni_schema:path ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
+            owl:minCardinality 0 ;
             owl:onProperty omni_schema:path ],
         omni_schema:IdentifiableEntity ;
     skos:definition "Represents an input / output file." ;
@@ -342,35 +358,35 @@ omni_schema:Module a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Module" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom omni_schema:SoftwareEnvironment ;
-            owl:onProperty omni_schema:software_environment ],
+            owl:minCardinality 0 ;
+            owl:onProperty omni_schema:exclude ],
         [ a owl:Restriction ;
-            owl:allValuesFrom omni_schema:Repository ;
+            owl:maxCardinality 1 ;
             owl:onProperty omni_schema:repository ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty omni_schema:parameters ],
+            owl:allValuesFrom omni_schema:SoftwareEnvironment ;
+            owl:onProperty omni_schema:software_environment ],
         [ a owl:Restriction ;
             owl:allValuesFrom omni_schema:Parameter ;
             owl:onProperty omni_schema:parameters ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty omni_schema:software_environment ],
+            owl:onProperty omni_schema:repository ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty omni_schema:parameters ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty omni_schema:repository ],
+            owl:onProperty omni_schema:software_environment ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty omni_schema:software_environment ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty omni_schema:exclude ],
+            owl:allValuesFrom omni_schema:Repository ;
+            owl:onProperty omni_schema:repository ],
         [ a owl:Restriction ;
             owl:allValuesFrom omni_schema:Module ;
             owl:onProperty omni_schema:exclude ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:repository ],
         omni_schema:IdentifiableEntity ;
     skos:definition "A single benchmark component assigned to a specific stage." ;
     skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
@@ -383,37 +399,37 @@ omni_schema:SoftwareEnvironment a owl:Class,
             owl:onProperty omni_schema:envmodule ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
+            owl:onProperty omni_schema:conda ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:apptainer ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty omni_schema:easyconfig ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:envmodule ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty omni_schema:easyconfig ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty omni_schema:apptainer ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty omni_schema:easyconfig ],
+            owl:onProperty omni_schema:conda ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty omni_schema:apptainer ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:apptainer ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty omni_schema:conda ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty omni_schema:envmodule ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:apptainer ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty omni_schema:easyconfig ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty omni_schema:conda ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:conda ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:envmodule ],
+            owl:onProperty omni_schema:easyconfig ],
         omni_schema:IdentifiableEntity ;
     skos:definition "Contains snapshots of the software environment required for the modules to run." ;
     skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
@@ -426,32 +442,32 @@ omni_schema:IdentifiableEntity a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "IdentifiableEntity" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:description ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty omni_schema:id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:name ],
+            owl:onProperty omni_schema:id ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty omni_schema:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty omni_schema:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Uriorcurie ;
             owl:onProperty omni_schema:id ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty omni_schema:name ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty omni_schema:description ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty omni_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:id ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty omni_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty omni_schema:description ] ;
+            owl:onProperty omni_schema:name ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing ;
     skos:inScheme <https://w3id.org/omnibenchmark/omni-schema> .
