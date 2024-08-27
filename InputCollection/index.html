@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://omnibenchmark.github.io/omni-schema/InputCollection/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: InputCollection - omni-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -204,9 +204,15 @@
 <p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/InputCollection">omni_schema:InputCollection</a></p>
 <div class="mermaid"> classDiagram
     class InputCollection
+    click InputCollection href "../InputCollection"
       InputCollection : entries
 
-          InputCollection --&gt; IOFile : entries
+
+
+
+    InputCollection --&gt; "*" IOFile : entries
+    click IOFile href "../IOFile"
+
 
 
 </div>
@@ -224,7 +230,7 @@
 <tbody>
 <tr>
 <td><a href="../entries/">entries</a></td>
-<td>0..* <br/> <a href="../IOFile/">IOFile</a></td>
+<td>* <br/> <a href="../IOFile/">IOFile</a></td>
 <td></td>
 <td>direct</td>
 </tr>
@@ -295,12 +301,12 @@ attributes:
     name: entries
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    multivalued: true
     alias: entries
     owner: InputCollection
     domain_of:
     - InputCollection
     range: IOFile
+    multivalued: true
 
 </code></pre>
 </details>

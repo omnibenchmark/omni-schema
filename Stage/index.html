@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://omnibenchmark.github.io/omni-schema/Stage/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: Stage - omni-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -209,7 +209,9 @@
 <p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/Stage">omni_schema:Stage</a></p>
 <div class="mermaid"> classDiagram
     class Stage
+    click Stage href "../Stage"
       IdentifiableEntity &lt;|-- Stage
+        click IdentifiableEntity href "../IdentifiableEntity"
 
       Stage : description
 
@@ -217,17 +219,32 @@
 
       Stage : inputs
 
-          Stage --&gt; InputCollection : inputs
+
+
+
+    Stage --&gt; "*" InputCollection : inputs
+    click InputCollection href "../InputCollection"
+
 
       Stage : modules
 
-          Stage --&gt; Module : modules
+
+
+
+    Stage --&gt; "1..*" Module : modules
+    click Module href "../Module"
+
 
       Stage : name
 
       Stage : outputs
 
-          Stage --&gt; IOFile : outputs
+
+
+
+    Stage --&gt; "*" IOFile : outputs
+    click IOFile href "../IOFile"
+
 
 
 </div>
@@ -257,19 +274,19 @@
 </tr>
 <tr>
 <td><a href="../inputs/">inputs</a></td>
-<td>0..* <br/> <a href="../InputCollection/">InputCollection</a></td>
+<td>* <br/> <a href="../InputCollection/">InputCollection</a></td>
 <td></td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../outputs/">outputs</a></td>
-<td>0..* <br/> <a href="../IOFile/">IOFile</a></td>
+<td>* <br/> <a href="../IOFile/">IOFile</a></td>
 <td></td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../id/">id</a></td>
-<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for a thing</td>
 <td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
@@ -356,37 +373,37 @@ attributes:
     name: modules
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    multivalued: true
     alias: modules
     owner: Stage
     domain_of:
     - Stage
     range: Module
     required: true
+    multivalued: true
     inlined: true
     inlined_as_list: true
   inputs:
     name: inputs
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    multivalued: true
     alias: inputs
     owner: Stage
     domain_of:
     - Stage
     range: InputCollection
+    multivalued: true
     inlined: true
     inlined_as_list: true
   outputs:
     name: outputs
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    multivalued: true
     alias: outputs
     owner: Stage
     domain_of:
     - Stage
     range: IOFile
+    multivalued: true
     inlined: true
     inlined_as_list: true
   id:

@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://omnibenchmark.github.io/omni-schema/SoftwareEnvironment/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: SoftwareEnvironment - omni-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -209,7 +209,9 @@
 <p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/SoftwareEnvironment">omni_schema:SoftwareEnvironment</a></p>
 <div class="mermaid"> classDiagram
     class SoftwareEnvironment
+    click SoftwareEnvironment href "../SoftwareEnvironment"
       IdentifiableEntity &lt;|-- SoftwareEnvironment
+        click IdentifiableEntity href "../IdentifiableEntity"
 
       SoftwareEnvironment : apptainer
 
@@ -266,12 +268,12 @@
 <tr>
 <td><a href="../apptainer/">apptainer</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Apptainer image URL</td>
+<td>Apptainer image static ORAS url, including name:tag</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../id/">id</a></td>
-<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for a thing</td>
 <td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
@@ -395,7 +397,7 @@ attributes:
     range: string
   apptainer:
     name: apptainer
-    description: Apptainer image URL.
+    description: Apptainer image static ORAS url, including name:tag.
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
     alias: apptainer

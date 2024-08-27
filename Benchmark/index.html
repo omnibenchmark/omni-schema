@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://omnibenchmark.github.io/omni-schema/Benchmark/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: Benchmark - omni-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -204,7 +204,9 @@
 <p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/Benchmark">omni_schema:Benchmark</a></p>
 <div class="mermaid"> classDiagram
     class Benchmark
+    click Benchmark href "../Benchmark"
       IdentifiableEntity &lt;|-- Benchmark
+        click IdentifiableEntity href "../IdentifiableEntity"
 
       Benchmark : benchmark_yaml_spec
 
@@ -216,19 +218,43 @@
 
       Benchmark : name
 
+      Benchmark : software_backend
+
+
+
+
+    Benchmark --&gt; "1" SoftwareBackendEnum : software_backend
+    click SoftwareBackendEnum href "../SoftwareBackendEnum"
+
+
       Benchmark : software_environments
 
-          Benchmark --&gt; SoftwareEnvironment : software_environments
+
+
+
+    Benchmark --&gt; "1..*" SoftwareEnvironment : software_environments
+    click SoftwareEnvironment href "../SoftwareEnvironment"
+
 
       Benchmark : stages
 
-          Benchmark --&gt; Stage : stages
+
+
+
+    Benchmark --&gt; "1..*" Stage : stages
+    click Stage href "../Stage"
+
 
       Benchmark : storage
 
       Benchmark : storage_api
 
-          Benchmark --&gt; StorageAPIEnum : storage_api
+
+
+
+    Benchmark --&gt; "1" StorageAPIEnum : storage_api
+    click StorageAPIEnum href "../StorageAPIEnum"
+
 
       Benchmark : version
 
@@ -254,26 +280,32 @@
 <tbody>
 <tr>
 <td><a href="../version/">version</a></td>
-<td>1..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The version of the benchmark</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../benchmarker/">benchmarker</a></td>
-<td>1..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The name and contact details of the person responsible for this benchmark</td>
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../software_backend/">software_backend</a></td>
+<td>1 <br/> <a href="../SoftwareBackendEnum/">SoftwareBackendEnum</a></td>
+<td>The software backend used to run the benchmark, e</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../storage/">storage</a></td>
-<td>1..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The place hosting all benchmark data</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../storage_api/">storage_api</a></td>
-<td>1..1 <br/> <a href="../StorageAPIEnum/">StorageAPIEnum</a></td>
-<td>The type of the storage API (i</td>
+<td>1 <br/> <a href="../StorageAPIEnum/">StorageAPIEnum</a></td>
+<td>The type of the storage API, i</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -296,7 +328,7 @@
 </tr>
 <tr>
 <td><a href="../id/">id</a></td>
-<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for a thing</td>
 <td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
@@ -349,6 +381,7 @@ is_a: IdentifiableEntity
 slots:
 - version
 - benchmarker
+- software_backend
 - storage
 - storage_api
 - software_environments
@@ -387,6 +420,18 @@ attributes:
     - Benchmark
     range: string
     required: true
+  software_backend:
+    name: software_backend
+    description: The software backend used to run the benchmark, e.g. whether apptainer,
+      envmodules, or conda.
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    alias: software_backend
+    owner: Benchmark
+    domain_of:
+    - Benchmark
+    range: SoftwareBackendEnum
+    required: true
   storage:
     name: storage
     description: The place hosting all benchmark data.
@@ -400,7 +445,7 @@ attributes:
     required: true
   storage_api:
     name: storage_api
-    description: The type of the storage API (i.e. S3)
+    description: The type of the storage API, i.e. S3.
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
     alias: storage_api
@@ -414,13 +459,13 @@ attributes:
     description: Dictionary of software environments keyed by their identifiers
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    multivalued: true
     alias: software_environments
     owner: Benchmark
     domain_of:
     - Benchmark
     range: SoftwareEnvironment
     required: true
+    multivalued: true
     inlined: true
     inlined_as_list: true
   benchmark_yaml_spec:
@@ -437,13 +482,13 @@ attributes:
     name: stages
     from_schema: https://w3id.org/omnibenchmark/omni-schema
     rank: 1000
-    multivalued: true
     alias: stages
     owner: Benchmark
     domain_of:
     - Benchmark
     range: Stage
     required: true
+    multivalued: true
     inlined: true
     inlined_as_list: true
   id:
