@@ -350,6 +350,22 @@
           "text": "S3"
         }
       ]
+    },
+    {
+      "name": "SoftwareBackendEnum",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "permissible_values": [
+        {
+          "text": "apptainer"
+        },
+        {
+          "text": "envmodules"
+        },
+        {
+          "text": "conda"
+        }
+      ]
     }
   ],
   "slots": [
@@ -441,7 +457,7 @@
       "domain_of": [
         "Benchmark"
       ],
-      "range": "string",
+      "range": "SoftwareBackendEnum",
       "required": true,
       "@type": "SlotDefinition"
     },
@@ -478,13 +494,13 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/stages",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/stages",
-      "multivalued": true,
       "owner": "Benchmark",
       "domain_of": [
         "Benchmark"
       ],
       "range": "Stage",
       "required": true,
+      "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
@@ -494,13 +510,13 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/modules",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/modules",
-      "multivalued": true,
       "owner": "Stage",
       "domain_of": [
         "Stage"
       ],
       "range": "Module",
       "required": true,
+      "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
@@ -510,12 +526,12 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/inputs",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/inputs",
-      "multivalued": true,
       "owner": "Stage",
       "domain_of": [
         "Stage"
       ],
       "range": "InputCollection",
+      "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
@@ -525,12 +541,12 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/outputs",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/outputs",
-      "multivalued": true,
       "owner": "Stage",
       "domain_of": [
         "Stage"
       ],
       "range": "IOFile",
+      "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
@@ -541,12 +557,12 @@
       "description": "Ignore these module's outputs as input.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/exclude",
-      "multivalued": true,
       "owner": "Module",
       "domain_of": [
         "Module"
       ],
       "range": "Module",
+      "multivalued": true,
       "@type": "SlotDefinition"
     },
     {
@@ -569,12 +585,12 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/parameters",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/parameters",
-      "multivalued": true,
       "owner": "Module",
       "domain_of": [
         "Module"
       ],
       "range": "Parameter",
+      "multivalued": true,
       "inlined": true,
       "@type": "SlotDefinition"
     },
@@ -584,13 +600,13 @@
       "description": "Dictionary of software environments keyed by their identifiers",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/software_environments",
-      "multivalued": true,
       "owner": "Benchmark",
       "domain_of": [
         "Benchmark"
       ],
       "range": "SoftwareEnvironment",
       "required": true,
+      "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
@@ -655,12 +671,12 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/values",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/values",
-      "multivalued": true,
       "owner": "Parameter",
       "domain_of": [
         "Parameter"
       ],
       "range": "string",
+      "multivalued": true,
       "@type": "SlotDefinition"
     },
     {
@@ -668,12 +684,12 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/entries",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/entries",
-      "multivalued": true,
       "owner": "InputCollection",
       "domain_of": [
         "InputCollection"
       ],
       "range": "IOFile",
+      "multivalued": true,
       "@type": "SlotDefinition"
     },
     {
@@ -897,9 +913,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-08-06T14:49:47",
-  "source_file_size": 5054,
-  "generation_date": "2024-08-06T14:53:16",
+  "source_file_date": "2024-08-27T15:15:07",
+  "source_file_size": 5231,
+  "generation_date": "2024-08-27T15:30:28",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

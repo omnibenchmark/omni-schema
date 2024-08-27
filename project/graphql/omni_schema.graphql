@@ -1,3 +1,4 @@
+# metamodel_version: 1.7.0
 type Benchmark
   {
     id: Uriorcurie!
@@ -5,7 +6,7 @@ type Benchmark
     description: String
     version: String!
     benchmarker: String!
-    softwareBackend: String!
+    softwareBackend: SoftwareBackendEnum!
     storage: String!
     storageApi: StorageAPIEnum!
     softwareEnvironments: [SoftwareEnvironment]!

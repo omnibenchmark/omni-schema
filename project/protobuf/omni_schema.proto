@@ -1,3 +1,6 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
 // A multi-stage workflow to evaluate processing stage for a specific task.
 message Benchmark
  {
@@ -6,7 +9,7 @@ message Benchmark
   string description = 0
   string version = 0
   string benchmarker = 0
-  string softwareBackend = 0
+  softwareBackendEnum softwareBackend = 0
   string storage = 0
   storageAPIEnum storageApi = 0
  repeated  softwareEnvironment softwareEnvironments = 0

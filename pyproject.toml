@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "omni_schema"
 version = "0.0.1"
-description = "Data model foromnibenchmark."
-authors = ["Almut Luetge <almut.lue@gmail.com>"]
+description = "Data model for omnibenchmark."
+authors = ["Almut Luetge <almut.lue@gmail.com>", "Daniel Incicau <daniel.incicau@gmail.com>"]
 license = "Apache Software License 2.0"
 readme = "README.md"
 include = ["README.md", "src/omni_schema/schema", "project"]
