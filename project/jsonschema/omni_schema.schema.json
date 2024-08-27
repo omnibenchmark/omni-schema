@@ -6,7 +6,10 @@
             "properties": {
                 "benchmark_yaml_spec": {
                     "description": "Benchmark Specification version.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "benchmarker": {
                     "description": "The name and contact details of the person responsible for this benchmark.",
@@ -14,7 +17,10 @@
                 },
                 "description": {
                     "description": "A human-readable description for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for a thing",
@@ -22,11 +28,14 @@
                 },
                 "name": {
                     "description": "A human-readable name for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "software_backend": {
-                    "description": "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.",
-                    "type": "string"
+                    "$ref": "#/$defs/SoftwareBackendEnum",
+                    "description": "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda."
                 },
                 "software_environments": {
                     "description": "Dictionary of software environments keyed by their identifiers",
@@ -73,7 +82,10 @@
             "properties": {
                 "description": {
                     "description": "A human-readable description for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for a thing",
@@ -81,11 +93,17 @@
                 },
                 "name": {
                     "description": "A human-readable name for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "path": {
                     "description": "The output path pattern for the IO file.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 }
             },
             "required": [
@@ -102,7 +120,10 @@
                     "items": {
                         "type": "string"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "title": "InputCollection",
@@ -114,14 +135,20 @@
             "properties": {
                 "description": {
                     "description": "A human-readable description for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "exclude": {
                     "description": "Ignore these module's outputs as input.",
                     "items": {
                         "type": "string"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for a thing",
@@ -129,13 +156,19 @@
                 },
                 "name": {
                     "description": "A human-readable name for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "parameters": {
                     "items": {
                         "$ref": "#/$defs/Parameter"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "repository": {
                     "$ref": "#/$defs/Repository",
@@ -162,7 +195,10 @@
                     "items": {
                         "type": "string"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "title": "Parameter",
@@ -188,29 +224,56 @@
             "title": "Repository",
             "type": "object"
         },
+        "SoftwareBackendEnum": {
+            "description": "",
+            "enum": [
+                "apptainer",
+                "envmodules",
+                "conda",
+                "docker",
+                "host"
+            ],
+            "title": "SoftwareBackendEnum",
+            "type": "string"
+        },
         "SoftwareEnvironment": {
             "additionalProperties": false,
             "description": "Contains snapshots of the software environment required for the modules to run.",
             "properties": {
                 "apptainer": {
                     "description": "Apptainer image static ORAS url, including name:tag.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "conda": {
                     "description": "Conda environment file.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "description": {
                     "description": "A human-readable description for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "easyconfig": {
                     "description": "Easybuild configuration file.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "envmodule": {
                     "description": "Environment module name.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for a thing",
@@ -218,7 +281,10 @@
                 },
                 "name": {
                     "description": "A human-readable name for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 }
             },
             "required": [
@@ -233,7 +299,10 @@
             "properties": {
                 "description": {
                     "description": "A human-readable description for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "A unique identifier for a thing",
@@ -243,7 +312,10 @@
                     "items": {
                         "$ref": "#/$defs/InputCollection"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "modules": {
                     "items": {
@@ -253,13 +325,19 @@
                 },
                 "name": {
                     "description": "A human-readable name for a thing",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "outputs": {
                     "items": {
                         "$ref": "#/$defs/IOFile"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "required": [
@@ -286,7 +364,10 @@
     "properties": {
         "benchmark_yaml_spec": {
             "description": "Benchmark Specification version.",
-            "type": "string"
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "benchmarker": {
             "description": "The name and contact details of the person responsible for this benchmark.",
@@ -294,7 +375,10 @@
         },
         "description": {
             "description": "A human-readable description for a thing",
-            "type": "string"
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "id": {
             "description": "A unique identifier for a thing",
@@ -302,11 +386,14 @@
         },
         "name": {
             "description": "A human-readable name for a thing",
-            "type": "string"
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "software_backend": {
-            "description": "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.",
-            "type": "string"
+            "$ref": "#/$defs/SoftwareBackendEnum",
+            "description": "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda."
         },
         "software_environments": {
             "description": "Dictionary of software environments keyed by their identifiers",

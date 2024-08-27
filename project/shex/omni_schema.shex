@@ -1,3 +1,4 @@
+# metamodel_version: 1.7.0
 BASE <https://w3id.org/omnibenchmark/omni-schema/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -48,7 +49,11 @@ linkml:Sparqlpath xsd:string
           rdf:type [ schema1:Thing ] ? ;
           <version> @linkml:String ;
           <benchmarker> @linkml:String ;
-          <software_backend> @linkml:String ;
+          <software_backend> [ <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#apptainer>
+             <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#envmodules>
+             <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#conda>
+             <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#docker>
+             <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#host> ] ;
           <storage> @linkml:String ;
           <storage_api> [ <https://w3id.org/omnibenchmark/omni-schema/StorageAPIEnum#S3> ] ;
           <software_environments> @<SoftwareEnvironment> + ;
@@ -134,5 +139,4 @@ linkml:Sparqlpath xsd:string
        rdf:type [ <Stage> ]
     )
 }
-
 

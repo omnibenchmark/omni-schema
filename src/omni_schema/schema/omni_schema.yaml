@@ -24,6 +24,18 @@ enums:
     permissible_values:
       S3:
         text: S3
+  SoftwareBackendEnum:
+    permissible_values:
+      apptainer:
+        text: apptainer
+      envmodules:
+        text: envmodules
+      conda:
+        text: conda
+      docker:
+        text: docker
+      host:
+        text: host
 
 classes:
   IdentifiableEntity:
@@ -133,7 +145,7 @@ slots:
     required: true
 
   software_backend:
-    range: string
+    range: SoftwareBackendEnum
     description: The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.
     required: true
     
