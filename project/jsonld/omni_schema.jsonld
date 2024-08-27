@@ -367,6 +367,9 @@
         },
         {
           "text": "docker"
+        },
+        {
+          "text": "host"
         }
       ]
     }
@@ -916,9 +919,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-08-27T15:40:43",
-  "source_file_size": 5266,
-  "generation_date": "2024-08-27T15:40:47",
+  "source_file_date": "2024-08-27T15:42:51",
+  "source_file_size": 5297,
+  "generation_date": "2024-08-27T15:42:59",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

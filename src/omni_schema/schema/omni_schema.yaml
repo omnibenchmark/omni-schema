@@ -34,6 +34,8 @@ enums:
         text: conda
       docker:
         text: docker
+      host:
+        text: host
 
 classes:
   IdentifiableEntity:

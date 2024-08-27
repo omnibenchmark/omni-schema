@@ -230,7 +230,8 @@
                 "apptainer",
                 "envmodules",
                 "conda",
-                "docker"
+                "docker",
+                "host"
             ],
             "title": "SoftwareBackendEnum",
             "type": "string"

@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-08-27T15:40:48
+# Generation date: 2024-08-27T15:42:59
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -399,6 +399,7 @@ class SoftwareBackendEnum(EnumDefinitionImpl):
     envmodules = PermissibleValue(text="envmodules")
     conda = PermissibleValue(text="conda")
     docker = PermissibleValue(text="docker")
+    host = PermissibleValue(text="host")
 
     _defn = EnumDefinition(
         name="SoftwareBackendEnum",
