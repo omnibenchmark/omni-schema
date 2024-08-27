@@ -229,7 +229,8 @@
             "enum": [
                 "apptainer",
                 "envmodules",
-                "conda"
+                "conda",
+                "docker"
             ],
             "title": "SoftwareBackendEnum",
             "type": "string"

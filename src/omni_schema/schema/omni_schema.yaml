@@ -32,6 +32,8 @@ enums:
         text: envmodules
       conda:
         text: conda
+      docker:
+        text: docker
 
 classes:
   IdentifiableEntity:

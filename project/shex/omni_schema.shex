@@ -51,7 +51,8 @@ linkml:Sparqlpath xsd:string
           <benchmarker> @linkml:String ;
           <software_backend> [ <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#apptainer>
              <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#envmodules>
-             <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#conda> ] ;
+             <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#conda>
+             <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#docker> ] ;
           <storage> @linkml:String ;
           <storage_api> [ <https://w3id.org/omnibenchmark/omni-schema/StorageAPIEnum#S3> ] ;
           <software_environments> @<SoftwareEnvironment> + ;
