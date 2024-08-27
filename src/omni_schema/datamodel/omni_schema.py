@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-06-18T18:10:57
+# Generation date: 2024-08-27T15:42:59
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -11,6 +11,7 @@ import re
 from jsonasobj2 import JsonObj, as_dict
 from typing import Optional, List, Union, Dict, ClassVar, Any
 from dataclasses import dataclass
+from datetime import date, datetime, time
 from linkml_runtime.linkml_model.meta import EnumDefinition, PermissibleValue, PvFormulaOptions
 
 from linkml_runtime.utils.slot import Slot
@@ -65,7 +66,7 @@ class SoftwareEnvironmentId(IdentifiableEntityId):
     pass
 
 
-@dataclass
+@dataclass(repr=False)
 class IdentifiableEntity(YAMLRoot):
     """
     A generic grouping for any identifiable entity
@@ -96,7 +97,7 @@ class IdentifiableEntity(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class Benchmark(IdentifiableEntity):
     """
     A multi-stage workflow to evaluate processing stage for a specific task.
@@ -111,6 +112,7 @@ class Benchmark(IdentifiableEntity):
     id: Union[str, BenchmarkId] = None
     version: str = None
     benchmarker: str = None
+    software_backend: Union[str, "SoftwareBackendEnum"] = None
     storage: str = None
     storage_api: Union[str, "StorageAPIEnum"] = None
     software_environments: Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]], List[Union[dict, "SoftwareEnvironment"]]] = empty_dict()
@@ -132,6 +134,11 @@ class Benchmark(IdentifiableEntity):
             self.MissingRequiredField("benchmarker")
         if not isinstance(self.benchmarker, str):
             self.benchmarker = str(self.benchmarker)
+
+        if self._is_empty(self.software_backend):
+            self.MissingRequiredField("software_backend")
+        if not isinstance(self.software_backend, SoftwareBackendEnum):
+            self.software_backend = SoftwareBackendEnum(self.software_backend)
 
         if self._is_empty(self.storage):
             self.MissingRequiredField("storage")
@@ -157,7 +164,7 @@ class Benchmark(IdentifiableEntity):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class Stage(IdentifiableEntity):
     """
     A benchmark subtask with equivalent and independent modules.
@@ -193,7 +200,7 @@ class Stage(IdentifiableEntity):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class Module(IdentifiableEntity):
     """
     A single benchmark component assigned to a specific stage.
@@ -238,7 +245,7 @@ class Module(IdentifiableEntity):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class IOFile(IdentifiableEntity):
     """
     Represents an input / output file.
@@ -265,7 +272,7 @@ class IOFile(IdentifiableEntity):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class InputCollection(YAMLRoot):
     """
     A holder for valid input combinations.
@@ -287,7 +294,7 @@ class InputCollection(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class Repository(YAMLRoot):
     """
     A reference to code repository containing the module's executable code.
@@ -316,7 +323,7 @@ class Repository(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class Parameter(YAMLRoot):
     """
     A parameter and its scope.
@@ -338,7 +345,7 @@ class Parameter(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class SoftwareEnvironment(IdentifiableEntity):
     """
     Contains snapshots of the software environment required for the modules to run.
@@ -386,6 +393,18 @@ class StorageAPIEnum(EnumDefinitionImpl):
         name="StorageAPIEnum",
     )
 
+class SoftwareBackendEnum(EnumDefinitionImpl):
+
+    apptainer = PermissibleValue(text="apptainer")
+    envmodules = PermissibleValue(text="envmodules")
+    conda = PermissibleValue(text="conda")
+    docker = PermissibleValue(text="docker")
+    host = PermissibleValue(text="host")
+
+    _defn = EnumDefinition(
+        name="SoftwareBackendEnum",
+    )
+
 # Slots
 class slots:
     pass
@@ -404,6 +423,9 @@ slots.version = Slot(uri=OMNI_SCHEMA.version, name="version", curie=OMNI_SCHEMA.
 
 slots.benchmarker = Slot(uri=OMNI_SCHEMA.benchmarker, name="benchmarker", curie=OMNI_SCHEMA.curie('benchmarker'),
                    model_uri=OMNI_SCHEMA.benchmarker, domain=None, range=str)
+
+slots.software_backend = Slot(uri=OMNI_SCHEMA.software_backend, name="software_backend", curie=OMNI_SCHEMA.curie('software_backend'),
+                   model_uri=OMNI_SCHEMA.software_backend, domain=None, range=Union[str, "SoftwareBackendEnum"])
 
 slots.storage = Slot(uri=OMNI_SCHEMA.storage, name="storage", curie=OMNI_SCHEMA.curie('storage'),
                    model_uri=OMNI_SCHEMA.storage, domain=None, range=str)

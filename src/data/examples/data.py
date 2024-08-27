@@ -7,6 +7,7 @@ Benchmark_001 = Benchmark(
     benchmarker='John Doe at Robinsons lab, john.doe@uzh.ch',
     storage='https://storage.github.com/',
     storage_api=StorageAPIEnum.S3,
+    software_backend=SoftwareBackendEnum.envmodules,
     software_environments=[
         SoftwareEnvironment(
             id=SoftwareEnvironmentId('R'),
