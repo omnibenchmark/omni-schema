@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/description/">
+        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/storage_bucket_name/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: description - omni-schema</title>
+        <title>Slot: storage_bucket_name - omni-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-description" class="md-skip">
+        <a href="#slot-storage_bucket_name" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: description
+              Slot: storage_bucket_name
             
           </span>
         </div>
@@ -317,15 +317,15 @@
                 
                   
 
-  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/description.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/storage_bucket_name.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-description">Slot: description</h1>
-<p><em>A human-readable description for a thing</em></p>
-<p>URI: <a href="http://schema.org/description">schema:description</a></p>
+<h1 id="slot-storage_bucket_name">Slot: storage_bucket_name</h1>
+<p><em>The name of the bucket (i.e. for S3)</em></p>
+<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/storage_bucket_name">omni_schema:storage_bucket_name</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -339,31 +339,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Module/">Module</a></td>
-<td>A single benchmark component assigned to a specific stage</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../IOFile/">IOFile</a></td>
-<td>Represents an input / output file</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
-<td>A generic grouping for any identifiable entity</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SoftwareEnvironment/">SoftwareEnvironment</a></td>
-<td>Contains snapshots of the software environment required for the modules to ru...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Stage/">Stage</a></td>
-<td>A benchmark subtask with equivalent and independent modules</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../Benchmark/">Benchmark</a></td>
 <td>A multi-stage workflow to evaluate processing stage for a specific task</td>
 <td>no</td>
@@ -372,7 +347,12 @@
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -390,26 +370,26 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:description</td>
+<td>omni_schema:storage_bucket_name</td>
 </tr>
 <tr>
 <td>native</td>
-<td>omni_schema:description</td>
+<td>omni_schema:storage_bucket_name</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: description
-description: A human-readable description for a thing
+<pre><code class="language-yaml">name: storage_bucket_name
+description: The name of the bucket (i.e. for S3)
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
-slot_uri: schema:description
-alias: description
+alias: storage_bucket_name
 domain_of:
-- IdentifiableEntity
+- Benchmark
 range: string
+required: true
 
 </code></pre>
 
