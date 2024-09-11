@@ -9,6 +9,7 @@ type Benchmark
     softwareBackend: SoftwareBackendEnum!
     storage: String!
     storageApi: StorageAPIEnum!
+    storageBucketName: String!
     softwareEnvironments: [SoftwareEnvironment]!
     benchmarkYamlSpec: String
     stages: [Stage]!

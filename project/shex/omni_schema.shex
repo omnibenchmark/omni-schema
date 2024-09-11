@@ -56,6 +56,7 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/omnibenchmark/omni-schema/SoftwareBackendEnum#host> ] ;
           <storage> @linkml:String ;
           <storage_api> [ <https://w3id.org/omnibenchmark/omni-schema/StorageAPIEnum#S3> ] ;
+          <storage_bucket_name> @linkml:String ;
           <software_environments> @<SoftwareEnvironment> + ;
           <benchmark_yaml_spec> @linkml:String ? ;
           <stages> @<Stage> +

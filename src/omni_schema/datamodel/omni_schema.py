@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-08-27T15:42:59
+# Generation date: 2024-09-11T19:13:36
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -115,6 +115,7 @@ class Benchmark(IdentifiableEntity):
     software_backend: Union[str, "SoftwareBackendEnum"] = None
     storage: str = None
     storage_api: Union[str, "StorageAPIEnum"] = None
+    storage_bucket_name: str = None
     software_environments: Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]], List[Union[dict, "SoftwareEnvironment"]]] = empty_dict()
     stages: Union[Dict[Union[str, StageId], Union[dict, "Stage"]], List[Union[dict, "Stage"]]] = empty_dict()
     benchmark_yaml_spec: Optional[str] = None
@@ -149,6 +150,11 @@ class Benchmark(IdentifiableEntity):
             self.MissingRequiredField("storage_api")
         if not isinstance(self.storage_api, StorageAPIEnum):
             self.storage_api = StorageAPIEnum(self.storage_api)
+
+        if self._is_empty(self.storage_bucket_name):
+            self.MissingRequiredField("storage_bucket_name")
+        if not isinstance(self.storage_bucket_name, str):
+            self.storage_bucket_name = str(self.storage_bucket_name)
 
         if self._is_empty(self.software_environments):
             self.MissingRequiredField("software_environments")
@@ -432,6 +438,9 @@ slots.storage = Slot(uri=OMNI_SCHEMA.storage, name="storage", curie=OMNI_SCHEMA.
 
 slots.storage_api = Slot(uri=OMNI_SCHEMA.storage_api, name="storage_api", curie=OMNI_SCHEMA.curie('storage_api'),
                    model_uri=OMNI_SCHEMA.storage_api, domain=None, range=Union[str, "StorageAPIEnum"])
+
+slots.storage_bucket_name = Slot(uri=OMNI_SCHEMA.storage_bucket_name, name="storage_bucket_name", curie=OMNI_SCHEMA.curie('storage_bucket_name'),
+                   model_uri=OMNI_SCHEMA.storage_bucket_name, domain=None, range=str)
 
 slots.stages = Slot(uri=OMNI_SCHEMA.stages, name="stages", curie=OMNI_SCHEMA.curie('stages'),
                    model_uri=OMNI_SCHEMA.stages, domain=None, range=Union[Dict[Union[str, StageId], Union[dict, Stage]], List[Union[dict, Stage]]])

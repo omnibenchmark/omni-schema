@@ -8,6 +8,7 @@
 --     * Slot: software_backend Description: The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.
 --     * Slot: storage Description: The place hosting all benchmark data.
 --     * Slot: storage_api Description: The type of the storage API, i.e. S3.
+--     * Slot: storage_bucket_name Description: The name of the bucket (i.e. for S3)
 --     * Slot: benchmark_yaml_spec Description: Benchmark Specification version.
 --     * Slot: id Description: A unique identifier for a thing
 --     * Slot: name Description: A human-readable name for a thing
@@ -73,6 +74,7 @@ CREATE TABLE "Benchmark" (
 	software_backend VARCHAR(10) NOT NULL, 
 	storage TEXT NOT NULL, 
 	storage_api VARCHAR(2) NOT NULL, 
+	storage_bucket_name TEXT NOT NULL, 
 	benchmark_yaml_spec TEXT, 
 	id TEXT NOT NULL, 
 	name TEXT, 

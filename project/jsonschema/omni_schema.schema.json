@@ -58,6 +58,10 @@
                     "$ref": "#/$defs/StorageAPIEnum",
                     "description": "The type of the storage API, i.e. S3."
                 },
+                "storage_bucket_name": {
+                    "description": "The name of the bucket (i.e. for S3)",
+                    "type": "string"
+                },
                 "version": {
                     "description": "The version of the benchmark.",
                     "type": "string"
@@ -69,6 +73,7 @@
                 "software_backend",
                 "storage",
                 "storage_api",
+                "storage_bucket_name",
                 "software_environments",
                 "stages",
                 "id"
@@ -416,6 +421,10 @@
             "$ref": "#/$defs/StorageAPIEnum",
             "description": "The type of the storage API, i.e. S3."
         },
+        "storage_bucket_name": {
+            "description": "The name of the bucket (i.e. for S3)",
+            "type": "string"
+        },
         "version": {
             "description": "The version of the benchmark.",
             "type": "string"
@@ -427,6 +436,7 @@
         "software_backend",
         "storage",
         "storage_api",
+        "storage_bucket_name",
         "software_environments",
         "stages",
         "id"
