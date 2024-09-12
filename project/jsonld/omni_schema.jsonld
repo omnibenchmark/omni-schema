@@ -496,6 +496,20 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "storage_bucket_name",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/storage_bucket_name",
+      "description": "The name of the bucket (i.e. for S3)",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/storage_bucket_name",
+      "owner": "Benchmark",
+      "domain_of": [
+        "Benchmark"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "stages",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/stages",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
@@ -798,6 +812,7 @@
         "software_backend",
         "storage",
         "storage_api",
+        "storage_bucket_name",
         "software_environments",
         "benchmark_yaml_spec",
         "stages"
@@ -919,9 +934,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-08-27T15:42:51",
-  "source_file_size": 5297,
-  "generation_date": "2024-08-27T15:42:59",
+  "source_file_date": "2024-09-11T19:12:26",
+  "source_file_size": 5442,
+  "generation_date": "2024-09-11T19:13:36",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

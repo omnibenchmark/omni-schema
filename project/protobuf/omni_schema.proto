@@ -12,6 +12,7 @@ message Benchmark
   softwareBackendEnum softwareBackend = 0
   string storage = 0
   storageAPIEnum storageApi = 0
+  string storageBucketName = 0
  repeated  softwareEnvironment softwareEnvironments = 0
   string benchmarkYamlSpec = 0
  repeated  stage stages = 0

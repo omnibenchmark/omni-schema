@@ -59,6 +59,7 @@ classes:
       - software_backend
       - storage
       - storage_api
+      - storage_bucket_name
       - software_environments
       - benchmark_yaml_spec
       - stages
@@ -159,6 +160,11 @@ slots:
     description: The type of the storage API, i.e. S3.
     required: true
     
+  storage_bucket_name:
+    range: string 
+    description: The name of the bucket (i.e. for S3)
+    required: true
+
   stages:
     range: Stage
     multivalued: true

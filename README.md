@@ -21,6 +21,18 @@ Data model for omnibenchmark.
 ## Developer Documentation
 
 <details>
+
+Edit the following files to add fields to the schema:
+main file:
+
+* [src/omni_schema/schema/omni_schema.yaml](src/omni_schema/schema/omni_schema.yaml)
+
+test files:
+
+* [src/data/examples/data.py](src/data/examples/data.py)
+* [src/data/examples/Benchmark_001.yaml](src/data/examples/Benchmark_001.yaml)
+* [examples/Benchmark_001.yaml](examples/Benchmark_001.yaml)
+
 Use the `make` command to generate project artefacts:
 
 * `make all`: make everything
