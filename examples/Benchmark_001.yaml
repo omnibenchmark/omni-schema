@@ -130,3 +130,16 @@ stages:
     outputs:
       - id: metrics.mapping
         path: "{in}/{stage}/{module}/{params}/{dataset}.results.txt"
+metric_collectors:
+  - id: biometrics
+    name: "Biologically-relevant performance metrics gathering and postprocessing."
+    software_environment: "python"
+    repository:
+      url: https://github.com/omnibenchmark-example/biometrics.git
+      commit: 000a001
+    inputs:
+      - entries:
+          - metrics.mapping
+    output:
+      - "biometrics_report.html"
+      - "biometrics.tsv"

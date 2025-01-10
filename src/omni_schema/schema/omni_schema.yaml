@@ -119,6 +119,16 @@ classes:
       - conda
       - apptainer
 
+  MetricCollector:
+    is_a: IdentifiableEntity
+    description: >-
+      Describes a module collecting/gathering multiple metrics and generating (potentially single) aggregated files collecting these metrics.
+    slots:
+      - software_environment
+      - repository
+      - inputs
+      - outputs
+
 slots:
   id:
     identifier: true
@@ -259,3 +269,11 @@ slots:
   benchmark_yaml_spec:
     range: string
     description: Benchmark Specification version.
+
+  metric_collectors:
+    range: MetricCollector
+    description: "Metric collecting/gathering module(s)"
+    required: false
+    multivalued: true
+
+  
