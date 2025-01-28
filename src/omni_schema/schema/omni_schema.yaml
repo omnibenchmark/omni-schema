@@ -82,6 +82,7 @@ classes:
       - repository
       - exclude
       - parameters
+      - is_metric
 
   IOFile:
     is_a: IdentifiableEntity
@@ -259,3 +260,9 @@ slots:
   benchmark_yaml_spec:
     range: string
     description: Benchmark Specification version.
+
+  is_metric:
+    range: boolean
+    required: True
+    description: Flag for identifying metric modules.
+    ifabsent: False

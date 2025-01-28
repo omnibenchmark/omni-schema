@@ -44,6 +44,7 @@ type Module
     repository: Repository!
     exclude: [Module]
     parameters: [Parameter]
+    isMetric: Boolean!
   }
 
 type Parameter

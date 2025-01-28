@@ -98,7 +98,8 @@ linkml:Sparqlpath xsd:string
           <software_environment> @<SoftwareEnvironment> ;
           <repository> @<Repository> ;
           <exclude> @<Module> * ;
-          <parameters> @<Parameter> *
+          <parameters> @<Parameter> * ;
+          <is_metric> @linkml:Boolean
        ) ;
        rdf:type [ <Module> ]
     )

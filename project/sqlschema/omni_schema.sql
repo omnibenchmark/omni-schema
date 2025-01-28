@@ -20,6 +20,7 @@
 --     * Slot: Benchmark_id Description: Autocreated FK slot
 -- # Class: "Module" Description: "A single benchmark component assigned to a specific stage."
 --     * Slot: software_environment Description: Reference to a software environment by key.
+--     * Slot: is_metric Description: Flag for identifying metric modules.
 --     * Slot: id Description: A unique identifier for a thing
 --     * Slot: name Description: A human-readable name for a thing
 --     * Slot: description Description: A human-readable description for a thing
@@ -119,6 +120,7 @@ CREATE TABLE "Parameter_values" (
 );
 CREATE TABLE "Module" (
 	software_environment TEXT NOT NULL, 
+	is_metric BOOLEAN NOT NULL, 
 	id TEXT NOT NULL, 
 	name TEXT, 
 	description TEXT, 

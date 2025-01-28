@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-09-11T19:13:36
+# Generation date: 2025-01-28T10:54:21
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -12,18 +12,29 @@ from jsonasobj2 import JsonObj, as_dict
 from typing import Optional, List, Union, Dict, ClassVar, Any
 from dataclasses import dataclass
 from datetime import date, datetime, time
-from linkml_runtime.linkml_model.meta import EnumDefinition, PermissibleValue, PvFormulaOptions
+from linkml_runtime.linkml_model.meta import (
+    EnumDefinition,
+    PermissibleValue,
+    PvFormulaOptions,
+)
 
 from linkml_runtime.utils.slot import Slot
 from linkml_runtime.utils.metamodelcore import empty_list, empty_dict, bnode
-from linkml_runtime.utils.yamlutils import YAMLRoot, extended_str, extended_float, extended_int
-from linkml_runtime.utils.dataclass_extensions_376 import dataclasses_init_fn_with_kwargs
+from linkml_runtime.utils.yamlutils import (
+    YAMLRoot,
+    extended_str,
+    extended_float,
+    extended_int,
+)
+from linkml_runtime.utils.dataclass_extensions_376 import (
+    dataclasses_init_fn_with_kwargs,
+)
 from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.linkml_model.types import String, Uriorcurie
-from linkml_runtime.utils.metamodelcore import URIorCURIE
+from linkml_runtime.linkml_model.types import Boolean, String, Uriorcurie
+from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE
 
 metamodel_version = "1.7.0"
 version = None
@@ -32,14 +43,17 @@ version = None
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
-EXAMPLE = CurieNamespace('example', 'https://example.org/')
-LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-OMNI_SCHEMA = CurieNamespace('omni_schema', 'https://w3id.org/omnibenchmark/omni-schema/')
-SCHEMA = CurieNamespace('schema', 'http://schema.org/')
+EXAMPLE = CurieNamespace("example", "https://example.org/")
+LINKML = CurieNamespace("linkml", "https://w3id.org/linkml/")
+OMNI_SCHEMA = CurieNamespace(
+    "omni_schema", "https://w3id.org/omnibenchmark/omni-schema/"
+)
+SCHEMA = CurieNamespace("schema", "http://schema.org/")
 DEFAULT_ = OMNI_SCHEMA
 
 
 # Types
+
 
 # Class references
 class IdentifiableEntityId(URIorCURIE):
@@ -71,6 +85,7 @@ class IdentifiableEntity(YAMLRoot):
     """
     A generic grouping for any identifiable entity
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = SCHEMA["Thing"]
@@ -102,6 +117,7 @@ class Benchmark(IdentifiableEntity):
     """
     A multi-stage workflow to evaluate processing stage for a specific task.
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["Benchmark"]
@@ -116,8 +132,13 @@ class Benchmark(IdentifiableEntity):
     storage: str = None
     storage_api: Union[str, "StorageAPIEnum"] = None
     storage_bucket_name: str = None
-    software_environments: Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]], List[Union[dict, "SoftwareEnvironment"]]] = empty_dict()
-    stages: Union[Dict[Union[str, StageId], Union[dict, "Stage"]], List[Union[dict, "Stage"]]] = empty_dict()
+    software_environments: Union[
+        Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]],
+        List[Union[dict, "SoftwareEnvironment"]],
+    ] = empty_dict()
+    stages: Union[
+        Dict[Union[str, StageId], Union[dict, "Stage"]], List[Union[dict, "Stage"]]
+    ] = empty_dict()
     benchmark_yaml_spec: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -158,13 +179,22 @@ class Benchmark(IdentifiableEntity):
 
         if self._is_empty(self.software_environments):
             self.MissingRequiredField("software_environments")
-        self._normalize_inlined_as_list(slot_name="software_environments", slot_type=SoftwareEnvironment, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(
+            slot_name="software_environments",
+            slot_type=SoftwareEnvironment,
+            key_name="id",
+            keyed=True,
+        )
 
         if self._is_empty(self.stages):
             self.MissingRequiredField("stages")
-        self._normalize_inlined_as_list(slot_name="stages", slot_type=Stage, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(
+            slot_name="stages", slot_type=Stage, key_name="id", keyed=True
+        )
 
-        if self.benchmark_yaml_spec is not None and not isinstance(self.benchmark_yaml_spec, str):
+        if self.benchmark_yaml_spec is not None and not isinstance(
+            self.benchmark_yaml_spec, str
+        ):
             self.benchmark_yaml_spec = str(self.benchmark_yaml_spec)
 
         super().__post_init__(**kwargs)
@@ -175,6 +205,7 @@ class Stage(IdentifiableEntity):
     """
     A benchmark subtask with equivalent and independent modules.
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["Stage"]
@@ -183,9 +214,18 @@ class Stage(IdentifiableEntity):
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.Stage
 
     id: Union[str, StageId] = None
-    modules: Union[Dict[Union[str, ModuleId], Union[dict, "Module"]], List[Union[dict, "Module"]]] = empty_dict()
-    inputs: Optional[Union[Union[dict, "InputCollection"], List[Union[dict, "InputCollection"]]]] = empty_list()
-    outputs: Optional[Union[Dict[Union[str, IOFileId], Union[dict, "IOFile"]], List[Union[dict, "IOFile"]]]] = empty_dict()
+    modules: Union[
+        Dict[Union[str, ModuleId], Union[dict, "Module"]], List[Union[dict, "Module"]]
+    ] = empty_dict()
+    inputs: Optional[
+        Union[Union[dict, "InputCollection"], List[Union[dict, "InputCollection"]]]
+    ] = empty_list()
+    outputs: Optional[
+        Union[
+            Dict[Union[str, IOFileId], Union[dict, "IOFile"]],
+            List[Union[dict, "IOFile"]],
+        ]
+    ] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -195,13 +235,20 @@ class Stage(IdentifiableEntity):
 
         if self._is_empty(self.modules):
             self.MissingRequiredField("modules")
-        self._normalize_inlined_as_list(slot_name="modules", slot_type=Module, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(
+            slot_name="modules", slot_type=Module, key_name="id", keyed=True
+        )
 
         if not isinstance(self.inputs, list):
             self.inputs = [self.inputs] if self.inputs is not None else []
-        self.inputs = [v if isinstance(v, InputCollection) else InputCollection(**as_dict(v)) for v in self.inputs]
+        self.inputs = [
+            v if isinstance(v, InputCollection) else InputCollection(**as_dict(v))
+            for v in self.inputs
+        ]
 
-        self._normalize_inlined_as_list(slot_name="outputs", slot_type=IOFile, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(
+            slot_name="outputs", slot_type=IOFile, key_name="id", keyed=True
+        )
 
         super().__post_init__(**kwargs)
 
@@ -211,6 +258,7 @@ class Module(IdentifiableEntity):
     """
     A single benchmark component assigned to a specific stage.
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["Module"]
@@ -221,8 +269,13 @@ class Module(IdentifiableEntity):
     id: Union[str, ModuleId] = None
     software_environment: Union[str, SoftwareEnvironmentId] = None
     repository: Union[dict, "Repository"] = None
-    exclude: Optional[Union[Union[str, ModuleId], List[Union[str, ModuleId]]]] = empty_list()
-    parameters: Optional[Union[Union[dict, "Parameter"], List[Union[dict, "Parameter"]]]] = empty_list()
+    is_metric: Union[bool, Bool] = False
+    exclude: Optional[Union[Union[str, ModuleId], List[Union[str, ModuleId]]]] = (
+        empty_list()
+    )
+    parameters: Optional[
+        Union[Union[dict, "Parameter"], List[Union[dict, "Parameter"]]]
+    ] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -240,13 +293,23 @@ class Module(IdentifiableEntity):
         if not isinstance(self.repository, Repository):
             self.repository = Repository(**as_dict(self.repository))
 
+        if self._is_empty(self.is_metric):
+            self.MissingRequiredField("is_metric")
+        if not isinstance(self.is_metric, Bool):
+            self.is_metric = Bool(self.is_metric)
+
         if not isinstance(self.exclude, list):
             self.exclude = [self.exclude] if self.exclude is not None else []
-        self.exclude = [v if isinstance(v, ModuleId) else ModuleId(v) for v in self.exclude]
+        self.exclude = [
+            v if isinstance(v, ModuleId) else ModuleId(v) for v in self.exclude
+        ]
 
         if not isinstance(self.parameters, list):
             self.parameters = [self.parameters] if self.parameters is not None else []
-        self.parameters = [v if isinstance(v, Parameter) else Parameter(**as_dict(v)) for v in self.parameters]
+        self.parameters = [
+            v if isinstance(v, Parameter) else Parameter(**as_dict(v))
+            for v in self.parameters
+        ]
 
         super().__post_init__(**kwargs)
 
@@ -256,6 +319,7 @@ class IOFile(IdentifiableEntity):
     """
     Represents an input / output file.
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["IOFile"]
@@ -283,6 +347,7 @@ class InputCollection(YAMLRoot):
     """
     A holder for valid input combinations.
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["InputCollection"]
@@ -290,12 +355,16 @@ class InputCollection(YAMLRoot):
     class_name: ClassVar[str] = "InputCollection"
     class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.InputCollection
 
-    entries: Optional[Union[Union[str, IOFileId], List[Union[str, IOFileId]]]] = empty_list()
+    entries: Optional[Union[Union[str, IOFileId], List[Union[str, IOFileId]]]] = (
+        empty_list()
+    )
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if not isinstance(self.entries, list):
             self.entries = [self.entries] if self.entries is not None else []
-        self.entries = [v if isinstance(v, IOFileId) else IOFileId(v) for v in self.entries]
+        self.entries = [
+            v if isinstance(v, IOFileId) else IOFileId(v) for v in self.entries
+        ]
 
         super().__post_init__(**kwargs)
 
@@ -305,6 +374,7 @@ class Repository(YAMLRoot):
     """
     A reference to code repository containing the module's executable code.
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["Repository"]
@@ -334,6 +404,7 @@ class Parameter(YAMLRoot):
     """
     A parameter and its scope.
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["Parameter"]
@@ -356,6 +427,7 @@ class SoftwareEnvironment(IdentifiableEntity):
     """
     Contains snapshots of the software environment required for the modules to run.
     """
+
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["SoftwareEnvironment"]
@@ -399,6 +471,7 @@ class StorageAPIEnum(EnumDefinitionImpl):
         name="StorageAPIEnum",
     )
 
+
 class SoftwareBackendEnum(EnumDefinitionImpl):
 
     apptainer = PermissibleValue(text="apptainer")
@@ -411,90 +484,282 @@ class SoftwareBackendEnum(EnumDefinitionImpl):
         name="SoftwareBackendEnum",
     )
 
+
 # Slots
 class slots:
     pass
 
-slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
-                   model_uri=OMNI_SCHEMA.id, domain=None, range=URIRef)
 
-slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
-                   model_uri=OMNI_SCHEMA.name, domain=None, range=Optional[str])
+slots.id = Slot(
+    uri=SCHEMA.identifier,
+    name="id",
+    curie=SCHEMA.curie("identifier"),
+    model_uri=OMNI_SCHEMA.id,
+    domain=None,
+    range=URIRef,
+)
 
-slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
-                   model_uri=OMNI_SCHEMA.description, domain=None, range=Optional[str])
+slots.name = Slot(
+    uri=SCHEMA.name,
+    name="name",
+    curie=SCHEMA.curie("name"),
+    model_uri=OMNI_SCHEMA.name,
+    domain=None,
+    range=Optional[str],
+)
 
-slots.version = Slot(uri=OMNI_SCHEMA.version, name="version", curie=OMNI_SCHEMA.curie('version'),
-                   model_uri=OMNI_SCHEMA.version, domain=None, range=str)
+slots.description = Slot(
+    uri=SCHEMA.description,
+    name="description",
+    curie=SCHEMA.curie("description"),
+    model_uri=OMNI_SCHEMA.description,
+    domain=None,
+    range=Optional[str],
+)
 
-slots.benchmarker = Slot(uri=OMNI_SCHEMA.benchmarker, name="benchmarker", curie=OMNI_SCHEMA.curie('benchmarker'),
-                   model_uri=OMNI_SCHEMA.benchmarker, domain=None, range=str)
+slots.version = Slot(
+    uri=OMNI_SCHEMA.version,
+    name="version",
+    curie=OMNI_SCHEMA.curie("version"),
+    model_uri=OMNI_SCHEMA.version,
+    domain=None,
+    range=str,
+)
 
-slots.software_backend = Slot(uri=OMNI_SCHEMA.software_backend, name="software_backend", curie=OMNI_SCHEMA.curie('software_backend'),
-                   model_uri=OMNI_SCHEMA.software_backend, domain=None, range=Union[str, "SoftwareBackendEnum"])
+slots.benchmarker = Slot(
+    uri=OMNI_SCHEMA.benchmarker,
+    name="benchmarker",
+    curie=OMNI_SCHEMA.curie("benchmarker"),
+    model_uri=OMNI_SCHEMA.benchmarker,
+    domain=None,
+    range=str,
+)
 
-slots.storage = Slot(uri=OMNI_SCHEMA.storage, name="storage", curie=OMNI_SCHEMA.curie('storage'),
-                   model_uri=OMNI_SCHEMA.storage, domain=None, range=str)
+slots.software_backend = Slot(
+    uri=OMNI_SCHEMA.software_backend,
+    name="software_backend",
+    curie=OMNI_SCHEMA.curie("software_backend"),
+    model_uri=OMNI_SCHEMA.software_backend,
+    domain=None,
+    range=Union[str, "SoftwareBackendEnum"],
+)
 
-slots.storage_api = Slot(uri=OMNI_SCHEMA.storage_api, name="storage_api", curie=OMNI_SCHEMA.curie('storage_api'),
-                   model_uri=OMNI_SCHEMA.storage_api, domain=None, range=Union[str, "StorageAPIEnum"])
+slots.storage = Slot(
+    uri=OMNI_SCHEMA.storage,
+    name="storage",
+    curie=OMNI_SCHEMA.curie("storage"),
+    model_uri=OMNI_SCHEMA.storage,
+    domain=None,
+    range=str,
+)
 
-slots.storage_bucket_name = Slot(uri=OMNI_SCHEMA.storage_bucket_name, name="storage_bucket_name", curie=OMNI_SCHEMA.curie('storage_bucket_name'),
-                   model_uri=OMNI_SCHEMA.storage_bucket_name, domain=None, range=str)
+slots.storage_api = Slot(
+    uri=OMNI_SCHEMA.storage_api,
+    name="storage_api",
+    curie=OMNI_SCHEMA.curie("storage_api"),
+    model_uri=OMNI_SCHEMA.storage_api,
+    domain=None,
+    range=Union[str, "StorageAPIEnum"],
+)
 
-slots.stages = Slot(uri=OMNI_SCHEMA.stages, name="stages", curie=OMNI_SCHEMA.curie('stages'),
-                   model_uri=OMNI_SCHEMA.stages, domain=None, range=Union[Dict[Union[str, StageId], Union[dict, Stage]], List[Union[dict, Stage]]])
+slots.storage_bucket_name = Slot(
+    uri=OMNI_SCHEMA.storage_bucket_name,
+    name="storage_bucket_name",
+    curie=OMNI_SCHEMA.curie("storage_bucket_name"),
+    model_uri=OMNI_SCHEMA.storage_bucket_name,
+    domain=None,
+    range=str,
+)
 
-slots.modules = Slot(uri=OMNI_SCHEMA.modules, name="modules", curie=OMNI_SCHEMA.curie('modules'),
-                   model_uri=OMNI_SCHEMA.modules, domain=None, range=Union[Dict[Union[str, ModuleId], Union[dict, Module]], List[Union[dict, Module]]])
+slots.stages = Slot(
+    uri=OMNI_SCHEMA.stages,
+    name="stages",
+    curie=OMNI_SCHEMA.curie("stages"),
+    model_uri=OMNI_SCHEMA.stages,
+    domain=None,
+    range=Union[
+        Dict[Union[str, StageId], Union[dict, Stage]], List[Union[dict, Stage]]
+    ],
+)
 
-slots.inputs = Slot(uri=OMNI_SCHEMA.inputs, name="inputs", curie=OMNI_SCHEMA.curie('inputs'),
-                   model_uri=OMNI_SCHEMA.inputs, domain=None, range=Optional[Union[Union[dict, InputCollection], List[Union[dict, InputCollection]]]])
+slots.modules = Slot(
+    uri=OMNI_SCHEMA.modules,
+    name="modules",
+    curie=OMNI_SCHEMA.curie("modules"),
+    model_uri=OMNI_SCHEMA.modules,
+    domain=None,
+    range=Union[
+        Dict[Union[str, ModuleId], Union[dict, Module]], List[Union[dict, Module]]
+    ],
+)
 
-slots.outputs = Slot(uri=OMNI_SCHEMA.outputs, name="outputs", curie=OMNI_SCHEMA.curie('outputs'),
-                   model_uri=OMNI_SCHEMA.outputs, domain=None, range=Optional[Union[Dict[Union[str, IOFileId], Union[dict, IOFile]], List[Union[dict, IOFile]]]])
+slots.inputs = Slot(
+    uri=OMNI_SCHEMA.inputs,
+    name="inputs",
+    curie=OMNI_SCHEMA.curie("inputs"),
+    model_uri=OMNI_SCHEMA.inputs,
+    domain=None,
+    range=Optional[
+        Union[Union[dict, InputCollection], List[Union[dict, InputCollection]]]
+    ],
+)
 
-slots.exclude = Slot(uri=OMNI_SCHEMA.exclude, name="exclude", curie=OMNI_SCHEMA.curie('exclude'),
-                   model_uri=OMNI_SCHEMA.exclude, domain=None, range=Optional[Union[Union[str, ModuleId], List[Union[str, ModuleId]]]])
+slots.outputs = Slot(
+    uri=OMNI_SCHEMA.outputs,
+    name="outputs",
+    curie=OMNI_SCHEMA.curie("outputs"),
+    model_uri=OMNI_SCHEMA.outputs,
+    domain=None,
+    range=Optional[
+        Union[
+            Dict[Union[str, IOFileId], Union[dict, IOFile]], List[Union[dict, IOFile]]
+        ]
+    ],
+)
 
-slots.repository = Slot(uri=OMNI_SCHEMA.repository, name="repository", curie=OMNI_SCHEMA.curie('repository'),
-                   model_uri=OMNI_SCHEMA.repository, domain=None, range=Union[dict, Repository])
+slots.exclude = Slot(
+    uri=OMNI_SCHEMA.exclude,
+    name="exclude",
+    curie=OMNI_SCHEMA.curie("exclude"),
+    model_uri=OMNI_SCHEMA.exclude,
+    domain=None,
+    range=Optional[Union[Union[str, ModuleId], List[Union[str, ModuleId]]]],
+)
 
-slots.parameters = Slot(uri=OMNI_SCHEMA.parameters, name="parameters", curie=OMNI_SCHEMA.curie('parameters'),
-                   model_uri=OMNI_SCHEMA.parameters, domain=None, range=Optional[Union[Union[dict, Parameter], List[Union[dict, Parameter]]]])
+slots.repository = Slot(
+    uri=OMNI_SCHEMA.repository,
+    name="repository",
+    curie=OMNI_SCHEMA.curie("repository"),
+    model_uri=OMNI_SCHEMA.repository,
+    domain=None,
+    range=Union[dict, Repository],
+)
 
-slots.software_environments = Slot(uri=OMNI_SCHEMA.software_environments, name="software_environments", curie=OMNI_SCHEMA.curie('software_environments'),
-                   model_uri=OMNI_SCHEMA.software_environments, domain=None, range=Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, SoftwareEnvironment]], List[Union[dict, SoftwareEnvironment]]])
+slots.parameters = Slot(
+    uri=OMNI_SCHEMA.parameters,
+    name="parameters",
+    curie=OMNI_SCHEMA.curie("parameters"),
+    model_uri=OMNI_SCHEMA.parameters,
+    domain=None,
+    range=Optional[Union[Union[dict, Parameter], List[Union[dict, Parameter]]]],
+)
 
-slots.software_environment = Slot(uri=OMNI_SCHEMA.software_environment, name="software_environment", curie=OMNI_SCHEMA.curie('software_environment'),
-                   model_uri=OMNI_SCHEMA.software_environment, domain=None, range=Union[str, SoftwareEnvironmentId])
+slots.software_environments = Slot(
+    uri=OMNI_SCHEMA.software_environments,
+    name="software_environments",
+    curie=OMNI_SCHEMA.curie("software_environments"),
+    model_uri=OMNI_SCHEMA.software_environments,
+    domain=None,
+    range=Union[
+        Dict[Union[str, SoftwareEnvironmentId], Union[dict, SoftwareEnvironment]],
+        List[Union[dict, SoftwareEnvironment]],
+    ],
+)
 
-slots.path = Slot(uri=OMNI_SCHEMA.path, name="path", curie=OMNI_SCHEMA.curie('path'),
-                   model_uri=OMNI_SCHEMA.path, domain=None, range=Optional[str])
+slots.software_environment = Slot(
+    uri=OMNI_SCHEMA.software_environment,
+    name="software_environment",
+    curie=OMNI_SCHEMA.curie("software_environment"),
+    model_uri=OMNI_SCHEMA.software_environment,
+    domain=None,
+    range=Union[str, SoftwareEnvironmentId],
+)
 
-slots.url = Slot(uri=OMNI_SCHEMA.url, name="url", curie=OMNI_SCHEMA.curie('url'),
-                   model_uri=OMNI_SCHEMA.url, domain=None, range=str)
+slots.path = Slot(
+    uri=OMNI_SCHEMA.path,
+    name="path",
+    curie=OMNI_SCHEMA.curie("path"),
+    model_uri=OMNI_SCHEMA.path,
+    domain=None,
+    range=Optional[str],
+)
 
-slots.commit = Slot(uri=OMNI_SCHEMA.commit, name="commit", curie=OMNI_SCHEMA.curie('commit'),
-                   model_uri=OMNI_SCHEMA.commit, domain=None, range=str)
+slots.url = Slot(
+    uri=OMNI_SCHEMA.url,
+    name="url",
+    curie=OMNI_SCHEMA.curie("url"),
+    model_uri=OMNI_SCHEMA.url,
+    domain=None,
+    range=str,
+)
 
-slots.values = Slot(uri=OMNI_SCHEMA.values, name="values", curie=OMNI_SCHEMA.curie('values'),
-                   model_uri=OMNI_SCHEMA.values, domain=None, range=Optional[Union[str, List[str]]])
+slots.commit = Slot(
+    uri=OMNI_SCHEMA.commit,
+    name="commit",
+    curie=OMNI_SCHEMA.curie("commit"),
+    model_uri=OMNI_SCHEMA.commit,
+    domain=None,
+    range=str,
+)
 
-slots.entries = Slot(uri=OMNI_SCHEMA.entries, name="entries", curie=OMNI_SCHEMA.curie('entries'),
-                   model_uri=OMNI_SCHEMA.entries, domain=None, range=Optional[Union[Union[str, IOFileId], List[Union[str, IOFileId]]]])
+slots.values = Slot(
+    uri=OMNI_SCHEMA.values,
+    name="values",
+    curie=OMNI_SCHEMA.curie("values"),
+    model_uri=OMNI_SCHEMA.values,
+    domain=None,
+    range=Optional[Union[str, List[str]]],
+)
 
-slots.easyconfig = Slot(uri=OMNI_SCHEMA.easyconfig, name="easyconfig", curie=OMNI_SCHEMA.curie('easyconfig'),
-                   model_uri=OMNI_SCHEMA.easyconfig, domain=None, range=Optional[str])
+slots.entries = Slot(
+    uri=OMNI_SCHEMA.entries,
+    name="entries",
+    curie=OMNI_SCHEMA.curie("entries"),
+    model_uri=OMNI_SCHEMA.entries,
+    domain=None,
+    range=Optional[Union[Union[str, IOFileId], List[Union[str, IOFileId]]]],
+)
 
-slots.envmodule = Slot(uri=OMNI_SCHEMA.envmodule, name="envmodule", curie=OMNI_SCHEMA.curie('envmodule'),
-                   model_uri=OMNI_SCHEMA.envmodule, domain=None, range=Optional[str])
+slots.easyconfig = Slot(
+    uri=OMNI_SCHEMA.easyconfig,
+    name="easyconfig",
+    curie=OMNI_SCHEMA.curie("easyconfig"),
+    model_uri=OMNI_SCHEMA.easyconfig,
+    domain=None,
+    range=Optional[str],
+)
 
-slots.conda = Slot(uri=OMNI_SCHEMA.conda, name="conda", curie=OMNI_SCHEMA.curie('conda'),
-                   model_uri=OMNI_SCHEMA.conda, domain=None, range=Optional[str])
+slots.envmodule = Slot(
+    uri=OMNI_SCHEMA.envmodule,
+    name="envmodule",
+    curie=OMNI_SCHEMA.curie("envmodule"),
+    model_uri=OMNI_SCHEMA.envmodule,
+    domain=None,
+    range=Optional[str],
+)
 
-slots.apptainer = Slot(uri=OMNI_SCHEMA.apptainer, name="apptainer", curie=OMNI_SCHEMA.curie('apptainer'),
-                   model_uri=OMNI_SCHEMA.apptainer, domain=None, range=Optional[str])
+slots.conda = Slot(
+    uri=OMNI_SCHEMA.conda,
+    name="conda",
+    curie=OMNI_SCHEMA.curie("conda"),
+    model_uri=OMNI_SCHEMA.conda,
+    domain=None,
+    range=Optional[str],
+)
 
-slots.benchmark_yaml_spec = Slot(uri=OMNI_SCHEMA.benchmark_yaml_spec, name="benchmark_yaml_spec", curie=OMNI_SCHEMA.curie('benchmark_yaml_spec'),
-                   model_uri=OMNI_SCHEMA.benchmark_yaml_spec, domain=None, range=Optional[str])
+slots.apptainer = Slot(
+    uri=OMNI_SCHEMA.apptainer,
+    name="apptainer",
+    curie=OMNI_SCHEMA.curie("apptainer"),
+    model_uri=OMNI_SCHEMA.apptainer,
+    domain=None,
+    range=Optional[str],
+)
+
+slots.benchmark_yaml_spec = Slot(
+    uri=OMNI_SCHEMA.benchmark_yaml_spec,
+    name="benchmark_yaml_spec",
+    curie=OMNI_SCHEMA.curie("benchmark_yaml_spec"),
+    model_uri=OMNI_SCHEMA.benchmark_yaml_spec,
+    domain=None,
+    range=Optional[str],
+)
+
+slots.is_metric = Slot(
+    uri=OMNI_SCHEMA.is_metric,
+    name="is_metric",
+    curie=OMNI_SCHEMA.curie("is_metric"),
+    model_uri=OMNI_SCHEMA.is_metric,
+    domain=None,
+    range=Union[bool, Bool],
+)

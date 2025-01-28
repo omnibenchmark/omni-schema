@@ -159,6 +159,10 @@
                     "description": "A unique identifier for a thing",
                     "type": "string"
                 },
+                "is_metric": {
+                    "description": "Flag for identifying metric modules.",
+                    "type": "boolean"
+                },
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": [
@@ -187,6 +191,7 @@
             "required": [
                 "software_environment",
                 "repository",
+                "is_metric",
                 "id"
             ],
             "title": "Module",
