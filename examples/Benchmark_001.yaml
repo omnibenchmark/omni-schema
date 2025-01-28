@@ -108,16 +108,19 @@ stages:
     modules:
       - id: m1
         software_environment: "python"
+        is_metric: true
         repository:
           url: git@github.com:omnibenchmark-example/metric.git
           commit: ba781d7
       - id: m2
         software_environment: "python"
+        is_metric: true
         repository:
           url: git@github.com:omnibenchmark-example/metric.git
           commit: ba781d7
       - id: m3
         software_environment: "python"
+        is_metric: true
         repository:
           url: git@github.com:omnibenchmark-example/metric.git
           commit: ba781d7
