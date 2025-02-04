@@ -795,6 +795,26 @@
       ],
       "range": "string",
       "@type": "SlotDefinition"
+    },
+    {
+      "name": "MetricCollector_inputs",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/inputs",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "is_a": "inputs",
+      "domain": "MetricCollector",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/inputs",
+      "alias": "inputs",
+      "owner": "MetricCollector",
+      "domain_of": [
+        "MetricCollector"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "inputs",
+      "range": "IOFile",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
     }
   ],
   "classes": [
@@ -963,7 +983,7 @@
         "description",
         "software_environment",
         "repository",
-        "inputs",
+        "MetricCollector_inputs",
         "outputs"
       ],
       "slot_usage": {},
@@ -973,9 +993,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2025-02-04T16:59:36",
-  "source_file_size": 5964,
-  "generation_date": "2025-02-04T16:59:43",
+  "source_file_date": "2025-02-05T00:24:05",
+  "source_file_size": 6094,
+  "generation_date": "2025-02-05T00:24:11",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

@@ -163,7 +163,7 @@
                 },
                 "inputs": {
                     "items": {
-                        "$ref": "#/$defs/InputCollection"
+                        "$ref": "#/$defs/IOFile"
                     },
                     "type": [
                         "array",

@@ -39,7 +39,7 @@ message MetricCollector
   string description = 0
   softwareEnvironment softwareEnvironment = 0
   repository repository = 0
- repeated  inputCollection inputs = 0
+ repeated  iOFile inputs = 0
  repeated  iOFile outputs = 0
  }
 // A single benchmark component assigned to a specific stage.
