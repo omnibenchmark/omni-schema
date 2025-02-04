@@ -230,7 +230,7 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-    required: true
+    required: false
 
   software_environment:
     range: SoftwareEnvironment

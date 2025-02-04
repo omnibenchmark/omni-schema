@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-02-04T16:58:12
+# Generation date: 2025-02-04T16:59:43
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -120,8 +120,8 @@ class Benchmark(IdentifiableEntity):
     storage: str = None
     storage_api: Union[str, "StorageAPIEnum"] = None
     storage_bucket_name: str = None
-    software_environments: Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]], List[Union[dict, "SoftwareEnvironment"]]] = empty_dict()
     stages: Union[Dict[Union[str, StageId], Union[dict, "Stage"]], List[Union[dict, "Stage"]]] = empty_dict()
+    software_environments: Optional[Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]], List[Union[dict, "SoftwareEnvironment"]]]] = empty_dict()
     benchmark_yaml_spec: Optional[str] = None
     metric_collectors: Optional[Union[Dict[Union[str, MetricCollectorId], Union[dict, "MetricCollector"]], List[Union[dict, "MetricCollector"]]]] = empty_dict()
 
@@ -161,13 +161,11 @@ class Benchmark(IdentifiableEntity):
         if not isinstance(self.storage_bucket_name, str):
             self.storage_bucket_name = str(self.storage_bucket_name)
 
-        if self._is_empty(self.software_environments):
-            self.MissingRequiredField("software_environments")
-        self._normalize_inlined_as_list(slot_name="software_environments", slot_type=SoftwareEnvironment, key_name="id", keyed=True)
-
         if self._is_empty(self.stages):
             self.MissingRequiredField("stages")
         self._normalize_inlined_as_list(slot_name="stages", slot_type=Stage, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="software_environments", slot_type=SoftwareEnvironment, key_name="id", keyed=True)
 
         if self.benchmark_yaml_spec is not None and not isinstance(self.benchmark_yaml_spec, str):
             self.benchmark_yaml_spec = str(self.benchmark_yaml_spec)
@@ -518,7 +516,7 @@ slots.metric_collectors = Slot(uri=OMNI_SCHEMA.metric_collectors, name="metric_c
                    model_uri=OMNI_SCHEMA.metric_collectors, domain=None, range=Optional[Union[Dict[Union[str, MetricCollectorId], Union[dict, MetricCollector]], List[Union[dict, MetricCollector]]]])
 
 slots.software_environments = Slot(uri=OMNI_SCHEMA.software_environments, name="software_environments", curie=OMNI_SCHEMA.curie('software_environments'),
-                   model_uri=OMNI_SCHEMA.software_environments, domain=None, range=Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, SoftwareEnvironment]], List[Union[dict, SoftwareEnvironment]]])
+                   model_uri=OMNI_SCHEMA.software_environments, domain=None, range=Optional[Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, SoftwareEnvironment]], List[Union[dict, SoftwareEnvironment]]]])
 
 slots.software_environment = Slot(uri=OMNI_SCHEMA.software_environment, name="software_environment", curie=OMNI_SCHEMA.curie('software_environment'),
                    model_uri=OMNI_SCHEMA.software_environment, domain=None, range=Union[str, SoftwareEnvironmentId])

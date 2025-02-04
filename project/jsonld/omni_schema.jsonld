@@ -644,7 +644,6 @@
         "Benchmark"
       ],
       "range": "SoftwareEnvironment",
-      "required": true,
       "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
@@ -974,9 +973,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2025-02-04T16:57:00",
-  "source_file_size": 5963,
-  "generation_date": "2025-02-04T16:58:11",
+  "source_file_date": "2025-02-04T16:59:36",
+  "source_file_size": 5964,
+  "generation_date": "2025-02-04T16:59:43",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",
