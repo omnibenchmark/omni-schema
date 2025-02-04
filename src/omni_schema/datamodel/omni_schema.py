@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-02-04T11:22:31
+# Generation date: 2025-02-04T16:25:11
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -123,6 +123,7 @@ class Benchmark(IdentifiableEntity):
     software_environments: Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]], List[Union[dict, "SoftwareEnvironment"]]] = empty_dict()
     stages: Union[Dict[Union[str, StageId], Union[dict, "Stage"]], List[Union[dict, "Stage"]]] = empty_dict()
     benchmark_yaml_spec: Optional[str] = None
+    metric_collectors: Optional[Union[Union[str, MetricCollectorId], List[Union[str, MetricCollectorId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -170,6 +171,10 @@ class Benchmark(IdentifiableEntity):
 
         if self.benchmark_yaml_spec is not None and not isinstance(self.benchmark_yaml_spec, str):
             self.benchmark_yaml_spec = str(self.benchmark_yaml_spec)
+
+        if not isinstance(self.metric_collectors, list):
+            self.metric_collectors = [self.metric_collectors] if self.metric_collectors is not None else []
+        self.metric_collectors = [v if isinstance(v, MetricCollectorId) else MetricCollectorId(v) for v in self.metric_collectors]
 
         super().__post_init__(**kwargs)
 

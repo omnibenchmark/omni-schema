@@ -12,6 +12,7 @@ type Benchmark
     storageBucketName: String!
     softwareEnvironments: [SoftwareEnvironment]!
     benchmarkYamlSpec: String
+    metricCollectors: [MetricCollector]
     stages: [Stage]!
   }
 

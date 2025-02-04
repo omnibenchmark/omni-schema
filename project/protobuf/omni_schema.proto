@@ -15,6 +15,7 @@ message Benchmark
   string storageBucketName = 0
  repeated  softwareEnvironment softwareEnvironments = 0
   string benchmarkYamlSpec = 0
+ repeated  metricCollector metricCollectors = 0
  repeated  stage stages = 0
  }
 // A holder for valid input combinations.
