@@ -182,7 +182,7 @@ slots:
     inlined: true
     inlined_as_list: true
     required: true
-  
+
   modules:
     range: Module
     multivalued: true
@@ -215,6 +215,14 @@ slots:
   parameters:
     range: Parameter
     multivalued: true
+
+  metric_collectors:
+    range: MetricCollector
+    description: "Metric collecting/gathering module(s)"
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: false
 
   software_environments:
     range: SoftwareEnvironment
@@ -270,11 +278,5 @@ slots:
   benchmark_yaml_spec:
     range: string
     description: Benchmark Specification version.
-
-  metric_collectors:
-    range: MetricCollector
-    description: "Metric collecting/gathering module(s)"
-    required: false
-    multivalued: true
 
   

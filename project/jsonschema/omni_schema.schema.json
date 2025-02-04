@@ -29,7 +29,7 @@
                 "metric_collectors": {
                     "description": "Metric collecting/gathering module(s)",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/MetricCollector"
                     },
                     "type": [
                         "array",
@@ -459,7 +459,7 @@
         "metric_collectors": {
             "description": "Metric collecting/gathering module(s)",
             "items": {
-                "type": "string"
+                "$ref": "#/$defs/MetricCollector"
             },
             "type": [
                 "array",
