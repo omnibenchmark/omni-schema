@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-02-04T16:59:43
+# Generation date: 2025-02-05T00:24:11
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -411,7 +411,7 @@ class MetricCollector(IdentifiableEntity):
     id: Union[str, MetricCollectorId] = None
     software_environment: Union[str, SoftwareEnvironmentId] = None
     repository: Union[dict, Repository] = None
-    inputs: Optional[Union[Union[dict, InputCollection], List[Union[dict, InputCollection]]]] = empty_list()
+    inputs: Optional[Union[Dict[Union[str, IOFileId], Union[dict, IOFile]], List[Union[dict, IOFile]]]] = empty_dict()
     outputs: Optional[Union[Dict[Union[str, IOFileId], Union[dict, IOFile]], List[Union[dict, IOFile]]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -430,9 +430,7 @@ class MetricCollector(IdentifiableEntity):
         if not isinstance(self.repository, Repository):
             self.repository = Repository(**as_dict(self.repository))
 
-        if not isinstance(self.inputs, list):
-            self.inputs = [self.inputs] if self.inputs is not None else []
-        self.inputs = [v if isinstance(v, InputCollection) else InputCollection(**as_dict(v)) for v in self.inputs]
+        self._normalize_inlined_as_list(slot_name="inputs", slot_type=IOFile, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="outputs", slot_type=IOFile, key_name="id", keyed=True)
 
@@ -550,3 +548,6 @@ slots.apptainer = Slot(uri=OMNI_SCHEMA.apptainer, name="apptainer", curie=OMNI_S
 
 slots.benchmark_yaml_spec = Slot(uri=OMNI_SCHEMA.benchmark_yaml_spec, name="benchmark_yaml_spec", curie=OMNI_SCHEMA.curie('benchmark_yaml_spec'),
                    model_uri=OMNI_SCHEMA.benchmark_yaml_spec, domain=None, range=Optional[str])
+
+slots.MetricCollector_inputs = Slot(uri=OMNI_SCHEMA.inputs, name="MetricCollector_inputs", curie=OMNI_SCHEMA.curie('inputs'),
+                   model_uri=OMNI_SCHEMA.MetricCollector_inputs, domain=MetricCollector, range=Optional[Union[Dict[Union[str, IOFileId], Union[dict, IOFile]], List[Union[dict, IOFile]]]])

@@ -98,7 +98,7 @@ linkml:Sparqlpath xsd:string
           rdf:type [ schema1:Thing ] ? ;
           <software_environment> @<SoftwareEnvironment> ;
           <repository> @<Repository> ;
-          <inputs> @<InputCollection> * ;
+          <inputs> @<IOFile> * ;
           <outputs> @<IOFile> *
        ) ;
        rdf:type [ <MetricCollector> ]

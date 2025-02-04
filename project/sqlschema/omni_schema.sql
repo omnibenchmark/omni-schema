@@ -35,7 +35,6 @@
 -- # Class: "InputCollection" Description: "A holder for valid input combinations."
 --     * Slot: id Description: 
 --     * Slot: Stage_id Description: Autocreated FK slot
---     * Slot: MetricCollector_id Description: Autocreated FK slot
 -- # Class: "Repository" Description: "A reference to code repository containing the module's executable code."
 --     * Slot: id Description: 
 --     * Slot: url Description: The git compatible url.
@@ -138,6 +137,12 @@ CREATE TABLE "Module" (
 	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id), 
 	FOREIGN KEY(repository_id) REFERENCES "Repository" (id)
 );
+CREATE TABLE "InputCollection" (
+	id INTEGER NOT NULL, 
+	"Stage_id" TEXT, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id)
+);
 CREATE TABLE "MetricCollector" (
 	software_environment TEXT NOT NULL, 
 	id TEXT NOT NULL, 
@@ -155,14 +160,6 @@ CREATE TABLE "IOFile" (
 	id TEXT NOT NULL, 
 	name TEXT, 
 	description TEXT, 
-	"Stage_id" TEXT, 
-	"MetricCollector_id" TEXT, 
-	PRIMARY KEY (id), 
-	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id), 
-	FOREIGN KEY("MetricCollector_id") REFERENCES "MetricCollector" (id)
-);
-CREATE TABLE "InputCollection" (
-	id INTEGER NOT NULL, 
 	"Stage_id" TEXT, 
 	"MetricCollector_id" TEXT, 
 	PRIMARY KEY (id), 

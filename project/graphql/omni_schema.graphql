@@ -43,7 +43,7 @@ type MetricCollector
     description: String
     softwareEnvironment: SoftwareEnvironment!
     repository: Repository!
-    inputs: [InputCollection]
+    inputs: [IOFile]
     outputs: [IOFile]
   }
 
