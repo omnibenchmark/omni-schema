@@ -57,6 +57,9 @@
 --     * Slot: name Description: A human-readable name for a thing
 --     * Slot: description Description: A human-readable description for a thing
 --     * Slot: repository_id Description: The code repository hosting the module.
+-- # Class: "Benchmark_metric_collectors" Description: ""
+--     * Slot: Benchmark_id Description: Autocreated FK slot
+--     * Slot: metric_collectors_id Description: Metric collecting/gathering module(s)
 -- # Class: "Module_exclude" Description: ""
 --     * Slot: Module_id Description: Autocreated FK slot
 --     * Slot: exclude_id Description: Ignore these module's outputs as input.
@@ -165,6 +168,13 @@ CREATE TABLE "InputCollection" (
 	PRIMARY KEY (id), 
 	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id), 
 	FOREIGN KEY("MetricCollector_id") REFERENCES "MetricCollector" (id)
+);
+CREATE TABLE "Benchmark_metric_collectors" (
+	"Benchmark_id" TEXT, 
+	metric_collectors_id TEXT, 
+	PRIMARY KEY ("Benchmark_id", metric_collectors_id), 
+	FOREIGN KEY("Benchmark_id") REFERENCES "Benchmark" (id), 
+	FOREIGN KEY(metric_collectors_id) REFERENCES "MetricCollector" (id)
 );
 CREATE TABLE "Module_exclude" (
 	"Module_id" TEXT, 

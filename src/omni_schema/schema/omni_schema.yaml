@@ -62,6 +62,7 @@ classes:
       - storage_bucket_name
       - software_environments
       - benchmark_yaml_spec
+      - metric_collectors
       - stages
 
   Stage:

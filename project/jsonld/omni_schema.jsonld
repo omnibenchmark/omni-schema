@@ -787,6 +787,10 @@
       "description": "Metric collecting/gathering module(s)",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/metric_collectors",
+      "owner": "Benchmark",
+      "domain_of": [
+        "Benchmark"
+      ],
       "range": "MetricCollector",
       "multivalued": true,
       "@type": "SlotDefinition"
@@ -829,6 +833,7 @@
         "storage_bucket_name",
         "software_environments",
         "benchmark_yaml_spec",
+        "metric_collectors",
         "stages"
       ],
       "slot_usage": {},
@@ -967,9 +972,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2025-02-04T11:22:06",
-  "source_file_size": 5895,
-  "generation_date": "2025-02-04T11:22:31",
+  "source_file_date": "2025-02-04T16:24:53",
+  "source_file_size": 5921,
+  "generation_date": "2025-02-04T16:25:11",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

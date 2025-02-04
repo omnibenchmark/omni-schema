@@ -14,26 +14,8 @@ omni_schema:Benchmark a sh:NodeShape ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 11 ;
+            sh:order 12 ;
             sh:path schema1:description ],
-        [ sh:class omni_schema:Stage ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 8 ;
-            sh:path omni_schema:stages ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path schema1:name ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "A unique identifier for a thing" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path schema1:identifier ],
         [ sh:description "The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda." ;
             sh:in ( "apptainer" "envmodules" "conda" "docker" "host" ) ;
             sh:maxCount 1 ;
@@ -41,24 +23,60 @@ omni_schema:Benchmark a sh:NodeShape ;
             sh:order 2 ;
             sh:path omni_schema:software_backend ],
         [ sh:datatype xsd:string ;
-            sh:description "The place hosting all benchmark data." ;
+            sh:description "Benchmark Specification version." ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path omni_schema:storage ],
-        [ sh:description "The type of the storage API, i.e. S3." ;
-            sh:in ( "S3" ) ;
+            sh:order 7 ;
+            sh:path omni_schema:benchmark_yaml_spec ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 4 ;
-            sh:path omni_schema:storage_api ],
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path schema1:name ],
         [ sh:class omni_schema:SoftwareEnvironment ;
             sh:description "Dictionary of software environments keyed by their identifiers" ;
             sh:minCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 6 ;
             sh:path omni_schema:software_environments ],
+        [ sh:class omni_schema:Stage ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path omni_schema:stages ],
+        [ sh:class omni_schema:MetricCollector ;
+            sh:description "Metric collecting/gathering module(s)" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path omni_schema:metric_collectors ],
+        [ sh:datatype xsd:string ;
+            sh:description "The version of the benchmark." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path omni_schema:version ],
+        [ sh:description "The type of the storage API, i.e. S3." ;
+            sh:in ( "S3" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path omni_schema:storage_api ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "The name and contact details of the person responsible for this benchmark." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path omni_schema:benchmarker ],
         [ sh:datatype xsd:string ;
             sh:description "The name of the bucket (i.e. for S3)" ;
             sh:maxCount 1 ;
@@ -67,25 +85,12 @@ omni_schema:Benchmark a sh:NodeShape ;
             sh:order 5 ;
             sh:path omni_schema:storage_bucket_name ],
         [ sh:datatype xsd:string ;
-            sh:description "The version of the benchmark." ;
+            sh:description "The place hosting all benchmark data." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path omni_schema:version ],
-        [ sh:datatype xsd:string ;
-            sh:description "Benchmark Specification version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path omni_schema:benchmark_yaml_spec ],
-        [ sh:datatype xsd:string ;
-            sh:description "The name and contact details of the person responsible for this benchmark." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path omni_schema:benchmarker ] ;
+            sh:order 3 ;
+            sh:path omni_schema:storage ] ;
     sh:targetClass omni_schema:Benchmark .
 
 omni_schema:MetricCollector a sh:NodeShape ;
@@ -93,10 +98,24 @@ omni_schema:MetricCollector a sh:NodeShape ;
     sh:closed true ;
     sh:description "Describes a module collecting/gathering multiple metrics and generating (potentially single) aggregated files collecting these metrics." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class omni_schema:InputCollection ;
+    sh:property [ sh:class omni_schema:Repository ;
+            sh:description "The code repository hosting the module." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path omni_schema:repository ],
+        [ sh:class omni_schema:InputCollection ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 2 ;
             sh:path omni_schema:inputs ],
+        [ sh:class omni_schema:SoftwareEnvironment ;
+            sh:description "Reference to a software environment by key." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path omni_schema:software_environment ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
@@ -116,20 +135,6 @@ omni_schema:MetricCollector a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path schema1:identifier ],
-        [ sh:class omni_schema:Repository ;
-            sh:description "The code repository hosting the module." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path omni_schema:repository ],
-        [ sh:class omni_schema:SoftwareEnvironment ;
-            sh:description "Reference to a software environment by key." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 0 ;
-            sh:path omni_schema:software_environment ],
         [ sh:class omni_schema:IOFile ;
             sh:nodeKind sh:IRI ;
             sh:order 3 ;
@@ -151,26 +156,17 @@ omni_schema:Stage a sh:NodeShape ;
     sh:closed true ;
     sh:description "A benchmark subtask with equivalent and independent modules." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class omni_schema:IOFile ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path omni_schema:outputs ],
-        [ sh:class omni_schema:InputCollection ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path omni_schema:inputs ],
-        [ sh:datatype xsd:anyURI ;
+    sh:property [ sh:datatype xsd:anyURI ;
             sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path schema1:identifier ],
-        [ sh:class omni_schema:Module ;
-            sh:minCount 1 ;
+        [ sh:class omni_schema:IOFile ;
             sh:nodeKind sh:IRI ;
-            sh:order 0 ;
-            sh:path omni_schema:modules ],
+            sh:order 2 ;
+            sh:path omni_schema:outputs ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
@@ -182,7 +178,16 @@ omni_schema:Stage a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
-            sh:path schema1:name ] ;
+            sh:path schema1:name ],
+        [ sh:class omni_schema:Module ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path omni_schema:modules ],
+        [ sh:class omni_schema:InputCollection ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path omni_schema:inputs ] ;
     sh:targetClass omni_schema:Stage .
 
 omni_schema:InputCollection a sh:NodeShape ;
@@ -201,11 +206,11 @@ omni_schema:Module a sh:NodeShape ;
     sh:description "A single benchmark component assigned to a specific stage." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
+            sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path schema1:name ],
+            sh:order 6 ;
+            sh:path schema1:description ],
         [ sh:datatype xsd:anyURI ;
             sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
@@ -213,11 +218,6 @@ omni_schema:Module a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path schema1:identifier ],
-        [ sh:class omni_schema:Module ;
-            sh:description "Ignore these module's outputs as input." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path omni_schema:exclude ],
         [ sh:class omni_schema:SoftwareEnvironment ;
             sh:description "Reference to a software environment by key." ;
             sh:maxCount 1 ;
@@ -237,11 +237,16 @@ omni_schema:Module a sh:NodeShape ;
             sh:order 3 ;
             sh:path omni_schema:parameters ],
         [ sh:datatype xsd:string ;
-            sh:description "A human-readable description for a thing" ;
+            sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path schema1:description ] ;
+            sh:order 5 ;
+            sh:path schema1:name ],
+        [ sh:class omni_schema:Module ;
+            sh:description "Ignore these module's outputs as input." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path omni_schema:exclude ] ;
     sh:targetClass omni_schema:Module .
 
 omni_schema:Repository a sh:NodeShape ;
@@ -275,6 +280,12 @@ omni_schema:IOFile a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path omni_schema:path ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:name ],
         [ sh:datatype xsd:anyURI ;
             sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
@@ -287,13 +298,7 @@ omni_schema:IOFile a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
-            sh:path schema1:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path schema1:name ] ;
+            sh:path schema1:description ] ;
     sh:targetClass omni_schema:IOFile .
 
 omni_schema:SoftwareEnvironment a sh:NodeShape ;
@@ -302,11 +307,17 @@ omni_schema:SoftwareEnvironment a sh:NodeShape ;
     sh:description "Contains snapshots of the software environment required for the modules to run." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "Easybuild configuration file." ;
+            sh:description "Apptainer image static ORAS url, including name:tag." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path omni_schema:easyconfig ],
+            sh:order 3 ;
+            sh:path omni_schema:apptainer ],
+        [ sh:datatype xsd:string ;
+            sh:description "Environment module name." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path omni_schema:envmodule ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
@@ -321,11 +332,11 @@ omni_schema:SoftwareEnvironment a sh:NodeShape ;
             sh:order 4 ;
             sh:path schema1:identifier ],
         [ sh:datatype xsd:string ;
-            sh:description "Environment module name." ;
+            sh:description "Easybuild configuration file." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path omni_schema:envmodule ],
+            sh:order 0 ;
+            sh:path omni_schema:easyconfig ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
@@ -337,32 +348,26 @@ omni_schema:SoftwareEnvironment a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
-            sh:path omni_schema:conda ],
-        [ sh:datatype xsd:string ;
-            sh:description "Apptainer image static ORAS url, including name:tag." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path omni_schema:apptainer ] ;
+            sh:path omni_schema:conda ] ;
     sh:targetClass omni_schema:SoftwareEnvironment .
 
 schema1:Thing a sh:NodeShape ;
     sh:closed false ;
     sh:description "A generic grouping for any identifiable entity" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:anyURI ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:anyURI ;
             sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path schema1:name ],
         [ sh:datatype xsd:string ;
             sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;

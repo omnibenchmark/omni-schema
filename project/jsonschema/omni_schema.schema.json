@@ -26,6 +26,16 @@
                     "description": "A unique identifier for a thing",
                     "type": "string"
                 },
+                "metric_collectors": {
+                    "description": "Metric collecting/gathering module(s)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": [
@@ -445,6 +455,16 @@
         "id": {
             "description": "A unique identifier for a thing",
             "type": "string"
+        },
+        "metric_collectors": {
+            "description": "Metric collecting/gathering module(s)",
+            "items": {
+                "type": "string"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
         },
         "name": {
             "description": "A human-readable name for a thing",
