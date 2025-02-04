@@ -216,6 +216,15 @@
 
       Benchmark : id
 
+      Benchmark : metric_collectors
+
+
+
+
+    Benchmark --&gt; "*" MetricCollector : metric_collectors
+    click MetricCollector href "../MetricCollector"
+
+
       Benchmark : name
 
       Benchmark : software_backend
@@ -329,6 +338,12 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../metric_collectors/">metric_collectors</a></td>
+<td>* <br/> <a href="../MetricCollector/">MetricCollector</a></td>
+<td>Metric collecting/gathering module(s)</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../stages/">stages</a></td>
 <td>1..* <br/> <a href="../Stage/">Stage</a></td>
 <td></td>
@@ -395,6 +410,7 @@ slots:
 - storage_bucket_name
 - software_environments
 - benchmark_yaml_spec
+- metric_collectors
 - stages
 tree_root: true
 
@@ -498,6 +514,18 @@ attributes:
     domain_of:
     - Benchmark
     range: string
+  metric_collectors:
+    name: metric_collectors
+    description: Metric collecting/gathering module(s)
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    alias: metric_collectors
+    owner: Benchmark
+    domain_of:
+    - Benchmark
+    range: MetricCollector
+    required: false
+    multivalued: true
   stages:
     name: stages
     from_schema: https://w3id.org/omnibenchmark/omni-schema

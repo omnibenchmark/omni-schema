@@ -256,6 +256,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#applicable-classes" class="md-nav__link">
+    Applicable Classes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     Properties
   </a>
@@ -321,6 +328,23 @@
 <p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/metric_collectors">omni_schema:metric_collectors</a></p>
 <!-- no inheritance hierarchy -->
 
+<h2 id="applicable-classes">Applicable Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Modifies Slot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Benchmark/">Benchmark</a></td>
+<td>A multi-stage workflow to evaluate processing stage for a specific task</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
@@ -362,6 +386,8 @@ description: Metric collecting/gathering module(s)
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
 alias: metric_collectors
+domain_of:
+- Benchmark
 range: MetricCollector
 required: false
 multivalued: true
