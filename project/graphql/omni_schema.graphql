@@ -10,7 +10,7 @@ type Benchmark
     storage: String!
     storageApi: StorageAPIEnum!
     storageBucketName: String!
-    softwareEnvironments: [SoftwareEnvironment]!
+    softwareEnvironments: [SoftwareEnvironment]
     benchmarkYamlSpec: String
     metricCollectors: [MetricCollector]
     stages: [Stage]!

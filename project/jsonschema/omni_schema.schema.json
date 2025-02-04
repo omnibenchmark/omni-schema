@@ -29,7 +29,7 @@
                 "metric_collectors": {
                     "description": "Metric collecting/gathering module(s)",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/MetricCollector"
                     },
                     "type": [
                         "array",
@@ -52,7 +52,10 @@
                     "items": {
                         "$ref": "#/$defs/SoftwareEnvironment"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "stages": {
                     "items": {
@@ -84,7 +87,6 @@
                 "storage",
                 "storage_api",
                 "storage_bucket_name",
-                "software_environments",
                 "stages",
                 "id"
             ],
@@ -459,7 +461,7 @@
         "metric_collectors": {
             "description": "Metric collecting/gathering module(s)",
             "items": {
-                "type": "string"
+                "$ref": "#/$defs/MetricCollector"
             },
             "type": [
                 "array",
@@ -482,7 +484,10 @@
             "items": {
                 "$ref": "#/$defs/SoftwareEnvironment"
             },
-            "type": "array"
+            "type": [
+                "array",
+                "null"
+            ]
         },
         "stages": {
             "items": {
@@ -514,7 +519,6 @@
         "storage",
         "storage_api",
         "storage_bucket_name",
-        "software_environments",
         "stages",
         "id"
     ],

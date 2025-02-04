@@ -618,6 +618,22 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "metric_collectors",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/metric_collectors",
+      "description": "Metric collecting/gathering module(s)",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/metric_collectors",
+      "owner": "Benchmark",
+      "domain_of": [
+        "Benchmark"
+      ],
+      "range": "MetricCollector",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "software_environments",
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/software_environments",
       "description": "Dictionary of software environments keyed by their identifiers",
@@ -628,7 +644,6 @@
         "Benchmark"
       ],
       "range": "SoftwareEnvironment",
-      "required": true,
       "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
@@ -779,20 +794,6 @@
         "Benchmark"
       ],
       "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "metric_collectors",
-      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/metric_collectors",
-      "description": "Metric collecting/gathering module(s)",
-      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
-      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/metric_collectors",
-      "owner": "Benchmark",
-      "domain_of": [
-        "Benchmark"
-      ],
-      "range": "MetricCollector",
-      "multivalued": true,
       "@type": "SlotDefinition"
     }
   ],
@@ -972,9 +973,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2025-02-04T16:24:53",
-  "source_file_size": 5921,
-  "generation_date": "2025-02-04T16:25:11",
+  "source_file_date": "2025-02-04T16:59:36",
+  "source_file_size": 5964,
+  "generation_date": "2025-02-04T16:59:43",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",
