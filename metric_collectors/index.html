@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/repository/">
+        <link rel="canonical" href="https://omnibenchmark.github.io/omni-schema/metric_collectors/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: repository - omni-schema</title>
+        <title>Slot: metric_collectors - omni-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-repository" class="md-skip">
+        <a href="#slot-metric_collectors" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: repository
+              Slot: metric_collectors
             
           </span>
         </div>
@@ -256,13 +256,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#applicable-classes" class="md-nav__link">
-    Applicable Classes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     Properties
   </a>
@@ -317,46 +310,24 @@
                 
                   
 
-  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/repository.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/metric_collectors.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-repository">Slot: repository</h1>
-<p><em>The code repository hosting the module.</em></p>
-<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/repository">omni_schema:repository</a></p>
+<h1 id="slot-metric_collectors">Slot: metric_collectors</h1>
+<p><em>Metric collecting/gathering module(s)</em></p>
+<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/metric_collectors">omni_schema:metric_collectors</a></p>
 <!-- no inheritance hierarchy -->
 
-<h2 id="applicable-classes">Applicable Classes</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Modifies Slot</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../MetricCollector/">MetricCollector</a></td>
-<td>Describes a module collecting/gathering multiple metrics and generating (pote...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Module/">Module</a></td>
-<td>A single benchmark component assigned to a specific stage</td>
-<td>no</td>
-</tr>
-</tbody>
-</table>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../Repository/">Repository</a></p>
+<p>Range: <a href="../MetricCollector/">MetricCollector</a></p>
 </li>
 <li>
-<p>Required: True</p>
+<p>Multivalued: True</p>
 </li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -375,27 +346,25 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>omni_schema:repository</td>
+<td>omni_schema:metric_collectors</td>
 </tr>
 <tr>
 <td>native</td>
-<td>omni_schema:repository</td>
+<td>omni_schema:metric_collectors</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: repository
-description: The code repository hosting the module.
+<pre><code class="language-yaml">name: metric_collectors
+description: Metric collecting/gathering module(s)
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 rank: 1000
-alias: repository
-domain_of:
-- Module
-- MetricCollector
-range: Repository
-required: true
+alias: metric_collectors
+range: MetricCollector
+required: false
+multivalued: true
 
 </code></pre>
 

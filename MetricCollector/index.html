@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://omnibenchmark.github.io/omni-schema/IdentifiableEntity/" rel="canonical"/>
+<link href="https://omnibenchmark.github.io/omni-schema/MetricCollector/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: IdentifiableEntity - omni-schema</title>
+<title>Class: MetricCollector - omni-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -21,7 +21,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-identifiableentity">
+<a class="md-skip" href="#class-metriccollector">
           Skip to content
         </a>
 </div>
@@ -45,7 +45,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: IdentifiableEntity
+              Class: MetricCollector
             
           </span>
 </div>
@@ -196,48 +196,66 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/IdentifiableEntity.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/omnibenchmark/omni-schema/edit/master/docs/MetricCollector.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-identifiableentity">Class: IdentifiableEntity</h1>
-<p><em>A generic grouping for any identifiable entity</em></p>
-<ul>
-<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
-</ul>
-<p>URI: <a href="http://schema.org/Thing">schema:Thing</a></p>
+<h1 id="class-metriccollector">Class: MetricCollector</h1>
+<p><em>Describes a module collecting/gathering multiple metrics and generating (potentially single) aggregated files collecting these metrics.</em></p>
+<p>URI: <a href="https://w3id.org/omnibenchmark/omni-schema/MetricCollector">omni_schema:MetricCollector</a></p>
 <div class="mermaid"> classDiagram
-    class IdentifiableEntity
-    click IdentifiableEntity href "../IdentifiableEntity"
-      IdentifiableEntity &lt;|-- Benchmark
-        click Benchmark href "../Benchmark"
-      IdentifiableEntity &lt;|-- Stage
-        click Stage href "../Stage"
-      IdentifiableEntity &lt;|-- Module
-        click Module href "../Module"
-      IdentifiableEntity &lt;|-- IOFile
-        click IOFile href "../IOFile"
-      IdentifiableEntity &lt;|-- SoftwareEnvironment
-        click SoftwareEnvironment href "../SoftwareEnvironment"
+    class MetricCollector
+    click MetricCollector href "../MetricCollector"
       IdentifiableEntity &lt;|-- MetricCollector
-        click MetricCollector href "../MetricCollector"
+        click IdentifiableEntity href "../IdentifiableEntity"
 
-      IdentifiableEntity : description
+      MetricCollector : description
 
-      IdentifiableEntity : id
+      MetricCollector : id
 
-      IdentifiableEntity : name
+      MetricCollector : inputs
+
+
+
+
+    MetricCollector --&gt; "*" InputCollection : inputs
+    click InputCollection href "../InputCollection"
+
+
+      MetricCollector : name
+
+      MetricCollector : outputs
+
+
+
+
+    MetricCollector --&gt; "*" IOFile : outputs
+    click IOFile href "../IOFile"
+
+
+      MetricCollector : repository
+
+
+
+
+    MetricCollector --&gt; "1" Repository : repository
+    click Repository href "../Repository"
+
+
+      MetricCollector : software_environment
+
+
+
+
+    MetricCollector --&gt; "1" SoftwareEnvironment : software_environment
+    click SoftwareEnvironment href "../SoftwareEnvironment"
+
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><strong>IdentifiableEntity</strong><ul>
-<li><a href="../Benchmark/">Benchmark</a></li>
-<li><a href="../Stage/">Stage</a></li>
-<li><a href="../Module/">Module</a></li>
-<li><a href="../IOFile/">IOFile</a></li>
-<li><a href="../SoftwareEnvironment/">SoftwareEnvironment</a></li>
-<li><a href="../MetricCollector/">MetricCollector</a></li>
+<li><a href="../IdentifiableEntity/">IdentifiableEntity</a><ul>
+<li><strong>MetricCollector</strong></li>
 </ul>
 </li>
 </ul>
@@ -253,22 +271,46 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../software_environment/">software_environment</a></td>
+<td>1 <br/> <a href="../SoftwareEnvironment/">SoftwareEnvironment</a></td>
+<td>Reference to a software environment by key</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../repository/">repository</a></td>
+<td>1 <br/> <a href="../Repository/">Repository</a></td>
+<td>The code repository hosting the module</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../inputs/">inputs</a></td>
+<td>* <br/> <a href="../InputCollection/">InputCollection</a></td>
+<td></td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../outputs/">outputs</a></td>
+<td>* <br/> <a href="../IOFile/">IOFile</a></td>
+<td></td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../id/">id</a></td>
 <td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for a thing</td>
-<td>direct</td>
+<td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for a thing</td>
-<td>direct</td>
+<td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable description for a thing</td>
-<td>direct</td>
+<td><a href="../IdentifiableEntity/">IdentifiableEntity</a></td>
 </tr>
 </tbody>
 </table>
@@ -288,11 +330,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:Thing</td>
+<td>omni_schema:MetricCollector</td>
 </tr>
 <tr>
 <td>native</td>
-<td>omni_schema:IdentifiableEntity</td>
+<td>omni_schema:MetricCollector</td>
 </tr>
 </tbody>
 </table>
@@ -300,25 +342,77 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: IdentifiableEntity
-description: A generic grouping for any identifiable entity
+<pre><code class="language-yaml">name: MetricCollector
+description: Describes a module collecting/gathering multiple metrics and generating
+  (potentially single) aggregated files collecting these metrics.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
-abstract: true
+is_a: IdentifiableEntity
 slots:
-- id
-- name
-- description
-class_uri: schema:Thing
+- software_environment
+- repository
+- inputs
+- outputs
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: IdentifiableEntity
-description: A generic grouping for any identifiable entity
+<pre><code class="language-yaml">name: MetricCollector
+description: Describes a module collecting/gathering multiple metrics and generating
+  (potentially single) aggregated files collecting these metrics.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
-abstract: true
+is_a: IdentifiableEntity
 attributes:
+  software_environment:
+    name: software_environment
+    description: Reference to a software environment by key.
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    alias: software_environment
+    owner: MetricCollector
+    domain_of:
+    - Module
+    - MetricCollector
+    range: SoftwareEnvironment
+    required: true
+  repository:
+    name: repository
+    description: The code repository hosting the module.
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    alias: repository
+    owner: MetricCollector
+    domain_of:
+    - Module
+    - MetricCollector
+    range: Repository
+    required: true
+  inputs:
+    name: inputs
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    alias: inputs
+    owner: MetricCollector
+    domain_of:
+    - Stage
+    - MetricCollector
+    range: InputCollection
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  outputs:
+    name: outputs
+    from_schema: https://w3id.org/omnibenchmark/omni-schema
+    rank: 1000
+    alias: outputs
+    owner: MetricCollector
+    domain_of:
+    - Stage
+    - MetricCollector
+    range: IOFile
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   id:
     name: id
     description: A unique identifier for a thing
@@ -327,7 +421,7 @@ attributes:
     slot_uri: schema:identifier
     identifier: true
     alias: id
-    owner: IdentifiableEntity
+    owner: MetricCollector
     domain_of:
     - IdentifiableEntity
     range: uriorcurie
@@ -339,7 +433,7 @@ attributes:
     rank: 1000
     slot_uri: schema:name
     alias: name
-    owner: IdentifiableEntity
+    owner: MetricCollector
     domain_of:
     - IdentifiableEntity
     range: string
@@ -350,11 +444,10 @@ attributes:
     rank: 1000
     slot_uri: schema:description
     alias: description
-    owner: IdentifiableEntity
+    owner: MetricCollector
     domain_of:
     - IdentifiableEntity
     range: string
-class_uri: schema:Thing
 
 </code></pre>
 </details>
