@@ -66,7 +66,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <IdentifiableEntity>  (
-    @<Benchmark> OR @<IOFile> OR @<Module> OR @<SoftwareEnvironment> OR @<Stage>
+    @<Benchmark> OR @<IOFile> OR @<MetricCollector> OR @<Module> OR @<SoftwareEnvironment> OR @<Stage>
 )
 
 <IdentifiableEntity_struct> {
@@ -89,6 +89,18 @@ linkml:Sparqlpath xsd:string
           <path> @linkml:String ?
        ) ;
        rdf:type [ <IOFile> ]
+    )
+}
+
+<MetricCollector> CLOSED {
+    (  $<MetricCollector_tes> (  &<IdentifiableEntity_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
+          <software_environment> @<SoftwareEnvironment> ;
+          <repository> @<Repository> ;
+          <inputs> @<InputCollection> * ;
+          <outputs> @<IOFile> *
+       ) ;
+       rdf:type [ <MetricCollector> ]
     )
 }
 

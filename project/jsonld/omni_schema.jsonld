@@ -546,9 +546,10 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/inputs",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/inputs",
-      "owner": "Stage",
+      "owner": "MetricCollector",
       "domain_of": [
-        "Stage"
+        "Stage",
+        "MetricCollector"
       ],
       "range": "InputCollection",
       "multivalued": true,
@@ -561,9 +562,10 @@
       "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/outputs",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/outputs",
-      "owner": "Stage",
+      "owner": "MetricCollector",
       "domain_of": [
-        "Stage"
+        "Stage",
+        "MetricCollector"
       ],
       "range": "IOFile",
       "multivalued": true,
@@ -591,9 +593,10 @@
       "description": "The code repository hosting the module.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/repository",
-      "owner": "Module",
+      "owner": "MetricCollector",
       "domain_of": [
-        "Module"
+        "Module",
+        "MetricCollector"
       ],
       "range": "Repository",
       "required": true,
@@ -637,9 +640,10 @@
       "description": "Reference to a software environment by key.",
       "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
       "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/software_environment",
-      "owner": "Module",
+      "owner": "MetricCollector",
       "domain_of": [
-        "Module"
+        "Module",
+        "MetricCollector"
       ],
       "range": "SoftwareEnvironment",
       "required": true,
@@ -775,6 +779,16 @@
         "Benchmark"
       ],
       "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "metric_collectors",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/metric_collectors",
+      "description": "Metric collecting/gathering module(s)",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "slot_uri": "https://w3id.org/omnibenchmark/omni-schema/metric_collectors",
+      "range": "MetricCollector",
+      "multivalued": true,
       "@type": "SlotDefinition"
     }
   ],
@@ -930,13 +944,32 @@
       "slot_usage": {},
       "class_uri": "https://w3id.org/omnibenchmark/omni-schema/SoftwareEnvironment",
       "@type": "ClassDefinition"
+    },
+    {
+      "name": "MetricCollector",
+      "definition_uri": "https://w3id.org/omnibenchmark/omni-schema/MetricCollector",
+      "description": "Describes a module collecting/gathering multiple metrics and generating (potentially single) aggregated files collecting these metrics.",
+      "from_schema": "https://w3id.org/omnibenchmark/omni-schema",
+      "is_a": "IdentifiableEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "software_environment",
+        "repository",
+        "inputs",
+        "outputs"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/omnibenchmark/omni-schema/MetricCollector",
+      "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2024-09-11T19:12:26",
-  "source_file_size": 5442,
-  "generation_date": "2024-09-11T19:13:36",
+  "source_file_date": "2025-02-04T11:22:06",
+  "source_file_size": 5895,
+  "generation_date": "2025-02-04T11:22:31",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

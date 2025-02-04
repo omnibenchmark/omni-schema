@@ -30,6 +30,17 @@ message IOFile
   string description = 0
   string path = 0
  }
+// Describes a module collecting/gathering multiple metrics and generating (potentially single) aggregated files collecting these metrics.
+message MetricCollector
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  softwareEnvironment softwareEnvironment = 0
+  repository repository = 0
+ repeated  inputCollection inputs = 0
+ repeated  iOFile outputs = 0
+ }
 // A single benchmark component assigned to a specific stage.
 message Module
  {

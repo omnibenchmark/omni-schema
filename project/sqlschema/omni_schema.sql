@@ -31,9 +31,11 @@
 --     * Slot: name Description: A human-readable name for a thing
 --     * Slot: description Description: A human-readable description for a thing
 --     * Slot: Stage_id Description: Autocreated FK slot
+--     * Slot: MetricCollector_id Description: Autocreated FK slot
 -- # Class: "InputCollection" Description: "A holder for valid input combinations."
 --     * Slot: id Description: 
 --     * Slot: Stage_id Description: Autocreated FK slot
+--     * Slot: MetricCollector_id Description: Autocreated FK slot
 -- # Class: "Repository" Description: "A reference to code repository containing the module's executable code."
 --     * Slot: id Description: 
 --     * Slot: url Description: The git compatible url.
@@ -49,6 +51,12 @@
 --     * Slot: name Description: A human-readable name for a thing
 --     * Slot: description Description: A human-readable description for a thing
 --     * Slot: Benchmark_id Description: Autocreated FK slot
+-- # Class: "MetricCollector" Description: "Describes a module collecting/gathering multiple metrics and generating (potentially single) aggregated files collecting these metrics."
+--     * Slot: software_environment Description: Reference to a software environment by key.
+--     * Slot: id Description: A unique identifier for a thing
+--     * Slot: name Description: A human-readable name for a thing
+--     * Slot: description Description: A human-readable description for a thing
+--     * Slot: repository_id Description: The code repository hosting the module.
 -- # Class: "Module_exclude" Description: ""
 --     * Slot: Module_id Description: Autocreated FK slot
 --     * Slot: exclude_id Description: Ignore these module's outputs as input.
@@ -129,20 +137,34 @@ CREATE TABLE "Module" (
 	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id), 
 	FOREIGN KEY(repository_id) REFERENCES "Repository" (id)
 );
+CREATE TABLE "MetricCollector" (
+	software_environment TEXT NOT NULL, 
+	id TEXT NOT NULL, 
+	name TEXT, 
+	description TEXT, 
+	repository_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(software_environment) REFERENCES "SoftwareEnvironment" (id), 
+	FOREIGN KEY(repository_id) REFERENCES "Repository" (id)
+);
 CREATE TABLE "IOFile" (
 	path TEXT, 
 	id TEXT NOT NULL, 
 	name TEXT, 
 	description TEXT, 
 	"Stage_id" TEXT, 
+	"MetricCollector_id" TEXT, 
 	PRIMARY KEY (id), 
-	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id)
+	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id), 
+	FOREIGN KEY("MetricCollector_id") REFERENCES "MetricCollector" (id)
 );
 CREATE TABLE "InputCollection" (
 	id INTEGER NOT NULL, 
 	"Stage_id" TEXT, 
+	"MetricCollector_id" TEXT, 
 	PRIMARY KEY (id), 
-	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id)
+	FOREIGN KEY("Stage_id") REFERENCES "Stage" (id), 
+	FOREIGN KEY("MetricCollector_id") REFERENCES "MetricCollector" (id)
 );
 CREATE TABLE "Module_exclude" (
 	"Module_id" TEXT, 
