@@ -241,7 +241,7 @@
 
 
 
-    Benchmark --&gt; "1..*" SoftwareEnvironment : software_environments
+    Benchmark --&gt; "*" SoftwareEnvironment : software_environments
     click SoftwareEnvironment href "../SoftwareEnvironment"
 
 
@@ -327,7 +327,7 @@
 </tr>
 <tr>
 <td><a href="../software_environments/">software_environments</a></td>
-<td>1..* <br/> <a href="../SoftwareEnvironment/">SoftwareEnvironment</a></td>
+<td>* <br/> <a href="../SoftwareEnvironment/">SoftwareEnvironment</a></td>
 <td>Dictionary of software environments keyed by their identifiers</td>
 <td>direct</td>
 </tr>
@@ -500,7 +500,7 @@ attributes:
     domain_of:
     - Benchmark
     range: SoftwareEnvironment
-    required: true
+    required: false
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -526,6 +526,8 @@ attributes:
     range: MetricCollector
     required: false
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   stages:
     name: stages
     from_schema: https://w3id.org/omnibenchmark/omni-schema
