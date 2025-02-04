@@ -35,6 +35,17 @@ type IOFile
     path: String
   }
 
+type MetricCollector
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    softwareEnvironment: SoftwareEnvironment!
+    repository: Repository!
+    inputs: [InputCollection]
+    outputs: [IOFile]
+  }
+
 type Module
   {
     id: Uriorcurie!

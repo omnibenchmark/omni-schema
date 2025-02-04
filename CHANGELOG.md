@@ -3,6 +3,9 @@
 This document records all notable changes to `omni-schema`.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## 0.0.5 UNRELEASED
+- Added:
+    - `metric_collectors` field to Benchmark
 
 ## [0.0.4](https://github.com/omnibenchmark/omni-schema/releases/tag/version%2F0.0.4) 
 - Added:

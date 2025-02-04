@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-09-11T19:13:36
+# Generation date: 2025-02-04T11:22:31
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -63,6 +63,10 @@ class IOFileId(IdentifiableEntityId):
 
 
 class SoftwareEnvironmentId(IdentifiableEntityId):
+    pass
+
+
+class MetricCollectorId(IdentifiableEntityId):
     pass
 
 
@@ -390,6 +394,50 @@ class SoftwareEnvironment(IdentifiableEntity):
         super().__post_init__(**kwargs)
 
 
+@dataclass(repr=False)
+class MetricCollector(IdentifiableEntity):
+    """
+    Describes a module collecting/gathering multiple metrics and generating (potentially single) aggregated files
+    collecting these metrics.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OMNI_SCHEMA["MetricCollector"]
+    class_class_curie: ClassVar[str] = "omni_schema:MetricCollector"
+    class_name: ClassVar[str] = "MetricCollector"
+    class_model_uri: ClassVar[URIRef] = OMNI_SCHEMA.MetricCollector
+
+    id: Union[str, MetricCollectorId] = None
+    software_environment: Union[str, SoftwareEnvironmentId] = None
+    repository: Union[dict, Repository] = None
+    inputs: Optional[Union[Union[dict, InputCollection], List[Union[dict, InputCollection]]]] = empty_list()
+    outputs: Optional[Union[Dict[Union[str, IOFileId], Union[dict, IOFile]], List[Union[dict, IOFile]]]] = empty_dict()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MetricCollectorId):
+            self.id = MetricCollectorId(self.id)
+
+        if self._is_empty(self.software_environment):
+            self.MissingRequiredField("software_environment")
+        if not isinstance(self.software_environment, SoftwareEnvironmentId):
+            self.software_environment = SoftwareEnvironmentId(self.software_environment)
+
+        if self._is_empty(self.repository):
+            self.MissingRequiredField("repository")
+        if not isinstance(self.repository, Repository):
+            self.repository = Repository(**as_dict(self.repository))
+
+        if not isinstance(self.inputs, list):
+            self.inputs = [self.inputs] if self.inputs is not None else []
+        self.inputs = [v if isinstance(v, InputCollection) else InputCollection(**as_dict(v)) for v in self.inputs]
+
+        self._normalize_inlined_as_list(slot_name="outputs", slot_type=IOFile, key_name="id", keyed=True)
+
+        super().__post_init__(**kwargs)
+
+
 # Enumerations
 class StorageAPIEnum(EnumDefinitionImpl):
 
@@ -498,3 +546,6 @@ slots.apptainer = Slot(uri=OMNI_SCHEMA.apptainer, name="apptainer", curie=OMNI_S
 
 slots.benchmark_yaml_spec = Slot(uri=OMNI_SCHEMA.benchmark_yaml_spec, name="benchmark_yaml_spec", curie=OMNI_SCHEMA.curie('benchmark_yaml_spec'),
                    model_uri=OMNI_SCHEMA.benchmark_yaml_spec, domain=None, range=Optional[str])
+
+slots.metric_collectors = Slot(uri=OMNI_SCHEMA.metric_collectors, name="metric_collectors", curie=OMNI_SCHEMA.curie('metric_collectors'),
+                   model_uri=OMNI_SCHEMA.metric_collectors, domain=None, range=Optional[Union[Union[str, MetricCollectorId], List[Union[str, MetricCollectorId]]]])
