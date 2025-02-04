@@ -222,8 +222,8 @@
 
 
 
-    MetricCollector --&gt; "*" InputCollection : inputs
-    click InputCollection href "../InputCollection"
+    MetricCollector --&gt; "*" IOFile : inputs
+    click IOFile href "../IOFile"
 
 
       MetricCollector : name
@@ -289,7 +289,7 @@
 </tr>
 <tr>
 <td><a href="../inputs/">inputs</a></td>
-<td>* <br/> <a href="../InputCollection/">InputCollection</a></td>
+<td>* <br/> <a href="../IOFile/">IOFile</a></td>
 <td></td>
 <td>direct</td>
 </tr>
@@ -376,6 +376,13 @@ slots:
 - repository
 - inputs
 - outputs
+slot_usage:
+  inputs:
+    name: inputs
+    range: IOFile
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
 
 </code></pre>
 </details>
@@ -386,6 +393,13 @@ description: Describes a module collecting/gathering multiple metrics and genera
   (potentially single) aggregated files collecting these metrics.
 from_schema: https://w3id.org/omnibenchmark/omni-schema
 is_a: IdentifiableEntity
+slot_usage:
+  inputs:
+    name: inputs
+    range: IOFile
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
 attributes:
   software_environment:
     name: software_environment
@@ -420,7 +434,7 @@ attributes:
     domain_of:
     - Stage
     - MetricCollector
-    range: InputCollection
+    range: IOFile
     multivalued: true
     inlined: true
     inlined_as_list: true
