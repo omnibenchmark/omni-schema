@@ -17,6 +17,7 @@ endif
 RUN = poetry run
 SCHEMA_NAME = $(LINKML_SCHEMA_NAME)
 SOURCE_SCHEMA_PATH = $(LINKML_SCHEMA_SOURCE_PATH)
+SOURCE_SCHEMA_PATH_JSON = $(LINKML_SCHEMA_SOURCE_PATH_JSON)
 SOURCE_SCHEMA_DIR = $(dir $(SOURCE_SCHEMA_PATH))
 SRC = src
 DEST = project
@@ -75,6 +76,7 @@ help: status
 status: check-config
 	@echo "Project: $(SCHEMA_NAME)"
 	@echo "Source: $(SOURCE_SCHEMA_PATH)"
+	@echo "Source: $(SOURCE_SCHEMA_PATH_JSON)"
 
 # generate products and add everything to github
 setup: check-config git-init install gen-project gen-examples gendoc git-add git-commit
@@ -111,6 +113,9 @@ all: site
 site: gen-project gendoc
 %.yaml: gen-project
 deploy: all mkd-gh-deploy
+
+json-schema: 
+	$(RUN) gen-json-schema $(SOURCE_SCHEMA_PATH) > $(SOURCE_SCHEMA_PATH_JSON)
 
 compile-sheets:
 	$(RUN) sheets2linkml --gsheet-id $(SHEET_ID) $(SHEET_TABS) > $(SHEET_MODULE_PATH).tmp && mv $(SHEET_MODULE_PATH).tmp $(SHEET_MODULE_PATH)
