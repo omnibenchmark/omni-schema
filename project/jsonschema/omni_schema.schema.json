@@ -65,7 +65,10 @@
                 },
                 "storage": {
                     "description": "The place hosting all benchmark data.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "storage_api": {
                     "$ref": "#/$defs/StorageAPIEnum",
@@ -73,7 +76,10 @@
                 },
                 "storage_bucket_name": {
                     "description": "The name of the bucket (i.e. for S3)",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "version": {
                     "description": "The version of the benchmark.",
@@ -84,9 +90,6 @@
                 "version",
                 "benchmarker",
                 "software_backend",
-                "storage",
-                "storage_api",
-                "storage_bucket_name",
                 "stages",
                 "id"
             ],
@@ -497,7 +500,10 @@
         },
         "storage": {
             "description": "The place hosting all benchmark data.",
-            "type": "string"
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "storage_api": {
             "$ref": "#/$defs/StorageAPIEnum",
@@ -505,7 +511,10 @@
         },
         "storage_bucket_name": {
             "description": "The name of the bucket (i.e. for S3)",
-            "type": "string"
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "version": {
             "description": "The version of the benchmark.",
@@ -516,9 +525,6 @@
         "version",
         "benchmarker",
         "software_backend",
-        "storage",
-        "storage_api",
-        "storage_bucket_name",
         "stages",
         "id"
     ],

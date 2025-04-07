@@ -7,9 +7,9 @@ type Benchmark
     version: String!
     benchmarker: String!
     softwareBackend: SoftwareBackendEnum!
-    storage: String!
-    storageApi: StorageAPIEnum!
-    storageBucketName: String!
+    storage: String
+    storageApi: StorageAPIEnum
+    storageBucketName: String
     softwareEnvironments: [SoftwareEnvironment]
     benchmarkYamlSpec: String
     metricCollectors: [MetricCollector]
