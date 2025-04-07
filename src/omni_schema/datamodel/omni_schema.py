@@ -1,5 +1,5 @@
 # Auto generated from omni_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-02-05T00:24:11
+# Generation date: 2025-04-07T13:12:09
 # Schema: omni-schema
 #
 # id: https://w3id.org/omnibenchmark/omni-schema
@@ -117,10 +117,10 @@ class Benchmark(IdentifiableEntity):
     version: str = None
     benchmarker: str = None
     software_backend: Union[str, "SoftwareBackendEnum"] = None
-    storage: str = None
-    storage_api: Union[str, "StorageAPIEnum"] = None
-    storage_bucket_name: str = None
     stages: Union[Dict[Union[str, StageId], Union[dict, "Stage"]], List[Union[dict, "Stage"]]] = empty_dict()
+    storage: Optional[str] = None
+    storage_api: Optional[Union[str, "StorageAPIEnum"]] = None
+    storage_bucket_name: Optional[str] = None
     software_environments: Optional[Union[Dict[Union[str, SoftwareEnvironmentId], Union[dict, "SoftwareEnvironment"]], List[Union[dict, "SoftwareEnvironment"]]]] = empty_dict()
     benchmark_yaml_spec: Optional[str] = None
     metric_collectors: Optional[Union[Dict[Union[str, MetricCollectorId], Union[dict, "MetricCollector"]], List[Union[dict, "MetricCollector"]]]] = empty_dict()
@@ -146,24 +146,18 @@ class Benchmark(IdentifiableEntity):
         if not isinstance(self.software_backend, SoftwareBackendEnum):
             self.software_backend = SoftwareBackendEnum(self.software_backend)
 
-        if self._is_empty(self.storage):
-            self.MissingRequiredField("storage")
-        if not isinstance(self.storage, str):
-            self.storage = str(self.storage)
-
-        if self._is_empty(self.storage_api):
-            self.MissingRequiredField("storage_api")
-        if not isinstance(self.storage_api, StorageAPIEnum):
-            self.storage_api = StorageAPIEnum(self.storage_api)
-
-        if self._is_empty(self.storage_bucket_name):
-            self.MissingRequiredField("storage_bucket_name")
-        if not isinstance(self.storage_bucket_name, str):
-            self.storage_bucket_name = str(self.storage_bucket_name)
-
         if self._is_empty(self.stages):
             self.MissingRequiredField("stages")
         self._normalize_inlined_as_list(slot_name="stages", slot_type=Stage, key_name="id", keyed=True)
+
+        if self.storage is not None and not isinstance(self.storage, str):
+            self.storage = str(self.storage)
+
+        if self.storage_api is not None and not isinstance(self.storage_api, StorageAPIEnum):
+            self.storage_api = StorageAPIEnum(self.storage_api)
+
+        if self.storage_bucket_name is not None and not isinstance(self.storage_bucket_name, str):
+            self.storage_bucket_name = str(self.storage_bucket_name)
 
         self._normalize_inlined_as_list(slot_name="software_environments", slot_type=SoftwareEnvironment, key_name="id", keyed=True)
 
@@ -481,13 +475,13 @@ slots.software_backend = Slot(uri=OMNI_SCHEMA.software_backend, name="software_b
                    model_uri=OMNI_SCHEMA.software_backend, domain=None, range=Union[str, "SoftwareBackendEnum"])
 
 slots.storage = Slot(uri=OMNI_SCHEMA.storage, name="storage", curie=OMNI_SCHEMA.curie('storage'),
-                   model_uri=OMNI_SCHEMA.storage, domain=None, range=str)
+                   model_uri=OMNI_SCHEMA.storage, domain=None, range=Optional[str])
 
 slots.storage_api = Slot(uri=OMNI_SCHEMA.storage_api, name="storage_api", curie=OMNI_SCHEMA.curie('storage_api'),
-                   model_uri=OMNI_SCHEMA.storage_api, domain=None, range=Union[str, "StorageAPIEnum"])
+                   model_uri=OMNI_SCHEMA.storage_api, domain=None, range=Optional[Union[str, "StorageAPIEnum"]])
 
 slots.storage_bucket_name = Slot(uri=OMNI_SCHEMA.storage_bucket_name, name="storage_bucket_name", curie=OMNI_SCHEMA.curie('storage_bucket_name'),
-                   model_uri=OMNI_SCHEMA.storage_bucket_name, domain=None, range=str)
+                   model_uri=OMNI_SCHEMA.storage_bucket_name, domain=None, range=Optional[str])
 
 slots.stages = Slot(uri=OMNI_SCHEMA.stages, name="stages", curie=OMNI_SCHEMA.curie('stages'),
                    model_uri=OMNI_SCHEMA.stages, domain=None, range=Union[Dict[Union[str, StageId], Union[dict, Stage]], List[Union[dict, Stage]]])

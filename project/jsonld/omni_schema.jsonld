@@ -478,7 +478,6 @@
         "Benchmark"
       ],
       "range": "string",
-      "required": true,
       "@type": "SlotDefinition"
     },
     {
@@ -492,7 +491,6 @@
         "Benchmark"
       ],
       "range": "StorageAPIEnum",
-      "required": true,
       "@type": "SlotDefinition"
     },
     {
@@ -506,7 +504,6 @@
         "Benchmark"
       ],
       "range": "string",
-      "required": true,
       "@type": "SlotDefinition"
     },
     {
@@ -993,9 +990,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "omni_schema.yaml",
-  "source_file_date": "2025-02-05T00:24:05",
-  "source_file_size": 6094,
-  "generation_date": "2025-02-05T00:24:11",
+  "source_file_date": "2025-04-07T13:10:40",
+  "source_file_size": 6084,
+  "generation_date": "2025-04-07T13:12:09",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/omni_schema.context.jsonld",

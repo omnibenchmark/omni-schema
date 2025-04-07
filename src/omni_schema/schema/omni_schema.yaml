@@ -166,21 +166,21 @@ slots:
     range: SoftwareBackendEnum
     description: The software backend used to run the benchmark, e.g. whether apptainer, envmodules, or conda.
     required: true
-    
+
   storage:
     range: string
     description: The place hosting all benchmark data.
-    required: true
+    required: false
 
   storage_api:
     range: StorageAPIEnum
     description: The type of the storage API, i.e. S3.
-    required: true
-    
+    required: false
+
   storage_bucket_name:
-    range: string 
+    range: string
     description: The name of the bucket (i.e. for S3)
-    required: true
+    required: false
 
   stages:
     range: Stage
@@ -284,5 +284,3 @@ slots:
   benchmark_yaml_spec:
     range: string
     description: Benchmark Specification version.
-
-  
