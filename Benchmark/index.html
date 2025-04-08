@@ -261,7 +261,7 @@
 
 
 
-    Benchmark --&gt; "1" StorageAPIEnum : storage_api
+    Benchmark --&gt; "0..1" StorageAPIEnum : storage_api
     click StorageAPIEnum href "../StorageAPIEnum"
 
 
@@ -309,19 +309,19 @@
 </tr>
 <tr>
 <td><a href="../storage/">storage</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The place hosting all benchmark data</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../storage_api/">storage_api</a></td>
-<td>1 <br/> <a href="../StorageAPIEnum/">StorageAPIEnum</a></td>
+<td>0..1 <br/> <a href="../StorageAPIEnum/">StorageAPIEnum</a></td>
 <td>The type of the storage API, i</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../storage_bucket_name/">storage_bucket_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The name of the bucket (i</td>
 <td>direct</td>
 </tr>
@@ -467,7 +467,7 @@ attributes:
     domain_of:
     - Benchmark
     range: string
-    required: true
+    required: false
   storage_api:
     name: storage_api
     description: The type of the storage API, i.e. S3.
@@ -478,7 +478,7 @@ attributes:
     domain_of:
     - Benchmark
     range: StorageAPIEnum
-    required: true
+    required: false
   storage_bucket_name:
     name: storage_bucket_name
     description: The name of the bucket (i.e. for S3)
@@ -489,7 +489,7 @@ attributes:
     domain_of:
     - Benchmark
     range: string
-    required: true
+    required: false
   software_environments:
     name: software_environments
     description: Dictionary of software environments keyed by their identifiers
